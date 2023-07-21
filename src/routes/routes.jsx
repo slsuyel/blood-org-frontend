@@ -4,13 +4,10 @@ import Signin from "../pages/auth/Signin";
 import Signup from "../pages/auth/Signup";
 import WithNavbar from "../layouts/WithNavbar";
 import Home from "../pages/home";
-
 import AdminRoute from "./AdminRoute";
 import Blogs from "../pages/blogs";
 import Users from "../pages/users";
 import "../App.css";
-
-import Register from "../pages/share/Register/Register";
 import Students from "../pages/Students/Students";
 import Question from "../pages/Question/Question";
 import Batch from "../pages/Batch/Batch";
@@ -34,11 +31,7 @@ export const router = createBrowserRouter([
                 path: "/signup",
                 element: <Signup />,
             },
-            {
-                path: "/register",
-                element: <Register />,
-            },
-
+            
         ],
     },
     {
@@ -61,9 +54,6 @@ export const router = createBrowserRouter([
                 path: 'batch',
                 element: <Batch />
             },
-
-
-
             {
                 path: 'blogs',
                 element: <Blogs />
@@ -72,9 +62,6 @@ export const router = createBrowserRouter([
                 path: 'users',
                 element: <Users />
             },
-
-
-
         ]
     }
 

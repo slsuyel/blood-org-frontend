@@ -16,9 +16,9 @@ export default function Signin() {
       <div className="hold-transition login-page">
         <div className="login-box">
           <div className="login-logo">
-            <a href="#" className="text-decoration-none fw-bold">
+            {/* <a href="#" className="text-decoration-none fw-bold">
               <b>Login Here</b>
-            </a>
+            </a> */}
           </div>
           <div className="card">
             <div className="card-body login-card-body">
@@ -63,7 +63,7 @@ export default function Signin() {
                 </div>
               </form>
               <p className="mb-0 mt-2">
-                <Link to={'/register'} className="text-center text-decoration-none">
+                <Link to={'/signup'} className="text-center text-decoration-none">
                   Register a new account
                 </Link>
               </p>

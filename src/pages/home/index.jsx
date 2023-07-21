@@ -19,7 +19,7 @@ export default function Home() {
         </div>
         <div className="container-fluid">
           <CardSubtitle className="text-muted" tag="h6">
-           Booking Dei - Report
+           Report
           </CardSubtitle>
           <div className="bg-primary text-white my-3 p-3 rounded">
             <Row>
