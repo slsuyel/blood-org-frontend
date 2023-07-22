@@ -1,12 +1,17 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { callApi } from '../../utilities/functions';
 
 const Signup = () => {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     console.log(data);
+    try {
+      await callApi("POST","/api/students", data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -17,41 +22,41 @@ const Signup = () => {
       <form onSubmit={handleSubmit}>
         <div className='row my-3'>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='founderName'>Founder Name <span className='text-danger'> *</span></label>
+            <label className='fw-medium' htmlFor='founder_name'>Founder Name <span className='text-danger'> *</span></label>
             <input
               type='text'
               className='form-control'
-              id='founderName'
-              name='founderName'
+              id='founder_name'
+              name='founder_name'
               placeholder='Founder Name'
-              required
+            
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='founderEmail'>Founder Email <span className='text-danger'> *</span></label>
+            <label className='fw-medium' htmlFor='founder_email'>Founder Email <span className='text-danger'> *</span></label>
             <input
               type='email'
               className='form-control'
-              id='founderEmail'
-              name='founderEmail'
+              id='founder_email'
+              name='founder_email'
               placeholder='Founder Email'
-              required
+            
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='founderPhone'>Founder Phone <span className='text-danger'> *</span></label>
+            <label className='fw-medium' htmlFor='founder_phone'>Founder Phone <span className='text-danger'> *</span></label>
             <input
               type='tel'
               className='form-control'
-              id='founderPhone'
-              name='founderPhone'
+              id='founder_phone'
+              name='founder_phone'
               placeholder='Ex: 017********'
-              required
+            
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='founderGender'>Founder Gender <span className='text-danger'> *</span></label>
-            <select name='founderGender' className='form-control' id='founderGender' required>
+            <label className='fw-medium' htmlFor='founder_gender'>Founder Gender <span className='text-danger'> *</span></label>
+            <select name='founder_gender' className='form-control' id='founder_gender' required>
               <option disabled>-Select-</option>
               <option>Male</option>
               <option>Female</option>
@@ -61,14 +66,14 @@ const Signup = () => {
         </div>
         <div className='row my-3'>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyName'>Company Name <span className='text-danger'> *</span></label>
+            <label className='fw-medium' htmlFor='company_name'>Company Name <span className='text-danger'> *</span></label>
             <input
               type='text'
               className='form-control'
-              id='companyName'
-              name='companyName'
+              id='company_name'
+              name='company_name'
               placeholder='Company Name'
-              required
+            
             />
           </div>
           <div className='form-group col-md-3'>
@@ -86,8 +91,8 @@ const Signup = () => {
             </select>
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='businessCategory'>Business Category <span className='text-danger'> *</span></label>
-            <select name='businessCategory' className='form-control' id='businessCategory' required>
+            <label className='fw-medium' htmlFor='business_category'>Business Category <span className='text-danger'> *</span></label>
+            <select name='business_category' className='form-control' id='business_category' required>
               <option disabled>--Select--</option>
               <option>Technology</option>
               <option>Healthcare</option>
@@ -100,89 +105,89 @@ const Signup = () => {
           </div>
         </div>
         <div className='form-group my-3'>
-          <label className='fw-medium' htmlFor='shortNote'>Short note about your startup/project/ideas <span className='text-danger'> *</span></label>
+          <label className='fw-medium' htmlFor='short_note'>Short note about your startup/project/ideas <span className='text-danger'> *</span></label>
           <textarea
             className='form-control py-3'
-            id='shortNote'
-            name='shortNote'
+            id='short_note'
+            name='short_note'
             placeholder='Write short note about your startup/project/ideas'
-            required
+          
           ></textarea>
         </div>
         <div className='row my-3'>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyWebsiteLink'>Website Url</label>
+            <label className='fw-medium' htmlFor='website_url'>Website Url</label>
             <input
               type='text'
               className='form-control'
-              id='companyWebsiteLink'
-              name='companyWebsiteLink'
+              id='website_url'
+              name='website_url'
               placeholder='Company website link'
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='employeeNumber'>Employee Number</label>
+            <label className='fw-medium' htmlFor='employee_number'>Employee Number</label>
             <input
               type='number'
               className='form-control'
-              id='employeeNumber'
-              name='employeeNumber'
+              id='employee_number'
+              name='employee_number'
               placeholder='Employee Number'
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='formationOfCompany'>Formation Of Company*</label>
-            <select name='formationOfCompany' className='form-control' id='formationOfCompany' required>
+            <label className='fw-medium' htmlFor='formation_of_company'>Formation Of Company*</label>
+            <select name='formation_of_company' className='form-control' id='formation_of_company' required>
               <option disabled>--Select--</option>
               <option>Technology</option>
             </select>
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyVideoLink'>Company Video link</label>
+            <label className='fw-medium' htmlFor='company_video_link'>Company Video link</label>
             <input
               type='text'
               className='form-control'
-              id='companyVideoLink'
-              name='companyVideoLink'
+              id='company_video_link'
+              name='company_video_link'
               placeholder='Company Video link'
             />
           </div>
         </div>
         <div className='row my-3'>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyFacebookLink'>Company Facebook link</label>
+            <label className='fw-medium' htmlFor='facebook_link'>Company Facebook link</label>
             <input
               type='text'
               className='form-control'
-              id='companyFacebookLink'
-              name='companyFacebookLink'
+              id='facebook_link'
+              name='facebook_link'
               placeholder='Company Facebook link'
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyYoutubeLink'>Company Youtube link</label>
+            <label className='fw-medium' htmlFor='youtube_link'>Company Youtube link</label>
             <input
               type='text'
               className='form-control'
-              id='companyYoutubeLink'
-              name='companyYoutubeLink'
+              id='youtube_link'
+              name='youtube_link'
               placeholder='Company Youtube link'
             />
           </div>
           <div className='form-group col-md-3'>
-            <label className='fw-medium' htmlFor='companyLinkedinLink'>Company Linkedin link</label>
+            <label className='fw-medium' htmlFor='linkedin_link'>Company Linkedin link</label>
             <input
               type='text'
               className='form-control'
-              id='companyLinkedinLink'
-              name='companyLinkedinLink'
+              id='linkedin_link'
+              name='linkedin_link'
               placeholder='Company Linkedin link'
             />
           </div>
         </div>
         <div className="mb-3 my-3">
           <label htmlFor="formFile" className="form-label fw-medium">Attachment (company profile/pitch deck) about startup</label>
-          <input className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment" />
+          <input className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment_file" />
         </div>
 
         <button type='submit' className='border-0 btn mb-3 py-2 rounded-0 w-100' style={{ backgroundColor: '#05BCCA' }}>

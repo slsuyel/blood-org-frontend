@@ -12,8 +12,11 @@ export default function Sidebar() {
             alt="Dashboard Logo"
             className="brand-image img-circle elevation-1"
           />
-          <span className="brand-text font-weight-light">Admin Dashboard</span>
+          <span className="brand-text font-weight-light"> Dashboard</span>
         </Link>
+
+
+
         <div className="sidebar">
           <nav className="mt-2">
             <ul
@@ -22,12 +25,15 @@ export default function Sidebar() {
               role="menu"
               data-accordion="false"
             >
+              
               <li className="nav-item">
                 <Link to="/dashboard/" className="nav-link">
                   <i className="nav-icon fas fa-home"></i>
                   <p>Home</p>
                 </Link>
               </li>
+
+
               <li className="nav-item">
                 <Link to="/dashboard/student" className="nav-link">
                   <i className="nav-icon fas fa-users"></i>
@@ -48,7 +54,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              
+
               <li className="nav-item">
                 <Link to="/dashboard/blogs" className="nav-link">
                   <i className="nav-icon fas fa-file"></i>

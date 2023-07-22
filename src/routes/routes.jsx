@@ -12,6 +12,9 @@ import Students from "../pages/Students/Students";
 import Question from "../pages/Question/Question";
 import Batch from "../pages/Batch/Batch";
 import ErrorPage from "../components/ErrorPage";
+import EditStudent from "../pages/Students/EditStudent";
+import StudentShow from "../pages/Students/StudentShow";
+import UserCheck from "./UserCheck";
 
 export const router = createBrowserRouter([
     {
@@ -31,12 +34,12 @@ export const router = createBrowserRouter([
                 path: "/signup",
                 element: <Signup />,
             },
-            
+
         ],
     },
     {
         path: 'dashboard',
-        element: <AdminRoute><WithNavbar /></AdminRoute>,
+        element: <UserCheck><WithNavbar /></UserCheck>,
         children: [
             {
                 path: '',
@@ -45,6 +48,14 @@ export const router = createBrowserRouter([
             {
                 path: 'student',
                 element: <Students />
+            },
+            {
+                path: 'student/edit/:id',
+                element: <EditStudent />
+            },
+            {
+                path: 'student/show/:id',
+                element: <StudentShow />
             },
             {
                 path: 'question',

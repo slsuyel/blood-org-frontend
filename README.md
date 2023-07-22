@@ -1,2 +1,2 @@
 
-# learnin-managment-system
+# learning-managment-system

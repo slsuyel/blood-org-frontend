@@ -1,14 +1,27 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { callApi } from "../../utilities/functions";
 
 export default function Signin() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const from = location.state?.from?.pathname || "/dashboard";
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const res = await callApi("POST", "/api/login", { email, password });
+      if (res.token) {
+        localStorage.setItem("token", res.token);
+        navigate(from, { replace: true });
+      } else {
+        console.log('Login failed: Token missing in the response.');
+      }
+    } catch (error) {
+      console.error('Error occurred during login:', error);
+    }
   };
 
   return (
