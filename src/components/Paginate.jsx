@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Paginate = ({  Totalpageprops, totalitems, per_page }) => {
+const Paginate = ({ Totalpageprops, totalitems, per_page, route }) => {
     const getPageUrl = (pag) => {
         if (pag.url) {
             const pageValue = pag.url.split('?')[1].split('=')[1];
-            return `/dashboard/student?perpage=${per_page}&page=${pageValue}`;
+            // return `/dashboard/student?perpage=${per_page}&page=${pageValue}`;
+            return `${route}?perpage=${per_page}&page=${pageValue}`;
         }
         return null;
     };

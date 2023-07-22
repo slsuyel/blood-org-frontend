@@ -47,7 +47,7 @@ export default function Sidebar() {
                   <p>Teacher</p>
                 </Link>
               </li>
-             
+
 
               <li className="nav-item">
                 <Link to="/dashboard/question" className="nav-link">
@@ -64,19 +64,14 @@ export default function Sidebar() {
               </li>
 
 
-              <li className="nav-item">
-                <Link to="/dashboard/blogs" className="nav-link">
-                  <i className="nav-icon fas fa-file"></i>
-                  <p>Blogs</p>
-                </Link>
-              </li>
 
+              {/* 
               <li className="nav-item">
                 <Link to="/dashboard/users" className="nav-link">
                   <i className="nav-icon fas fa-users"></i>
                   <p>Users</p>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>

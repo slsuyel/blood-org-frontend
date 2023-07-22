@@ -3,14 +3,17 @@ import { Table, Button } from 'reactstrap';
 import { callApi } from '../../utilities/functions';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Loader from '../../utilities/Loader';
 
 const Question = () => {
     const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     const fetchData = async () => {
         try {
             const data = await callApi("get", "/api/questions");
             setQuestions(data);
+            setLoading(false)
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -20,10 +23,21 @@ const Question = () => {
         fetchData();
     }, []);
 
+    /* 
+    
+    api for update, methood put
+    /api/questions/${id} 
+    
+    */
+
     const handleEdit = (id) => {
         console.log(`Edit question with id: ${id}`);
     };
 
+
+    if (loading) {
+        return <Loader />
+    }
     const handleDelete = async (id) => {
         try {
             const result = await Swal.fire({

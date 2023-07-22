@@ -1,12 +1,14 @@
 import React from 'react';
 import { callApi } from '../../utilities/functions';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useStudent from '../../hooks/useStudent';
 import Loader from '../../utilities/Loader';
+import { toast } from 'react-toastify';
 
 const EditStudent = () => {
     const { id } = useParams();
     const { studentData, isLoading } = useStudent(id);
+    const Navigate = useNavigate()
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -29,10 +31,18 @@ const EditStudent = () => {
             attachment_file: e.target.attachment_file.value,
         };
 
-        callApi("PUT", `/api/students/${id}`,formData)
+        callApi("PUT", `/api/students/${id}`, formData)
             .then((response) => {
-                // console.log(formData,response);
-                console.log("Update successful");
+                toast.success('Student updated successfully!', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                Navigate('/dashboard/student')
             })
             .catch((error) => {
                 console.error("Error updating student:", error);

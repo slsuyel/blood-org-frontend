@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Paginate from '../../components/Paginate';
 import Loader from '../../utilities/Loader';
 import { toast } from 'react-toastify';
-
+import Swal from 'sweetalert2';
 const Students = () => {
     const [pageNo, setPageNo] = useState(1)
     const [totalPages, setTotalPages] = useState()
@@ -17,21 +17,19 @@ const Students = () => {
     useEffect(() => {
         fetchData();
     }, [location]);
-    
+
     const fetchData = async () => {
         try {
             const searchParams = new URLSearchParams(window.location.search);
             const page = searchParams.get('page') ? searchParams.get('page') : 1
-            const data = await callApi("get", `/api/students?perpage=15&page=${page}`);
+            const data = await callApi("get", `/api/students?perpage=2&page=${page}`);
             setStudents(data.data);
             setTotalPages(data.links)
             setPer_page(data.per_page)
             setTotalitems(data.total)
             if (page == 1) {
-                // this.setPageNo = 1;
                 setPageNo(1);
             } else {
-                // this.setPageNo = (page - 1) * this.PerPageData + 1;
                 setPageNo((page - 1) * data.per_page + 1);
             }
         } catch (error) {
@@ -41,21 +39,37 @@ const Students = () => {
 
     const handleStudentDelete = async (id) => {
         try {
-            await callApi("DELETE", `/api/students/${id}`);
-            toast.success('Student deleted successfully!', {
-                position: 'top-right',
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You are about to delete the student. This action cannot be undone!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
             });
-            fetchData();
+            if (result.isConfirmed) {
+                await callApi("DELETE", `/api/students/${id}`);
+                toast.success('Student deleted successfully!', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                fetchData();
+            }
         } catch (error) {
             console.error('Error deleting student:', error);
         }
     };
+
+
+
+
 
     return (
         <div className='content-wrapper'>
@@ -80,7 +94,7 @@ const Students = () => {
                                     <td>{student.company_name}</td>
                                     <td>{student.founder_email}</td>
                                     <td>{student.founder_phone}</td>
-                                    <td className='d-flex justify-content-around flex-wrap'>
+                                    <td className='d-flex justify-content-around gap-2'>
                                         <Link className='btn btn-primary text-decoration-none' to={`/dashboard/student/show/${student.id}`}>Show</Link>
 
                                         <Link className='btn btn-info text-decoration-none' to={`/dashboard/student/edit/${student.id}`}>Edit</Link>
@@ -106,6 +120,7 @@ const Students = () => {
                 Totalpageprops={totalPages}
                 per_page={per_page}
                 totalitems={totalitems}
+                route='/dashboard/student'
             />
         </div>
 
