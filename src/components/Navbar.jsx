@@ -20,7 +20,7 @@ export default function Navbar() {
 
         <li className="nav-item dropdown">
           <a className="nav-link" data-toggle="dropdown" href="#">
-            <i className="fas fa-user-circle fa-lg"></i>
+            <i className="fas fa-user-circle fa-lg fs-1"></i>
           </a>
           <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right">
             <span className="dropdown-item">Hello, Suyel Haque</span>

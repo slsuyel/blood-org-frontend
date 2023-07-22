@@ -25,7 +25,7 @@ export default function Sidebar() {
               role="menu"
               data-accordion="false"
             >
-              
+
               <li className="nav-item">
                 <Link to="/dashboard/" className="nav-link">
                   <i className="nav-icon fas fa-home"></i>
@@ -40,6 +40,15 @@ export default function Sidebar() {
                   <p>Student</p>
                 </Link>
               </li>
+
+              <li className="nav-item">
+                <Link to="/dashboard/teachers" className="nav-link">
+                  <i className="nav-icon fa-solid fa-chalkboard-user"></i>
+                  <p>Teacher</p>
+                </Link>
+              </li>
+             
+
               <li className="nav-item">
                 <Link to="/dashboard/question" className="nav-link">
                   <i className="nav-icon fa-solid fa-file-circle-question"></i>
@@ -48,9 +57,9 @@ export default function Sidebar() {
               </li>
 
               <li className="nav-item">
-                <Link to="/dashboard/batch " className="nav-link">
+                <Link to="/dashboard/batches " className="nav-link">
                   <i className="nav-icon fa-solid fa-people-group"></i>
-                  <p>Batch </p>
+                  <p>Batches </p>
                 </Link>
               </li>
 

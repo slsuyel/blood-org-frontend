@@ -7,6 +7,7 @@ import Loader from '../../utilities/Loader';
 const EditStudent = () => {
     const { id } = useParams();
     const { studentData, isLoading } = useStudent(id);
+
     const handleUpdate = (e) => {
         e.preventDefault();
         const formData = {
@@ -28,9 +29,9 @@ const EditStudent = () => {
             attachment_file: e.target.attachment_file.value,
         };
 
-        callApi("PUT", `/api/students/${id}`, formData)
+        callApi("PUT", `/api/students/${id}`,formData)
             .then((response) => {
-                console.log(response);
+                console.log(formData,response);
                 console.log("Update successful");
             })
             .catch((error) => {
@@ -41,7 +42,9 @@ const EditStudent = () => {
     if (isLoading || !studentData) {
         return <Loader />;
     }
+
     const { founder_name, founder_email, founder_phone, founder_gender, company_name, location, business_category, short_note, website_url, employee_number, formation_of_company, company_video_link, facebook_link, youtube_link, linkedin_link, attachment_file } = studentData;
+
 
     return (
         <div className='content-wrapper'>

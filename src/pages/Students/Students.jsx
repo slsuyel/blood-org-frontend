@@ -13,9 +13,11 @@ const Students = () => {
     const [totalitems, setTotalitems] = useState()
     const location = useLocation();
     const [students, setStudents] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, [location]);
+    
     const fetchData = async () => {
         try {
             const searchParams = new URLSearchParams(window.location.search);

@@ -10,11 +10,12 @@ import Users from "../pages/users";
 import "../App.css";
 import Students from "../pages/Students/Students";
 import Question from "../pages/Question/Question";
-import Batch from "../pages/Batch/Batch";
 import ErrorPage from "../components/ErrorPage";
 import EditStudent from "../pages/Students/EditStudent";
 import StudentShow from "../pages/Students/StudentShow";
 import UserCheck from "./UserCheck";
+import Teacher from "../pages/Teacher/Teacher";
+import Batches from "../pages/Batches/Batches";
 
 export const router = createBrowserRouter([
     {
@@ -62,8 +63,12 @@ export const router = createBrowserRouter([
                 element: <Question />
             },
             {
-                path: 'batch',
-                element: <Batch />
+                path: 'teachers',
+                element: <Teacher />
+            },
+            {
+                path: 'batches',
+                element: <Batches />
             },
             {
                 path: 'blogs',
