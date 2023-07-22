@@ -16,6 +16,7 @@ import StudentShow from "../pages/Students/StudentShow";
 import UserCheck from "./UserCheck";
 import Teacher from "../pages/Teacher/Teacher";
 import Batches from "../pages/Batches/Batches";
+import AddQuestions from "../pages/Question/AddQuestions";
 
 export const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             {
                 path: 'question',
                 element: <Question />
+            },
+            {
+                path: 'question/add',
+                element: <AddQuestions />
             },
             {
                 path: 'teachers',

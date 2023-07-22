@@ -8,7 +8,7 @@ const Signup = () => {
     const data = Object.fromEntries(formData);
     console.log(data);
     try {
-      await callApi("POST","/api/students", data);
+      await callApi("POST", "/api/students", data, { 'Content-Type': 'multipart/form-data' });
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -29,7 +29,7 @@ const Signup = () => {
               id='founder_name'
               name='founder_name'
               placeholder='Founder Name'
-            
+
             />
           </div>
           <div className='form-group col-md-3'>
@@ -40,7 +40,7 @@ const Signup = () => {
               id='founder_email'
               name='founder_email'
               placeholder='Founder Email'
-            
+
             />
           </div>
           <div className='form-group col-md-3'>
@@ -51,7 +51,7 @@ const Signup = () => {
               id='founder_phone'
               name='founder_phone'
               placeholder='Ex: 017********'
-            
+
             />
           </div>
           <div className='form-group col-md-3'>
@@ -73,7 +73,7 @@ const Signup = () => {
               id='company_name'
               name='company_name'
               placeholder='Company Name'
-            
+
             />
           </div>
           <div className='form-group col-md-3'>
@@ -111,7 +111,7 @@ const Signup = () => {
             id='short_note'
             name='short_note'
             placeholder='Write short note about your startup/project/ideas'
-          
+
           ></textarea>
         </div>
         <div className='row my-3'>

@@ -1,15 +1,13 @@
 import axios from 'axios';
 import { baseUrl } from '../baseurl/BaseUrl';
-export const callApi = async (method, url, dataObj = []) => {
+export const callApi = async (method, url, dataObj = [], headers = {}) => {
   try {
+    headers.Authorization = `Bearer ${localStorage.getItem("token")}`
     const response = await axios({
       method: method,
       url: `${baseUrl}${url}`,
       data: dataObj,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem("token")}`,
-        'Content-Type': 'multipart/form-data'
-      }
+      headers: headers
     });
 
     return response.data;

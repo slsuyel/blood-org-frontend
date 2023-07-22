@@ -31,7 +31,7 @@ const EditStudent = () => {
 
         callApi("PUT", `/api/students/${id}`,formData)
             .then((response) => {
-                console.log(formData,response);
+                // console.log(formData,response);
                 console.log("Update successful");
             })
             .catch((error) => {
