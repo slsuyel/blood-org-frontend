@@ -19,6 +19,7 @@ import Batches from "../pages/Batches/Batches";
 import AddQuestions from "../pages/Question/AddQuestions";
 import StudentsDashboard from "../StudentsDashboard/StudentsDashboard";
 import Exam from "../StudentsDashboard/Exam";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Signin />,
+                element: <Signup />,
             },
             {
                 path: "/signin",
@@ -40,17 +41,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/studentdashboard",
-                element: <StudentsDashboard />,
+                element: <PrivateRoute><StudentsDashboard /></PrivateRoute>,
             },
             {
                 path: "/studentdashboard/exam",
-                element: <Exam />,
+                element: <PrivateRoute><Exam /></PrivateRoute>,
             },
         ],
     },
     {
         path: 'dashboard',
-        element: <UserCheck><WithNavbar /></UserCheck>,
+        element: <PrivateRoute><UserCheck><WithNavbar /></UserCheck></PrivateRoute>,
         children: [
             {
                 path: '',

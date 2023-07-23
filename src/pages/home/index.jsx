@@ -24,16 +24,16 @@ export default function Home() {
           <div className="bg-primary text-white my-3 p-3 rounded">
             <Row>
               <Col md="4">
-                <h6>Total Hotels</h6>
-                <h4 className="mb-0 fw-bold">345</h4>
+                <h6>Total Students</h6>
+                <h4 className="mb-0 fw-bold">2345</h4>
               </Col>
               <Col md="4">
-                <h6>Today Booking</h6>
+                <h6>Today Teachers</h6>
+                <h4 className="mb-0 fw-bold">145</h4>
+              </Col>
+              <Col md="4">
+                <h6>Total Batches </h6>
                 <h4 className="mb-0 fw-bold">45</h4>
-              </Col>
-              <Col md="4">
-                <h6>Available Room</h6>
-                <h4 className="mb-0 fw-bold">345</h4>
               </Col>
             </Row>
           </div>
@@ -51,9 +51,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-shopping-cart" />
                 </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                
               </div>
             </div>
             <div className="col-lg-3">
@@ -65,9 +63,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-user-plus" />
                 </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                
               </div>
             </div>
             <div className="col-lg-3">
@@ -79,9 +75,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-calendar" />
                 </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                
               </div>
             </div>
             <div className="col-lg-3">
@@ -93,9 +87,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-users" />
                 </div>
-                <a href="#" className="small-box-footer">
-                  More info <i className="fas fa-arrow-circle-right" />
-                </a>
+                
               </div>
             </div>
           </div>

@@ -25,7 +25,7 @@ const StudentsDashboard = () => {
     return (
         <div>
             <div className='container row mx-auto'>
-                <div className='col-md-4 col-sm-12'>
+                <div className='col-md-4 '>
                     <div>
                         <div className='text-center'>
                             <img
@@ -49,7 +49,7 @@ const StudentsDashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className='col-md-8 col-sm-12'>
+                <div className='col-md-8 '>
                     <div className='card my-3'>
                         <p className="fs-3 mt-2 text-center">Student Information</p>
                         <ul>

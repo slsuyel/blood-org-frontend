@@ -6,7 +6,7 @@ export default function Sidebar() {
   return (
     <>
       <aside className="main-sidebar nav-pills sidebar-dark-primary sidebar-no-expand elevation-1">
-        <Link to="/dashboard" className="brand-link text-decoration-none">
+        <Link to="/dashboard" className="brand-link text-decoration-none py-2">
           <img
             src="https://w7.pngwing.com/pngs/502/794/png-transparent-white-arrow-going-up-computer-icons-dashboard-car-symbol-dashboard-icon-miscellaneous-angle-logo.png"
             alt="Dashboard Logo"
@@ -63,7 +63,17 @@ export default function Sidebar() {
                 </Link>
               </li>
 
+              <div>
+                <hr className='bg-black m-0 my-2' />
+              </div>
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  <i className="nav-icon fa-solid fa-house-chimney-user"></i>
+                  <p> Home </p>
+                </Link>
+              </li>
 
+{/* <i class="fa-solid fa-house-chimney-user"></i> */}
 
               {/* 
               <li className="nav-item">

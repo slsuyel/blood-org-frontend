@@ -22,7 +22,7 @@ const Students = () => {
         try {
             const searchParams = new URLSearchParams(window.location.search);
             const page = searchParams.get('page') ? searchParams.get('page') : 1
-            const data = await callApi("get", `/api/students?perpage=2&page=${page}`);
+            const data = await callApi("get", `/api/students?perpage=5&page=${page}`);
             setStudents(data.data);
             setTotalPages(data.links)
             setPer_page(data.per_page)
