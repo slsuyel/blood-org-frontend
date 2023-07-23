@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { callApi } from '../utilities/functions';
-import {  Form, Button } from 'react-bootstrap'; 
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import { Form, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Exam = () => {
     const [questions, setQuestions] = useState([]);
@@ -42,8 +42,8 @@ const Exam = () => {
             const selectedAnswer = question.answers.find((answer) => answer.id === selectedAnswerId);
             results[question.question_text] = selectedAnswer ? selectedAnswer.answer_text : "Not answered";
         });
-
-        console.log(results);
+        const finalReult = { results: results, userId: "s54" }
+        console.log(finalReult);
     };
 
     return (
