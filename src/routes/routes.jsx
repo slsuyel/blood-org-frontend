@@ -17,6 +17,8 @@ import UserCheck from "./UserCheck";
 import Teacher from "../pages/Teacher/Teacher";
 import Batches from "../pages/Batches/Batches";
 import AddQuestions from "../pages/Question/AddQuestions";
+import StudentsDashboard from "../StudentsDashboard/StudentsDashboard";
+import Exam from "../StudentsDashboard/Exam";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
             {
                 path: "/signup",
                 element: <Signup />,
+            },
+            {
+                path: "/studentdashboard",
+                element: <StudentsDashboard />,
+            },
+            {
+                path: "/studentdashboard/exam",
+                element: <Exam />,
             },
 
         ],
