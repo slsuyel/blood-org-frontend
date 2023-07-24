@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi } from "../../utilities/functions";
 
-export default function Signin() {
+export default function StudentSignin() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [email, setEmail] = useState('');
+  const [founder_email, setFounder_email] = useState('');
   const [password, setPassword] = useState('');
-  const from = location.state?.from?.pathname || "/dashboard";
+  const from = location.state?.from?.pathname || "/studentdashboard";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await callApi("POST", "/api/login", { email, password });
+      const res = await callApi("POST", "/api/student/login", { founder_email, password });
       if (res.token) {
         localStorage.setItem("token", res.token);
         navigate(from, { replace: true });
@@ -29,7 +29,7 @@ export default function Signin() {
       <div className="hold-transition login-page">
         <div className="login-box">
           <div className="login-logo">
-            <h3>Admin Login</h3>
+           <h3>Student Login</h3>
           </div>
           <div className="card">
             <div className="card-body login-card-body">
@@ -40,8 +40,8 @@ export default function Signin() {
                     type="email"
                     className="form-control"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={founder_email}
+                    onChange={(e) => setFounder_email(e.target.value)}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -73,7 +73,11 @@ export default function Signin() {
                   </div>
                 </div>
               </form>
-             
+              <p className="mb-0 mt-2">
+                <Link to={'/signup'} className="text-center text-decoration-none">
+                  Register a new account
+                </Link>
+              </p>
             </div>
           </div>
         </div>

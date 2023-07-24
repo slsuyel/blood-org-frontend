@@ -1,16 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../utilities/Loader";
 import useStudent from "../../hooks/useStudent";
-
+import { Rating } from "@smastrom/react-rating";
+import { callApi } from "../../utilities/functions";
+import Swal from 'sweetalert2';
 const StudentShow = () => {
     const { id } = useParams();
     const { studentData, isLoading } = useStudent(id);
+    const [rating, setRating] = useState(0);
 
+    // console.log(studentData?.id);
+
+
+    useEffect(() => {
+        if (studentData) {
+            setRating(Number(studentData.rating));
+        }
+    }, [studentData]);
 
     if (isLoading || !studentData) {
         return <Loader />;
     }
+
+    const handleSubmitStar = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to submit the ratings?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                callApi("POST", `/api/students/set/ratings/${id}`, { rating: rating })
+                    .then((response) => {
+                        // REfetch here
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+        });
+    };
+
+
+
     const {
         founder_name,
         founder_email,
@@ -35,27 +72,46 @@ const StudentShow = () => {
             <div className="content-header">
                 <h2 className='text-center my-3'>Student Information</h2>
                 <div className="row">
-                    <div className="col-md-6">
-                        <p>Founder Name: {founder_name}</p>
-                        <p>Founder Email: {founder_email}</p>
-                        <p>Founder Phone: {founder_phone}</p>
-                        <p>Founder Gender: {founder_gender}</p>
+                    <div className="col-md-6  d-flex flex-wrap ">
+                        <p className="mx-4 border-end border-dark pe-4">Founder Name: {founder_name}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Founder Email: {founder_email}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Founder Phone: {founder_phone}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Founder Gender: {founder_gender}</p>
 
-                        <p>Company Name: {company_name}</p>
-                        <p>Location: {location}</p>
-                        <p>Business Category: {business_category}</p>
-                        <p>Short Note: {short_note}</p>
-                        <p>Website Url: {website_url}</p>
-                        <p>Employee Number: {employee_number}</p>
-                        <p>Formation Of Company: {formation_of_company}</p>
-                        <p>Company Video link: {company_video_link}</p>
-                        <p>Company Facebook link: {facebook_link}</p>
-                        <p>Company Youtube link: {youtube_link}</p>
-                        <p>Company Linkedin link: {linkedin_link}</p>
-                        <p>Attachment (company profile/pitch deck): {attachment_file}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Company Name: {company_name}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Location: {location}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Business Category: {business_category}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Short Note: {short_note}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Website Url: {website_url}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Employee Number: {employee_number}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Formation Of Company: {formation_of_company}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Company Video link: {company_video_link}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Company Facebook link: {facebook_link}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Company Youtube link: {youtube_link}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Company Linkedin link: {linkedin_link}</p>
+                        <p className="mx-4 border-end border-dark pe-4">Attachment (company profile/pitch deck): {attachment_file}</p>
                     </div>
-                    <div className="col-md-6">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni ullam possimus culpa ipsum ea, nobis distinctio odit iusto modi ab repudiandae cupiditate reprehenderit harum, quaerat vitae doloribus explicabo sit impedit?
+                    <div className="col-md-6 card">
+                        <h4 className="text-center">All questions and answer : {rating}</h4>
+                        <div className="border d-flex gap-3 justify-content-end my-3 p-2">
+                            <Rating
+                                style={{ maxWidth: 180 }}
+                                value={rating}
+                                onChange={setRating}
+                                isDisabled={Number(studentData.rating) > 0}
+                            />
+                            <button onClick={handleSubmitStar}
+                                disabled={Number(studentData.rating) > 0}
+                                className="btn btn-outline-success">Submit</button>
+                        </div>
+                        <div>
+                            <ol> {studentData?.exams?.map(exam => <>
+                                <li key={exam.id}>{exam?.question}</li>
+                                <span>ans : {exam?.ans}</span>
+                            </>)}
+
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>

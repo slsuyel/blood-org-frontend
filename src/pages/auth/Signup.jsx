@@ -43,6 +43,20 @@ const Signup = () => {
 
             />
           </div>
+          
+          <div className='form-group col-md-3'>
+            <label className='fw-medium' htmlFor='password'>Founder password <span className='text-danger'> *</span></label>
+            <input
+              type='password'
+              className='form-control'
+              id='password'
+              name='password'
+              placeholder='Founder password'
+
+            />
+          </div>
+
+
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='founder_phone'>Founder Phone <span className='text-danger'> *</span></label>
             <input
@@ -196,7 +210,7 @@ const Signup = () => {
       </form>
       <div className='mb-4 text-end'>
         <span>  Already have an account?</span>
-        <Link to={'/signin'} className="text-center text-decoration-none"> Login here
+        <Link to={'/student/signin'} className="text-center text-decoration-none"> Login here
         </Link>
       </div>
     </div>

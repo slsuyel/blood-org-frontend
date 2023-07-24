@@ -1,10 +1,15 @@
 import React from "react";
 import bar from "../assets/clock-time.gif"
 import { Button } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+
+
 export default function Navbar() {
+  const navigate = useNavigate()
 
   const handleLogOut = () => {
-    console.log('handleLogOut');
+    localStorage.removeItem("token")
+    navigate('/signin')
   }
 
   return (

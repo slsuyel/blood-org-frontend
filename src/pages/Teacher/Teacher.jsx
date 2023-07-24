@@ -69,7 +69,7 @@ const Teacher = () => {
             console.error('Error deleting student:', error);
         }
     };
-    console.log(teachers);
+    // console.log(teachers);
     return (
         <div className='content-wrapper'>
             <div className="content-header">
@@ -92,9 +92,9 @@ const Teacher = () => {
                                     <td>{teacher.email}</td>
                                     <td>{teacher.role}</td>
                                     <td className='d-flex justify-content-around gap-2'>
-                                        <Link className='btn btn-primary text-decoration-none' to={`/dashboard/student/show/${teacher.id}`}>Show</Link>
+                                        <Link className='btn btn-primary text-decoration-none' to={`/dashboard/teacher/show/${teacher.id}`}>Show</Link>
 
-                                        <Link className='btn btn-info text-decoration-none' to={`/dashboard/student/edit/${teacher.id}`}>Edit</Link>
+                                        <Link className='btn btn-info text-decoration-none' to={`/dashboard/teacher/edit/${teacher.id}`}>Edit</Link>
 
                                         <button
                                             onClick={() => handleTeacherDelete(teacher.id)}

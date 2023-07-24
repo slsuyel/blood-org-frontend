@@ -1,26 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Rating } from "@smastrom/react-rating";
+import useStudent from '../hooks/useStudent';
+import Loader from '../utilities/Loader';
 
 const StudentsDashboard = () => {
-    // Default student information
-    const studentInfo = {
-        founder_name: 'John Doe',
-        founder_email: 'john.doe@example.com',
-        founder_phone: '123-456-7890',
-        founder_gender: 'Male',
-        company_name: 'Sample Company Inc.',
-        location: 'New York, USA',
-        business_category: 'Technology',
-        short_note: 'A brief description about the student and their company.',
-        website_url: 'https://www.samplecompany.com',
-        employee_number: 50,
-        formation_of_company: '2022-01-01',
-        company_video_link: 'https://www.youtube.com/watch?v=example',
-        facebook_link: 'https://www.facebook.com/samplecompany',
-        youtube_link: 'https://www.youtube.com/samplecompany',
-        linkedin_link: 'https://www.linkedin.com/in/samplecompany',
-        attachment_file: 'path/to/attachment_file.pdf',
-    };
+    const id = localStorage.getItem("studentId")
+    const { studentData, isLoading } = useStudent(id, `/api/students/profile`)
+    // console.log(studentData);
+    const navigate = useNavigate()
+    if (isLoading) {
+        return <Loader />
+    }
+    const studentLogOut = () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("studentId")
+        navigate('/student/signin')
+    }
 
     return (
         <div>
@@ -39,13 +35,21 @@ const StudentsDashboard = () => {
                             Student Profile
                         </h4>
 
-                        <h4 className="py-2 rounded-1 text-center">Total Marks: <span>00</span></h4>
+                        <div className='align-items-center d-flex fs-4 fw-bold justify-content-around my-3'>
+                            <span>You get : </span>
+                            <Rating
+                                style={{ maxWidth: 180 }}
+                                value={Number(studentData.rating)}
+                                isDisabled
+                            // items={10}
+                            />
+                        </div>
 
                         <div className="text-center">
                             <Link to='/studentdashboard/exam' className='btn btn-secondary'>Start Exam</Link>
                         </div>
                         <div className="text-center my-2">
-                            <button className='btn btn-danger'>Log Out</button>
+                            <button onClick={studentLogOut} className='btn btn-danger'>Log Out</button>
                         </div>
                     </div>
                 </div>
@@ -53,22 +57,22 @@ const StudentsDashboard = () => {
                     <div className='card my-3'>
                         <p className="fs-3 mt-2 text-center">Student Information</p>
                         <ul>
-                            <li>Founder Name: {studentInfo.founder_name}</li>
-                            <li>Founder Email: {studentInfo.founder_email}</li>
-                            <li>Founder Phone: {studentInfo.founder_phone}</li>
-                            <li>Founder Gender: {studentInfo.founder_gender}</li>
-                            <li>Company Name: {studentInfo.company_name}</li>
-                            <li>Location: {studentInfo.location}</li>
-                            <li>Business Category: {studentInfo.business_category}</li>
-                            <li>Short Note: {studentInfo.short_note}</li>
-                            <li>Website URL: {studentInfo.website_url}</li>
-                            <li>Employee Number: {studentInfo.employee_number}</li>
-                            <li>Formation of Company: {studentInfo.formation_of_company}</li>
-                            <li>Company Video Link: {studentInfo.company_video_link}</li>
-                            <li>Facebook Link: {studentInfo.facebook_link}</li>
-                            <li>YouTube Link: {studentInfo.youtube_link}</li>
-                            <li>LinkedIn Link: {studentInfo.linkedin_link}</li>
-                            <li>Attachment File: {studentInfo.attachment_file}</li>
+                            <li>Founder Name: {studentData.founder_name}</li>
+                            <li>Founder Email: {studentData.founder_email}</li>
+                            <li>Founder Phone: {studentData.founder_phone}</li>
+                            <li>Founder Gender: {studentData.founder_gender}</li>
+                            <li>Company Name: {studentData.company_name}</li>
+                            <li>Location: {studentData.location}</li>
+                            <li>Business Category: {studentData.business_category}</li>
+                            <li>Short Note: {studentData.short_note}</li>
+                            <li>Website URL: {studentData.website_url}</li>
+                            <li>Employee Number: {studentData.employee_number}</li>
+                            <li>Formation of Company: {studentData.formation_of_company}</li>
+                            <li>Company Video Link: {studentData.company_video_link}</li>
+                            <li>Facebook Link: {studentData.facebook_link}</li>
+                            <li>YouTube Link: {studentData.youtube_link}</li>
+                            <li>LinkedIn Link: {studentData.linkedin_link}</li>
+                            <li>Attachment File: {studentData.attachment_file}</li>
                         </ul>
                     </div>
                 </div>

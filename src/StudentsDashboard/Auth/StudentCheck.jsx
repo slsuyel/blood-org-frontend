@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router";
-import { callApi } from "../utilities/functions";
-import Loader from "../utilities/Loader";
-const UserCheck = ({ children }) => {
+import { useState } from "react";
+import { callApi } from "../../utilities/functions";
+import { useEffect } from "react";
+import Loader from "../../utilities/Loader";
+import { Navigate } from "react-router-dom";
+
+const StudentCheck = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -14,9 +16,10 @@ const UserCheck = ({ children }) => {
                 return;
             }
             try {
-                const response = await callApi("POST", "/api/check/login", { token });
+                const response = await callApi("POST", "/api/check/student/login", { token });
                 // console.log(response);
                 if (response.message == 'Token is valid') {
+                    localStorage.setItem("studentId", response.student.id)
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
@@ -33,7 +36,7 @@ const UserCheck = ({ children }) => {
     if (loading) {
         return <Loader />;
     }
-    return authenticated ? children : <Navigate to="/signin" />;
+    return authenticated ? children : <Navigate to="/student/signin" />;
 };
 
-export default UserCheck;
+export default StudentCheck;

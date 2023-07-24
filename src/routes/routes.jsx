@@ -20,6 +20,10 @@ import AddQuestions from "../pages/Question/AddQuestions";
 import StudentsDashboard from "../StudentsDashboard/StudentsDashboard";
 import Exam from "../StudentsDashboard/Exam";
 import PrivateRoute from "./PrivateRoute";
+import TeacherShow from "../pages/Teacher/TeacherShow";
+import TeacherEdit from "../pages/Teacher/TeacherEdit";
+import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
+import StudentCheck from "../StudentsDashboard/Auth/StudentCheck";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +36,10 @@ export const router = createBrowserRouter([
                 element: <Signup />,
             },
             {
+                path: "/student/signin",
+                element: <StudentSignin />,
+            },
+            {
                 path: "/signin",
                 element: <Signin />,
             },
@@ -41,17 +49,17 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/studentdashboard",
-                element: <PrivateRoute><StudentsDashboard /></PrivateRoute>,
+                element: <StudentCheck><StudentsDashboard /></StudentCheck>,
             },
             {
                 path: "/studentdashboard/exam",
-                element: <PrivateRoute><Exam /></PrivateRoute>,
+                element: <StudentCheck><Exam /></StudentCheck>,
             },
         ],
     },
     {
         path: 'dashboard',
-        element: <PrivateRoute><UserCheck><WithNavbar /></UserCheck></PrivateRoute>,
+        element: <UserCheck><WithNavbar /></UserCheck>,
         children: [
             {
                 path: '',
@@ -80,6 +88,14 @@ export const router = createBrowserRouter([
             {
                 path: 'teachers',
                 element: <Teacher />
+            },
+            {
+                path: 'teacher/show/:id',
+                element: <TeacherShow />
+            },
+            {
+                path: 'teacher/edit/:id',
+                element: <TeacherEdit />
             },
             {
                 path: 'batches',

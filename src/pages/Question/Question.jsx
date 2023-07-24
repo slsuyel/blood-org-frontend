@@ -4,7 +4,7 @@ import { callApi } from '../../utilities/functions';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Loader from '../../utilities/Loader';
-
+import '../../App.css'
 const Question = () => {
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true)
@@ -67,7 +67,7 @@ const Question = () => {
         <div className='content-wrapper'>
             <div className="content-header">
                 <div className='m-2 text-end'>
-                    <Link className='border-dark btn btn-warning' to='/dashboard/question/add'>Add Questions</Link>
+                    <Link className='add-question-btn px-3 py-1 text-decoration-none' to='/dashboard/question/add'>Add Questions</Link>
                 </div>
                 <Table striped>
                     <thead>
