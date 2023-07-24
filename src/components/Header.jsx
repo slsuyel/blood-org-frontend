@@ -15,7 +15,7 @@ function Header() {
                             Home
                         </NavLink>
                         <NavLink className="fs-5 mx-2 text-decoration-none" to="/dashboard">
-                            Dashboard
+                           Admin Dashboard
                         </NavLink>
                         <NavLink className="fs-5 mx-2 text-decoration-none" to="/studentdashboard">
                             Student Dashboard

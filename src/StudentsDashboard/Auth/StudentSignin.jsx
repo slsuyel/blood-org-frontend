@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi } from "../../utilities/functions";
+import { toast } from "react-toastify";
 
 export default function StudentSignin() {
   const navigate = useNavigate();
@@ -19,6 +20,15 @@ export default function StudentSignin() {
       const res = await callApi("POST", "/api/student/login", { founder_email, password });
       if (res.token) {
         localStorage.setItem("token", res.token);
+        toast.success('Sign In successfully!', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         navigate(from, { replace: true });
       } else {
         console.log('Login failed: Token missing in the response.');

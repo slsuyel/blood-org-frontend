@@ -12,7 +12,7 @@ export default function Sidebar() {
             alt="Dashboard Logo"
             className="brand-image img-circle elevation-1"
           />
-          <span className="brand-text font-weight-light"> Dashboard</span>
+          <span className="brand-text font-weight-light">Admin Dashboard</span>
         </Link>
 
 
