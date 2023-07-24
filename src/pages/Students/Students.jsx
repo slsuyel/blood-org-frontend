@@ -67,14 +67,10 @@ const Students = () => {
         }
     };
 
-
-
-
-
     return (
         <div className='content-wrapper'>
             <div className="content-header">
-                <Table striped bordered>
+                <Table striped responsive>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -115,7 +111,7 @@ const Students = () => {
                         )}
                     </tbody>
                 </Table>
-            </div>
+          
             <Paginate
                 Totalpageprops={totalPages}
                 per_page={per_page}
@@ -123,6 +119,7 @@ const Students = () => {
                 route='/dashboard/student'
             />
         </div>
+        </div >
 
         // <div className='content-wrapper'>
         //     <div className="content-header">

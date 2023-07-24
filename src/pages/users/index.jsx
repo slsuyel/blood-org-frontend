@@ -119,7 +119,7 @@ export default function Users() {
                           <tr {...row.getRowProps()}>
                             {row.cells.map((cell) => {
                               return (
-                                <td {...cell.getCellProps()}>
+                                <td {...cell.getCellProps()} className="text-nowrap">
                                   {cell.render("Cell")}
                                 </td>
                               );

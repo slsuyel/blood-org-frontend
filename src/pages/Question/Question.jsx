@@ -62,7 +62,7 @@ const Question = () => {
     };
 
 
-    console.log(questions);
+    // console.log(questions);
     return (
         <div className='content-wrapper'>
             <div className="content-header">

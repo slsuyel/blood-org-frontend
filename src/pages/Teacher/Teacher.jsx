@@ -73,7 +73,7 @@ const Teacher = () => {
     return (
         <div className='content-wrapper'>
             <div className="content-header">
-                <Table striped bordered>
+                <Table striped bordered responsive>
                     <thead>
                         <tr>
                             <th>#</th>

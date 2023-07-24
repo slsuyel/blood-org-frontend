@@ -125,7 +125,7 @@ const StudentShow = () => {
                         </div>
                         <div>
                             <ol> {studentData?.exams?.map(exam => <>
-                                <li key={exam.id}>{exam?.question}</li>
+                                <li key={exam?.question}>{exam?.question}</li>
                                 <span>ans : {exam?.ans}</span>
                             </>)}
 

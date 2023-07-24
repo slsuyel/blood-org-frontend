@@ -14,7 +14,7 @@ const Exam = () => {
     // console.log(selectedAnswers);
     const { studentData, isLoading } = useStudent(studentId, `/api/students/profile`)
 
-    console.log(studentData);
+    // console.log(studentData);
     const Navigate = useNavigate()
     useEffect(() => {
         async function fetchQuestions() {
@@ -87,7 +87,7 @@ const Exam = () => {
                             <p>Time : {questions.length} minutes</p>
                         </div>
                         {questions?.map((question, index) => (
-                            <div key={question.id}>
+                            <div key={index}>
                                 <p className='font-weight-normal fs-3 mb-2 text-capitalize'>{index + 1}. {question.question_text}</p>
                                 <ul className='list-unstyled ms-2'>
                                     {question.answers.map((answer) => (

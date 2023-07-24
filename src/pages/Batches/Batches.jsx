@@ -63,11 +63,11 @@ const Batches = () => {
             console.error('Error deleting student:', error);
         }
     };
-    console.log(teachers);
+    // console.log(teachers);
     return (
         <div className='content-wrapper'>
             <div className="content-header">
-                <Table striped bordered>
+                <Table striped bordered responsive >
                     <thead>
                         <tr>
                             <th>#</th>
@@ -81,10 +81,10 @@ const Batches = () => {
                         {teachers.length > 0 ? (
                             teachers.map((teacher, index) => (
                                 <tr key={teacher.id}>
-                                    <td>{index + pageNo}</td>
-                                    <td>{teacher.name}</td>
-                                    <td>{teacher.email}</td>
-                                    <td>{teacher.role}</td>
+                                    <td className='text-nowrap'>{index + pageNo}</td>
+                                    <td className='text-nowrap'>{teacher.name}</td>
+                                    <td className='text-nowrap'>{teacher.email}</td>
+                                    <td className='text-nowrap'>{teacher.role}</td>
                                     <td className='d-flex justify-content-around gap-2'>
                                         <Link className='btn btn-primary text-decoration-none' to={`/dashboard/student/show/${teacher.id}`}>Show</Link>
 

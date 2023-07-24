@@ -18,7 +18,7 @@ const StudentsDashboard = () => {
         localStorage.removeItem("studentId")
         navigate('/student/signin')
     }
-    console.log(studentData);
+    // console.log(studentData);
     return (
         <div>
             <div className='container row mx-auto'>
