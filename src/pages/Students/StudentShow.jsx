@@ -5,13 +5,17 @@ import useStudent from "../../hooks/useStudent";
 import { Rating } from "@smastrom/react-rating";
 import { callApi } from "../../utilities/functions";
 import Swal from 'sweetalert2';
+import { toast } from "react-toastify";
+
 const StudentShow = () => {
     const { id } = useParams();
-    const { studentData, isLoading } = useStudent(id);
+    const { studentData: initialStudentData, isLoading } = useStudent(id);
+    const [studentData, setStudentData] = useState(initialStudentData);
     const [rating, setRating] = useState(0);
 
-    // console.log(studentData?.id);
-
+    useEffect(() => {
+        setStudentData(initialStudentData);
+    }, [initialStudentData]);
 
     useEffect(() => {
         if (studentData) {
@@ -36,8 +40,23 @@ const StudentShow = () => {
             if (result.isConfirmed) {
                 callApi("POST", `/api/students/set/ratings/${id}`, { rating: rating })
                     .then((response) => {
-                        // REfetch here
-                        console.log(response);
+                        // Refetch student data after successful submission
+                        callApi("GET", `/api/students/${id}`)
+                            .then((data) => {
+                                setStudentData(data);
+                                toast.success('submit ratings successfully!', {
+                                    position: 'top-right',
+                                    autoClose: 3000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                });
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                            });
                     })
                     .catch((error) => {
                         console.error(error);
