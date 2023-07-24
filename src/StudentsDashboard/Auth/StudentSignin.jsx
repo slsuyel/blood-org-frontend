@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi } from "../../utilities/functions";
 import { toast } from "react-toastify";
+import useTitle from "../../hooks/useTitle";
 
 export default function StudentSignin() {
+  useTitle("Student Signin")
   const navigate = useNavigate();
   const location = useLocation();
   const [founder_email, setFounder_email] = useState('');
@@ -79,18 +81,17 @@ export default function StudentSignin() {
                 <div className="row">
                   <div className="col-8">
                   </div>
-                  <div className="col-12">
+                  <div className="col-4">
                     <p className="text-danger"> {error}</p>
-                    
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? 'Loading...' : 'Sign In'}
-                      </button>
-                   
+
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Loading...' : 'Sign In'}
+                    </button>
                   </div>
                 </div>
               </form>
