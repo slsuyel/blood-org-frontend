@@ -37,6 +37,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='founder_name'>Founder Name <span className='text-danger'> *</span></label>
             <input
+              required
               type='text'
               className='form-control'
               id='founder_name'
@@ -48,6 +49,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='founder_email'>Founder Email <span className='text-danger'> *</span></label>
             <input
+              required
               type='email'
               className='form-control'
               id='founder_email'
@@ -60,6 +62,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='password'>Founder password <span className='text-danger'> *</span></label>
             <input
+              required
               type='password'
               className='form-control'
               id='password'
@@ -73,6 +76,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='founder_phone'>Founder Phone <span className='text-danger'> *</span></label>
             <input
+              required
               type='tel'
               className='form-control'
               id='founder_phone'
@@ -95,6 +99,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='company_name'>Company Name <span className='text-danger'> *</span></label>
             <input
+              required
               type='text'
               className='form-control'
               id='company_name'
@@ -145,6 +150,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='website_url'>Website Url</label>
             <input
+              required
               type='text'
               className='form-control'
               id='website_url'
@@ -155,6 +161,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='employee_number'>Employee Number</label>
             <input
+              required
               type='number'
               className='form-control'
               id='employee_number'
@@ -172,6 +179,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='company_video_link'>Company Video link</label>
             <input
+              required
               type='text'
               className='form-control'
               id='company_video_link'
@@ -184,6 +192,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='facebook_link'>Company Facebook link</label>
             <input
+              required
               type='text'
               className='form-control'
               id='facebook_link'
@@ -194,6 +203,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='youtube_link'>Company Youtube link</label>
             <input
+              required
               type='text'
               className='form-control'
               id='youtube_link'
@@ -204,6 +214,7 @@ const Signup = () => {
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='linkedin_link'>Company Linkedin link</label>
             <input
+              required
               type='text'
               className='form-control'
               id='linkedin_link'
@@ -214,7 +225,8 @@ const Signup = () => {
         </div>
         <div className="mb-3 my-3">
           <label htmlFor="formFile" className="form-label fw-medium">Attachment (company profile/pitch deck) about startup</label>
-          <input className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment_file" />
+          <input
+            required className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment_file" />
         </div>
 
         <button

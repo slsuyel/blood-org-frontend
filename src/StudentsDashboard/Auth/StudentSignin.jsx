@@ -79,16 +79,18 @@ export default function StudentSignin() {
                 <div className="row">
                   <div className="col-8">
                   </div>
-                  <div className="col-4">
+                  <div className="col-12">
                     <p className="text-danger"> {error}</p>
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Loading...' : 'Sign In'}
-                    </button>
+                    
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Loading...' : 'Sign In'}
+                      </button>
+                   
                   </div>
                 </div>
               </form>
