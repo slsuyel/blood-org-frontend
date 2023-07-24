@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { callApi } from "../../utilities/functions";
 
 export default function Signin() {
@@ -8,8 +8,12 @@ export default function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const from = location.state?.from?.pathname || "/dashboard";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("")
 
   const handleSubmit = async (event) => {
+    setIsSubmitting(true)
+    setError("")
     event.preventDefault();
     try {
       const res = await callApi("POST", "/api/login", { email, password });
@@ -18,9 +22,14 @@ export default function Signin() {
         navigate(from, { replace: true });
       } else {
         console.log('Login failed: Token missing in the response.');
+        setError("Login failed")
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
+      setError("Login failed")
+    }
+    finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -66,14 +75,21 @@ export default function Signin() {
                 <div className="row">
                   <div className="col-8">
                   </div>
+
                   <div className="col-4">
-                    <button type="submit" className="btn btn-primary btn-block">
-                      Sign In
+                    <p className="text-danger"> {error}</p>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Loading...' : 'Sign In'}
                     </button>
                   </div>
                 </div>
               </form>
-             
+
             </div>
           </div>
         </div>

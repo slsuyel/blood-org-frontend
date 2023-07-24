@@ -8,8 +8,12 @@ export default function StudentSignin() {
   const [founder_email, setFounder_email] = useState('');
   const [password, setPassword] = useState('');
   const from = location.state?.from?.pathname || "/studentdashboard";
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("")
 
   const handleSubmit = async (event) => {
+    setIsSubmitting(true)
+    setError("")
     event.preventDefault();
     try {
       const res = await callApi("POST", "/api/student/login", { founder_email, password });
@@ -18,9 +22,14 @@ export default function StudentSignin() {
         navigate(from, { replace: true });
       } else {
         console.log('Login failed: Token missing in the response.');
+        setError("Login failed")
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
+      setError("Login failed")
+    }
+    finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -29,7 +38,7 @@ export default function StudentSignin() {
       <div className="hold-transition login-page">
         <div className="login-box">
           <div className="login-logo">
-           <h3>Student Login</h3>
+            <h3>Student Login</h3>
           </div>
           <div className="card">
             <div className="card-body login-card-body">
@@ -67,8 +76,14 @@ export default function StudentSignin() {
                   <div className="col-8">
                   </div>
                   <div className="col-4">
-                    <button type="submit" className="btn btn-primary btn-block">
-                      Sign In
+                    <p className="text-danger"> {error}</p>
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      onClick={handleSubmit}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Loading...' : 'Sign In'}
                     </button>
                   </div>
                 </div>
