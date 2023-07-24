@@ -69,28 +69,28 @@ const Question = () => {
                 <div className='m-2 text-end'>
                     <Link className='add-question-btn px-3 py-1 text-decoration-none' to='/dashboard/question/add'>Add Questions</Link>
                 </div>
-                <Table striped>
+                <Table striped responsive>
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Question</th>
-                            <th>Answer</th>
+                            <th>Options</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {questions.map((question, index) => (
                             <tr key={question.id}>
-                                <td>{index + 1}</td>
-                                <td>{question.question_text}</td>
-                                <td>
+                                <td >{index + 1}</td>
+                                <td >{question.question_text}</td>
+                                <td >
                                     <ul>
                                         {question.answers.map((answer, answerIndex) => (
                                             <li key={answerIndex}>{answer.answer_text}</li>
                                         ))}
                                     </ul>
                                 </td>
-                                <td>
+                                <td className="d-flex gap-3 justify-content-between">
                                     <Button color="primary" onClick={() => handleEdit(question.id)}>
                                         Edit
                                     </Button>{" "}

@@ -9,6 +9,7 @@ const StudentsDashboard = () => {
     const { studentData, isLoading } = useStudent(id, `/api/students/profile`)
     // console.log(studentData);
     const navigate = useNavigate()
+
     if (isLoading) {
         return <Loader />
     }
@@ -17,7 +18,7 @@ const StudentsDashboard = () => {
         localStorage.removeItem("studentId")
         navigate('/student/signin')
     }
-
+    console.log(studentData);
     return (
         <div>
             <div className='container row mx-auto'>
@@ -44,10 +45,18 @@ const StudentsDashboard = () => {
                             // items={10}
                             />
                         </div>
+                        {
+                            !Number(studentData.rating) > 0 ? <div className="text-center">
+                                <Link to='/studentdashboard/exam' className='btn btn-secondary'>Start Exam</Link>
+                            </div> : <div className="text-center">
+                                <Link to='/studentdashboard/exam' className='btn btn-secondary'>See Your Performance</Link>
+                            </div>
+                        }
 
-                        <div className="text-center">
+
+                        {/* <div className="text-center">
                             <Link to='/studentdashboard/exam' className='btn btn-secondary'>Start Exam</Link>
-                        </div>
+                        </div> */}
                         <div className="text-center my-2">
                             <button onClick={studentLogOut} className='btn btn-danger'>Log Out</button>
                         </div>

@@ -55,14 +55,8 @@ const Batches = () => {
             if (result.isConfirmed) {
                 await callApi("DELETE", `/api/teachers/${id}`);
                 toast.success('Student deleted successfully!', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                    position: toast.POSITION.TOP_RIGHT
+                  });
                 fetchData();
             }
         } catch (error) {

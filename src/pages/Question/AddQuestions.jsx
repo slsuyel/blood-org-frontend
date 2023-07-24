@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const AddQuestions = () => {
     const [question_text, setQuestion_text] = useState('');
     const [answers, setAnswers] = useState(['']);
-
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const handleQuestionChange = (event) => {
         setQuestion_text(event.target.value);
     };
@@ -22,10 +22,12 @@ const AddQuestions = () => {
     };
 
     const handleSubmit = async () => {
+        setIsSubmitting(true)
         const data = { question_text, answers };
         try {
             await callApi('POST', '/api/questions', data);
-            console.log(data);
+            // console.log(data);
+            setIsSubmitting(false)
             Swal.fire({
                 icon: 'success',
                 title: 'Success!',
@@ -33,6 +35,8 @@ const AddQuestions = () => {
                 showConfirmButton: false,
                 timer: 2000, // Auto close after 2 seconds
             });
+            setQuestion_text('');
+            setAnswers(['']);
         } catch (error) {
             console.error('Error fetching data:', error);
             Swal.fire({
@@ -40,6 +44,7 @@ const AddQuestions = () => {
                 title: 'Error!',
                 text: 'An error occurred while adding the question and answers.',
             });
+            setIsSubmitting(false)
         }
     };
 
@@ -71,8 +76,11 @@ const AddQuestions = () => {
                             </InputGroup>
                         ))}
                     </Form.Group>
-                    <Button variant="primary" onClick={handleSubmit}>
-                        Submit
+                    <Button variant="primary"
+                        disabled={isSubmitting}
+                        onClick={handleSubmit}>
+
+                        {isSubmitting ? 'Loading...' : 'Submit'}
                     </Button>
                 </Form>
             </div>

@@ -33,7 +33,7 @@ const TeacherEdit = () => {
                     draggable: true,
                     progress: undefined,
                 });
-                Navigate('/dashboard/teacher')
+                Navigate('/dashboard/teachers')
             })
             .catch((error) => {
                 console.error("Error updating teacher:", error);

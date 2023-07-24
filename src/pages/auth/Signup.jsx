@@ -1,19 +1,32 @@
 import { Link } from 'react-router-dom';
 import { callApi } from '../../utilities/functions';
+import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 const Signup = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true)
+    const form = event.target;
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+
     console.log(data);
     try {
       await callApi("POST", "/api/students", data, { 'Content-Type': 'multipart/form-data' });
+      form.reset();
+      setIsSubmitting(false);
+      toast.success('Signup successfully!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
     } catch (error) {
+      setIsSubmitting(false);
       console.error('Error fetching data:', error);
     }
   };
-
   return (
     <div className='container'>
       <div>
@@ -43,7 +56,7 @@ const Signup = () => {
 
             />
           </div>
-          
+
           <div className='form-group col-md-3'>
             <label className='fw-medium' htmlFor='password'>Founder password <span className='text-danger'> *</span></label>
             <input
@@ -204,8 +217,12 @@ const Signup = () => {
           <input className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment_file" />
         </div>
 
-        <button type='submit' className='border-0 btn mb-3 py-2 rounded-0 w-100' style={{ backgroundColor: '#05BCCA' }}>
-          Register
+        <button
+          type='submit'
+          disabled={isSubmitting}
+          className='border-0 btn mb-3 py-2 rounded-0 w-100'
+          style={{ backgroundColor: '#05BCCA' }}>
+          {isSubmitting ? 'Loading...' : 'Sign In'}
         </button>
       </form>
       <div className='mb-4 text-end'>
