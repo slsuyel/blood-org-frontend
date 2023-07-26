@@ -24,6 +24,7 @@ import TeacherShow from "../pages/Teacher/TeacherShow";
 import TeacherEdit from "../pages/Teacher/TeacherEdit";
 import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
 import StudentCheck from "../StudentsDashboard/Auth/StudentCheck";
+import HomePage from "../home/HomePage";
 
 export const router = createBrowserRouter([
     {
@@ -33,14 +34,14 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Signup />,
+                element: <HomePage />,
             },
             {
                 path: "/student/signin",
                 element: <StudentSignin />,
             },
             {
-                path: "/signin",
+                path: "/admin/signin",
                 element: <Signin />,
             },
             {
