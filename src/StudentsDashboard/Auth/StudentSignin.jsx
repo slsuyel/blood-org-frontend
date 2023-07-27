@@ -36,6 +36,7 @@ export default function StudentSignin() {
     }
     finally {
       setIsSubmitting(false);
+      window.location.reload()
     }
   };
 

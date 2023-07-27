@@ -1,28 +1,23 @@
-
 import './StudentsDashboard.css'
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Rating } from "@smastrom/react-rating";
 import useStudent from '../hooks/useStudent';
 import Loader from '../utilities/Loader';
-
+import { AuthContext } from '../Providers/AuthProviders';
 
 
 const StudentsDashboard = () => {
+    const {studentLogOut} = useContext(AuthContext)
     const [meetLink, setMeetLink] = useState("https://meet.google.com/oms-mqwt-vzv");
     const id = localStorage.getItem("studentId")
     const { studentData, isLoading } = useStudent(id, `/api/students/profile`)
-    // console.log(studentData);
-    const navigate = useNavigate()
+
 
     if (isLoading) {
         return <Loader />
     }
-    const studentLogOut = () => {
-        localStorage.removeItem("token")
-        localStorage.removeItem("studentId")
-        navigate('/student/signin')
-    }
+
 
     const copyLinkToClipboard = () => {
         const tempInput = document.createElement("input");
