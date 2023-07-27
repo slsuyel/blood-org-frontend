@@ -12,7 +12,7 @@ const UserCheck = ({ children }) => {
                 setAuthenticated(false);
                 setLoading(false);
                 return;
-            }
+            }/* api/check/student/login */
             try {
                 const response = await callApi("POST", "/api/check/login", { token });
                 // console.log(response);

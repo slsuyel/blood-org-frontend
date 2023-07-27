@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import './home.css'
 const Hero = () => {
     return (
-        <div className='row mx-auto align-items-center ms-4'>
-            <div className='col-md-5 '>
+        <div className='row mx-auto align-items-center lg-ms-4'>
+            <div className='col-sm-12 col-md-5 '>
                 <h1>Title About Project</h1>
                 <p>Lorem ipsum dolor sit amet consectetur. Convallis in odio eget
                     purus eget eu mauris leo cursus. Lorem ipsum dolor sit amet
@@ -23,17 +23,22 @@ const Hero = () => {
 
                 </div>
             </div>
-            <div className='col-md-7'>
-
-                <div style={{ height: '500px', marginLeft: '202px', backgroundColor: '#08118E' }}>
+            <div className='col-sm-12 col-md-7'>
+                <div style={{ height: '500px', marginLeft: '202px', backgroundColor: '#08118E' }} className='d-none-in-sm'>
                     <div className='position-relative'>
                         <img src="https://img.freepik.com/premium-photo/side-view-diverse-group-business-people-working-with-computers-modern-office-focus-senior-man-it-studio_236854-29762.jpg" alt=""
                             style={{ position: 'absolute', top: '60px', left: '-151px' }}
                             width={"550px"}
                             height={"380px"}
-                            className="rounded-4"
+                            className="rounded-4 img-fluid"
                         />
                     </div>
+                </div>
+
+                <div className='d-none-in-lg my-3'>
+                    <img src="https://img.freepik.com/premium-photo/side-view-diverse-group-business-people-working-with-computers-modern-office-focus-senior-man-it-studio_236854-29762.jpg" alt=""
+                        className="rounded-4 img-fluid"
+                    />
                 </div>
 
             </div>

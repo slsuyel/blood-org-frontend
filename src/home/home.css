@@ -1,0 +1,17 @@
+@media screen and (max-width: 1500px) {
+    .d-none-in-lg {
+        display: none;
+    }
+    .lg-ms-4{
+        margin-left: 20px !important
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .d-none-in-sm {
+        display: none;
+    }
+    .d-none-in-lg{
+        display: block;
+    }
+}
