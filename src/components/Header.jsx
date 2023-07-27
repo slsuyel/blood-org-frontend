@@ -8,10 +8,10 @@ const Header = () => {
             <Navbar.Collapse id="responsive-navbar-nav ">
                 <Nav className="justify-content-evenly navbar-nav w-100">
                     <Nav.Link className='text-dark' href="/">Home</Nav.Link>
-                    <Nav.Link className='text-dark' href="/teachers">Course</Nav.Link>
-                    <Nav.Link className='text-dark' href="/student_at_a_glance">Investor</Nav.Link>
+                    <Nav.Link className='text-dark' href="/course">Course</Nav.Link>
+                    <Nav.Link className='text-dark' href="/investor">Investor</Nav.Link>
                     <Nav.Link className='text-dark' href="/student/register">Services</Nav.Link>
-                    <Nav.Link className='text-dark' href="/student/payment">About Us</Nav.Link>
+                    <Nav.Link className='text-dark' href="#about">About Us</Nav.Link>
                     <Nav.Link href="/student/signin"
                         style={{ backgroundColor: '#08118E' }}
                         className='ms-3 nav-link px-3 rounded-2 text-white'

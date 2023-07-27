@@ -11,11 +11,7 @@ export default function Home() {
           <div className="col-sm-6">
             <h1 className="m-0"></h1>
           </div>
-          <div className="col-sm-6">
-            <ol className="breadcrumb float-sm-right">
-              <li className="breadcrumb-item active">Home</li>
-            </ol>
-          </div>
+          
         </div>
         <div className="container-fluid">
           <CardSubtitle className="text-muted" tag="h6">

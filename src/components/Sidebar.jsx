@@ -5,7 +5,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside className="main-sidebar nav-pills sidebar-dark-primary sidebar-no-expand elevation-1">
+      <aside className="main-sidebar nav-pills sidebar-dark-primary sidebar-no-expand elevation-1" style={{backgroundColor:'#3940A4'}}>
         <Link to="/dashboard" className="brand-link text-decoration-none py-2">
           <img
             src="https://w7.pngwing.com/pngs/502/794/png-transparent-white-arrow-going-up-computer-icons-dashboard-car-symbol-dashboard-icon-miscellaneous-angle-logo.png"
@@ -29,7 +29,7 @@ export default function Sidebar() {
               <li className="nav-item">
                 <Link to="/dashboard/" className="nav-link">
                   <i className="nav-icon fas fa-home"></i>
-                  <p>Home</p>
+                  <p className='text-white'>Home</p>
                 </Link>
               </li>
 
@@ -37,14 +37,14 @@ export default function Sidebar() {
               <li className="nav-item">
                 <Link to="/dashboard/student" className="nav-link">
                   <i className="nav-icon fas fa-users"></i>
-                  <p>Student</p>
+                  <p className='text-white'>Student</p>
                 </Link>
               </li>
 
               <li className="nav-item">
                 <Link to="/dashboard/teachers" className="nav-link">
                   <i className="nav-icon fa-solid fa-chalkboard-user"></i>
-                  <p>Teacher</p>
+                  <p className='text-white'>Teacher</p>
                 </Link>
               </li>
 
@@ -52,14 +52,14 @@ export default function Sidebar() {
               <li className="nav-item">
                 <Link to="/dashboard/question" className="nav-link">
                   <i className="nav-icon fa-solid fa-file-circle-question"></i>
-                  <p>Question</p>
+                  <p className='text-white'>Question</p>
                 </Link>
               </li>
 
               <li className="nav-item">
                 <Link to="/dashboard/batches " className="nav-link">
                   <i className="nav-icon fa-solid fa-people-group"></i>
-                  <p>Batches </p>
+                  <p className='text-white'>Batches </p>
                 </Link>
               </li>
 
@@ -69,7 +69,7 @@ export default function Sidebar() {
               <li className="nav-item">
                 <Link to="/" className="nav-link">
                   <i className="nav-icon fa-solid fa-house-chimney-user"></i>
-                  <p> Home </p>
+                  <p className='text-white'> Home </p>
                 </Link>
               </li>
 
@@ -79,7 +79,7 @@ export default function Sidebar() {
               <li className="nav-item">
                 <Link to="/dashboard/users" className="nav-link">
                   <i className="nav-icon fas fa-users"></i>
-                  <p>Users</p>
+                  <p className='text-white'>Users</p>
                 </Link>
               </li> */}
             </ul>
