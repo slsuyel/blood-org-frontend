@@ -229,13 +229,15 @@ const Signup = () => {
             required className="form-control bg-secondary-subtle" type="file" id="formFile" name="attachment_file" />
         </div>
 
-        <button
-          type='submit'
-          disabled={isSubmitting}
-          className='border-0 btn mb-3 py-2 rounded-0 w-100'
-          style={{ backgroundColor: '#05BCCA' }}>
-          {isSubmitting ? 'Loading...' : 'Sign In'}
-        </button>
+        <div className='text-center'>
+          <button
+            type='submit'
+            disabled={isSubmitting}
+            className='border-0 btn fw-medium mb-3 px-5 py-2 rounded-0 rounded-2 text-white'
+            style={{ backgroundColor: '#08118E' }}>
+            {isSubmitting ? 'Loading...' : 'Sign In'}
+          </button>
+        </div>
       </form>
       <div className='mb-4 text-end'>
         <span>  Already have an account?</span>
