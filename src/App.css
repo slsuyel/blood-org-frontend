@@ -13,16 +13,6 @@ code {
   min-width: 4rem;
 }
 
-.active {
-  background: linear-gradient(136.85deg, rgb(255, 55, 242) -15.82%, rgb(64, 90, 255) 99.57%);
-  color: white;
-  padding: 0px 6px 0px 6px;
-  border-radius: 4px;
-}
-
-.active:hover {
-  color: rgb(250, 232, 208);
-}
 
 .add-question-btn {
   margin-right: 40px !important;
