@@ -5,6 +5,7 @@ import MySlider from '../utilities/MySlider';
 import Others from './Others';
 import About from './About';
 import Team from '../pages/carousel/Team';
+import Feedback from '../pages/carousel/Feedback';
 
 const HomePage = () => {
     return (
@@ -14,6 +15,7 @@ const HomePage = () => {
             <Others />
             <Team />
             <About />
+            <Feedback />
         </div>
     );
 };

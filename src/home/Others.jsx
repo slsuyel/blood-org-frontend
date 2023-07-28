@@ -2,7 +2,7 @@ import React from 'react';
 
 const Others = () => {
     return (
-        <div className='my-5'>
+        <div className='my-5 w-100 mx-auto'>
             <div className='row w-100 container mx-auto'>
                 <div className='mb-4 text-center'><h3>Engaged Learners Lead to Better Number</h3>
                     <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.  </p>

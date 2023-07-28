@@ -1,12 +1,12 @@
 import React from 'react';
 import SimpleSlider from '../../components/SimpleSlider';
 
-const Team = () => {
+const Feedback = () => {
     const data = [
         {
             role: 'Chairman',
             image: "https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-            name: 'John Smith',
+            name: 'Bessie Cooper',
             description: 'Strategic planning, team collaboration, and promoting employee growth.',
         },
         {
@@ -69,7 +69,7 @@ const Team = () => {
     return (
         <div className='w-100 mx-auto'>
             <SimpleSlider
-                header={'why you should stable your career'}
+                header={'Feedback From Our Student'}
                 details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}
                 data={data}
 
@@ -78,4 +78,4 @@ const Team = () => {
     );
 };
 
-export default Team;
+export default Feedback;
