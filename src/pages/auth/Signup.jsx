@@ -37,7 +37,7 @@ const Signup = () => {
   return (
     <>
       {authenticated ? (
-        navigate('/studentdashboard', { replace: true }) // Redirect if authenticated
+        navigate('/studentdashboard', { replace: true }) 
       ) : 
       (  <div className='container'>
         <div>
