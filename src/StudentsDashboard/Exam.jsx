@@ -75,7 +75,7 @@ const Exam = () => {
             {
                 Number(studentData.rating) > 0 ? <div>
                     <ol> {studentData?.exams?.map(exam => <>
-                        <li key={exam.id}>{exam?.question}</li>
+                        <li key={exam.question}>{exam?.question}</li>
                         <span>ans : {exam?.ans}</span>
                     </>)}
 

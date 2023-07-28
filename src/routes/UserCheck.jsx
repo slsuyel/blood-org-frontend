@@ -12,10 +12,10 @@ const UserCheck = ({ children }) => {
                 setAuthenticated(false);
                 setLoading(false);
                 return;
-            }/* api/check/student/login */
+            }
             try {
                 const response = await callApi("POST", "/api/check/login", { token });
-                // console.log(response);
+               console.log(response);
                 if (response.message == 'Token is valid') {
                     setAuthenticated(true);
                 } else {
@@ -33,7 +33,7 @@ const UserCheck = ({ children }) => {
     if (loading) {
         return <Loader />;
     }
-    return authenticated ? children : <Navigate to="/signin" />;
+    return authenticated ? children : <Navigate to="/student/signin" />;
 };
 
 export default UserCheck;

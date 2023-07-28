@@ -4,7 +4,6 @@ import Signin from "../pages/auth/Signin";
 import Signup from "../pages/auth/Signup";
 import WithNavbar from "../layouts/WithNavbar";
 import Home from "../pages/home";
-import AdminRoute from "./AdminRoute";
 import Blogs from "../pages/blogs";
 import Users from "../pages/users";
 import "../App.css";
@@ -19,7 +18,6 @@ import Batches from "../pages/Batches/Batches";
 import AddQuestions from "../pages/Question/AddQuestions";
 import StudentsDashboard from "../StudentsDashboard/StudentsDashboard";
 import Exam from "../StudentsDashboard/Exam";
-import PrivateRoute from "./PrivateRoute";
 import TeacherShow from "../pages/Teacher/TeacherShow";
 import TeacherEdit from "../pages/Teacher/TeacherEdit";
 import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
@@ -42,7 +40,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/admin/signin",
-                element: <Signin />,
+                element:  <Signin />,
             },
             {
                 path: "/signup",

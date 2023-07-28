@@ -1,5 +1,5 @@
 
-import { Navigate, useLocation } from "react-router";
+import { Navigate,  } from "react-router";
 
 const AdminRoute = ({ children }) => {
     const user = true;

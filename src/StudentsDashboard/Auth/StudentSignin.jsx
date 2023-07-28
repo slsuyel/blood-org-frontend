@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi } from "../../utilities/functions";
 import { toast } from "react-toastify";
 import useTitle from "../../hooks/useTitle";
+import useLoggedIn from "../../hooks/useLoggedIn";
+import Loader from "../../utilities/Loader";
 
 export default function StudentSignin() {
   useTitle("Student Signin")
@@ -13,6 +15,13 @@ export default function StudentSignin() {
   const from = location.state?.from?.pathname || "/studentdashboard";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("")
+  const { authenticated, loading } = useLoggedIn();
+
+
+  if (loading) {
+    return <Loader />
+  }
+
 
   const handleSubmit = async (event) => {
     setIsSubmitting(true)
@@ -42,69 +51,73 @@ export default function StudentSignin() {
 
   return (
     <>
-      <div className="hold-transition login-page">
-        <div className="login-box">
-          <div className="login-logo">
-            <h3>Student Login</h3>
-          </div>
-          <div className="card">
-            <div className="card-body login-card-body">
-              <p className="login-box-msg">Login in to start your session</p>
-              <form onSubmit={handleSubmit}>
-                <div className="input-group mb-3">
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder="Email"
-                    value={founder_email}
-                    onChange={(e) => setFounder_email(e.target.value)}
-                  />
-                  <div className="input-group-append">
-                    <div className="input-group-text">
-                      <span className="fas fa-envelope" />
+      {
+        !authenticated ? <div className="hold-transition login-page">
+          <div className="login-box">
+            <div className="login-logo">
+              <h3>Student Login</h3>
+            </div>
+            <div className="card">
+              <div className="card-body login-card-body">
+                <p className="login-box-msg">Login in to start your session</p>
+                <form onSubmit={handleSubmit}>
+                  <div className="input-group mb-3">
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Email"
+                      value={founder_email}
+                      onChange={(e) => setFounder_email(e.target.value)}
+                    />
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-envelope" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="input-group mb-3">
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <div className="input-group-append">
-                    <div className="input-group-text">
-                      <span className="fas fa-lock" />
+                  <div className="input-group mb-3">
+                    <input
+                      type="password"
+                      className="form-control"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div className="input-group-append">
+                      <div className="input-group-text">
+                        <span className="fas fa-lock" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-8">
-                  </div>
-                  <div className="col-4">
-                    <p className="text-danger"> {error}</p>
+                  <div className="row">
+                    <div className="col-8">
+                    </div>
+                    <div className="col-4">
+                      <p className="text-danger"> {error}</p>
 
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      onClick={handleSubmit}
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? 'Loading...' : 'Sign In'}
-                    </button>
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={handleSubmit}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Loading...' : 'Sign In'}
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </form>
-              <p className="mb-0 mt-2">
-                <Link to={'/signup'} className="text-center text-decoration-none">
-                  Register a new account
-                </Link>
-              </p>
+                </form>
+                <p className="mb-0 mt-2">
+                  <Link to={'/signup'} className="text-center text-decoration-none">
+                    Register a new account
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> : (navigate("/studentdashboard", { replace: true })
+        )
+      }
+
     </>
   );
 }
