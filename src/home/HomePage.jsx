@@ -15,7 +15,7 @@ const HomePage = () => {
             <Others />
             <Team />
             <About />
-            <Feedback />
+            {/* <Feedback /> */}
         </div>
     );
 };

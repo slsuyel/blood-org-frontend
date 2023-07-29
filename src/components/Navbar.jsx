@@ -2,12 +2,15 @@ import React from "react";
 import bar from "../assets/clock-time.gif"
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+import { callApi } from "../utilities/functions";
 
 
 export default function Navbar() {
   const navigate = useNavigate()
 
-  const handleLogOut = () => {
+  const handleLogOut = async () => {
+    const res = await callApi("POST", '/api/logout')
+    console.log(res);
     localStorage.removeItem("token")
     navigate('/admin/signin')
   }

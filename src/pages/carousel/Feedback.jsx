@@ -67,7 +67,7 @@ const Feedback = () => {
     ];
 
     return (
-        <div className='w-100 mx-auto'>
+        <div className=' mx-auto' style={{ width: '85%' }}>
             <SimpleSlider
                 header={'Feedback From Our Student'}
                 details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}

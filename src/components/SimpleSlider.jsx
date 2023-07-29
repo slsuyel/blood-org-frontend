@@ -3,6 +3,7 @@ import Slider from "react-slick";
 
 export default function SimpleSlider({ header, details, data }) {
     var settings = {
+        // variableWidth :true,
         dots: false,
         infinite: true,
         speed: 1000,
@@ -14,7 +15,7 @@ export default function SimpleSlider({ header, details, data }) {
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 4,
                     slidesToScroll: 3,
                     infinite: true,
                     // dots: true

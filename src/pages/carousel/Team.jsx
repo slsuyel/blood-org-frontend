@@ -67,7 +67,7 @@ const Team = () => {
     ];
 
     return (
-        <div className='w-100 mx-auto'>
+        <div className=' mx-auto' style={{width:'85%'}}>
             <SimpleSlider
                 header={'why you should stable your career'}
                 details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}

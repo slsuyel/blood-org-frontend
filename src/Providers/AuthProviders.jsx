@@ -28,7 +28,9 @@ const AuthProviders = ({ children }) => {
         checkUserAuthentication();
     }, [token]);
 
-    const studentLogOut = () => {
+    const studentLogOut =async () => {
+        const res = await callApi("POST", '/api/student/logout')
+        console.log(res);
         localStorage.removeItem("token")
         localStorage.removeItem("studentId")
         window.location.reload()
