@@ -28,8 +28,9 @@ const StudentsDashboard = () => {
         document.body.removeChild(tempInput);
         alert("Link copied to clipboard!");
     };
+
     return (
-        < div className="student-profile py-4 my-5" >
+        <div  className="student-profile py-4 my-5" >
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4">
@@ -44,7 +45,7 @@ const StudentsDashboard = () => {
                                 <p className="mb-0">
                                     <strong className="pr-1">Join:</strong>
                                     <span id="meet-link" className="fst-italic">
-                                        <a className="mx-2 text-decoration-none" href={meetLink}>Google Meet</a>
+                                        <a className="mx-2 text-decoration-none" href={meetLink}> Meeting</a>
                                     </span>
                                     <span id="copy-icon" className='' onClick={copyLinkToClipboard}>
                                         <i className="btn fa-copy fa-regular fs-5 text-secondary"></i>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SimpleSlider from '../../components/SimpleSlider';
 
 const Feedback = () => {
@@ -65,9 +65,12 @@ const Feedback = () => {
         },
 
     ];
+    useEffect(() => {
+        AOS.init(); 
+    }, []);
 
     return (
-        <div className=' mx-auto' style={{ width: '85%' }}>
+        <div data-aos="zoom-in-down" className=' mx-auto' style={{ width: '85%' }}>
             <SimpleSlider
                 header={'Feedback From Our Student'}
                 details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Others = () => {
+
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     return (
-        <div className='my-5 w-100 mx-auto'>
+        <div data-aos="fade-up" className='my-5 w-100 mx-auto'>
             <div className='row w-100 container mx-auto'>
                 <div className='mb-4 text-center'><h3>Engaged Learners Lead to Better Number</h3>
                     <p>Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.  </p>

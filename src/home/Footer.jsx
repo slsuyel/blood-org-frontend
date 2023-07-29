@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 
 const Footer = () => {
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     return (
-        <footer className=" pt-5">
+        <footer data-aos="zoom-in-down" className=" pt-5">
 
             <div className="container  px-4 px-md-3 ">
                 <div className="row">

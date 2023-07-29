@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SimpleSlider from '../../components/SimpleSlider';
 
 const Team = () => {
     const data = [
         {
             role: 'Chairman',
-            image: "https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
-            name: 'John Smith',
+            image: "https://en.wikialpha.org/mediawiki/images/9/91/Suyel_Haque.jpg",
+            name: 'Suyel Haque',
             description: 'Strategic planning, team collaboration, and promoting employee growth.',
         },
         {
             role: 'Manager',
-            image: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
+            image: "https://pbs.twimg.com/profile_images/1457267528003047425/80YgsAWz_400x400.jpg",
             name: 'Alice Johnson',
             description: 'Empowering her team, problem-solving, and fostering a positive work environment.',
         },
@@ -23,13 +23,13 @@ const Team = () => {
         },
         {
             role: 'Manager',
-            image: "https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG1hbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+            image: "https://pbs.twimg.com/profile_images/1158913321765990401/Tx8Y2WbH_400x400.jpg",
             name: 'Emily Brown',
             description: 'Innovative solutions, cross-functional communication, and mentoring team members.',
         },
         {
             role: 'Team Lead',
-            image: "https://images.unsplash.com/photo-1583864697784-a0efc8379f70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1hbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+            image: "https://en.wikialpha.org/mediawiki/images/9/91/Suyel_Haque.jpg",
             name: 'Daniel Lee',
             description: 'Leading by example, continuous learning, and building high-performing teams.',
         },
@@ -65,9 +65,12 @@ const Team = () => {
         },
 
     ];
+    useEffect(() => {
+        AOS.init();
+    }, []);
 
     return (
-        <div className=' mx-auto' style={{width:'85%'}}>
+        <div data-aos="zoom-in-down" className=' mx-auto' style={{ width: '85%' }}>
             <SimpleSlider
                 header={'why you should stable your career'}
                 details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}

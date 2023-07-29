@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './home.css'
 const Hero = () => {
+
+    useEffect(() => {
+        AOS.init(); 
+    }, []);
+
+
     return (
-        <div className='row mx-auto align-items-center  w-100 mt-5 pt-5 ' id='top'>
+        <div data-aos="fade-down" className='row mx-auto align-items-center  w-100 mt-5 pt-5 ' id='top'>
             <div className='col-sm-12 col-md-5 '>
                 <h1>Title About Project</h1>
                 <p>Lorem ipsum dolor sit amet consectetur. Convallis in odio eget

@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Partner = () => {
+    
+    useEffect(() => {
+        AOS.init();
+    }, []);
+
     return (
-        <div className='my-5 w-100 mx-auto'>
+        <div data-aos="zoom-in-down" className='my-5 w-100 mx-auto'>
             <h1 className='text-center mb-4'>Our Partner</h1>
 
             <div className='d-flex flex-wrap gap-4 justify-content-center mb-5'>
