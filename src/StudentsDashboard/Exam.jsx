@@ -71,43 +71,51 @@ const Exam = () => {
 
 
     return (
-        <div style={{ backgroundColor: '#b8b8b89c' }}>
-            {
-                Number(studentData.rating) > 0 ? <div>
-                    <ol> {studentData?.exams?.map(exam => <>
-                        <li key={exam.question}>{exam?.question}</li>
-                        <span>ans : {exam?.ans}</span>
-                    </>)}
+        <div className='w-100 row mx-auto align-items-center container mt-4'>
+            <div className='col-md-6'>
+                {
+                    Number(studentData.rating) > 0 ? <div>
+                        <ol> {studentData?.exams?.map(exam => <>
+                            <li key={exam.question} className='fw-bold mb-1 text-capitalize'>{exam?.question}</li>
+                            <p className='d-inline ms-2 selected-ans'><i className="fa-solid fa-check-double"></i> : <span className='fw-bold text-capitalize text-decoration-underline'>{exam?.ans}</span></p>
+                        </>)}
 
-                    </ol>
-                </div> :
-                    <div className="container pb-3">
-                        <div className='d-flex fs-2 justify-content-between pt-4 text-decoration-underline text-primary'>
-                            <p>Total Questions :{questions.length}</p>
-                            <p>Time : {questions.length} minutes</p>
-                        </div>
-                        {questions?.map((question, index) => (
-                            <div key={index}>
-                                <p className='font-weight-normal fs-3 mb-2 text-capitalize'>{index + 1}. {question.question_text}</p>
-                                <ul className='list-unstyled ms-2'>
-                                    {question.answers.map((answer) => (
-                                        <li key={answer.id}>
-                                            <Form.Check
-                                                type="radio"
-                                                id={`question_${question.id}_${answer.id}`}
-                                                name={`question_${question.id}`}
-                                                label={answer.answer_text}
-                                                checked={selectedAnswers[question.id] === answer.id}
-                                                onChange={() => handleAnswerSelect(question.id, answer.id)}
-                                            />
-                                        </li>
-                                    ))}
-                                </ul>
+                        </ol>
+                    </div> :
+                        <div className="container pb-3">
+                            <div className='d-flex fs-2 justify-content-between pt-4 text-decoration-underline text-primary'>
+                                <p>Total Questions :{questions.length}</p>
+                                <p>Time : {questions.length} minutes</p>
                             </div>
-                        ))}
-                        <Button variant="secondary" className="mt-3" onClick={handleSubmit}>Submit Exam</Button>
-                    </div>
-            }
+                            {questions?.map((question, index) => (
+                                <div key={index}>
+                                    <p className='font-weight-normal fs-3 mb-2 text-capitalize'>{index + 1}. {question.question_text}</p>
+                                    <ul className='list-unstyled ms-2'>
+                                        {question.answers.map((answer) => (
+                                            <li key={answer.id}>
+                                                <Form.Check
+                                                    type="radio"
+                                                    id={`question_${question.id}_${answer.id}`}
+                                                    name={`question_${question.id}`}
+                                                    label={answer.answer_text}
+                                                    checked={selectedAnswers[question.id] === answer.id}
+                                                    onChange={() => handleAnswerSelect(question.id, answer.id)}
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                            <Button variant="secondary" className="mt-3" onClick={handleSubmit}>Submit Exam</Button>
+                        </div>
+                }
+            </div>
+
+
+            <div className='col-md-6'>
+                <img src="https://img.freepik.com/premium-vector/inspirational-quote-about-dream_165578-123.jpg?w=2000" alt="" className="img-fluid" />
+
+            </div>
         </div>
     );
 };

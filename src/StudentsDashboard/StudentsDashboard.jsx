@@ -29,7 +29,7 @@ const StudentsDashboard = () => {
         alert("Link copied to clipboard!");
     };
     return (
-        < div className="student-profile py-4" >
+        < div className="student-profile py-4 my-5" >
             <div className="container">
                 <div className="row">
                     <div className="col-lg-4">
