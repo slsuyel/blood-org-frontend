@@ -6,7 +6,7 @@ import { AuthContext } from '../Providers/AuthProviders';
 const Header = () => {
     const { isLoggedIn } = useContext(AuthContext)
     return (
-        <Navbar collapseOnSelect expand="lg" fixed="top" className=' bg-white border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3' variant="light">
+        <Navbar collapseOnSelect expand="lg" fixed="top"  className=' bg-white border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3' variant="light">
             <Navbar.Toggle aria-controls="responsive-navbar-nav " />
             <Navbar.Collapse id="responsive-navbar-nav ">
                 <Nav className="justify-content-evenly navbar-nav w-100">

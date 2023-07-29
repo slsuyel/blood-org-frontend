@@ -6,7 +6,12 @@ body {
   /* overflow-x: hidden; */
 }
 
+a.gp-top {
+  position: absolute;
+  left: 29px;
+  font-size: 36px;
 
+}
 
 code {
   font-family: 'Mitr';

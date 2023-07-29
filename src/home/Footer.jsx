@@ -2,6 +2,7 @@
 const Footer = () => {
     return (
         <footer className=" pt-5">
+
             <div className="container  px-4 px-md-3 ">
                 <div className="row">
                     <div className="col-lg-3 mb-3">
@@ -49,6 +50,10 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
+            <div className="position-relative">
+                <a href="#top" className="gp-top"><i className="fa-solid fa-circle-chevron-up"></i></a>
+            </div>
+
             <div className="text-center px-4 py-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
                 © 2023. All rights reserved.
             </div>

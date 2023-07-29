@@ -73,7 +73,7 @@ const Teacher = () => {
     return (
         <div className='content-wrapper'>
             <div className="content-header">
-                <Table striped bordered responsive>
+                <Table striped  responsive>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -88,7 +88,7 @@ const Teacher = () => {
                             teachers.map((teacher, index) => (
                                 <tr key={teacher.id}>
                                     <td>{index + pageNo}</td>
-                                    <td>{teacher.name}</td>
+                                    <td className='text-nowrap'>{teacher.name}</td>
                                     <td>{teacher.email}</td>
                                     <td>{teacher.role}</td>
                                     <td className='d-flex justify-content-around gap-2'>

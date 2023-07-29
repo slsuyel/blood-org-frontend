@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import useStudent from '../hooks/useStudent';
 import Loader from '../utilities/Loader';
 
+
 const Exam = () => {
     const studentId = localStorage.getItem("studentId")
     const [questions, setQuestions] = useState([]);
@@ -71,8 +72,8 @@ const Exam = () => {
 
 
     return (
-        <div className='w-100 row mx-auto align-items-center container mt-4'>
-            <div className='col-md-6'>
+        <div className='w-100 row mx-auto  container mt-4'>
+            <div className=' col-md-6 mt-5'>
                 {
                     Number(studentData.rating) > 0 ? <div>
                         <ol> {studentData?.exams?.map(exam => <>
@@ -82,15 +83,20 @@ const Exam = () => {
 
                         </ol>
                     </div> :
-                        <div className="container pb-3">
-                            <div className='d-flex fs-2 justify-content-between pt-4 text-decoration-underline text-primary'>
+
+                        <div className="bg-teal container pb-3">
+                            <div className='d-flex fs-2 justify-content-between pt-4  '>
                                 <p>Total Questions :{questions.length}</p>
-                                <p>Time : {questions.length} minutes</p>
+
+
+
+
                             </div>
+
                             {questions?.map((question, index) => (
                                 <div key={index}>
-                                    <p className='font-weight-normal fs-3 mb-2 text-capitalize'>{index + 1}. {question.question_text}</p>
-                                    <ul className='list-unstyled ms-2'>
+                                    <p className='bg-gradient-secondary font-monospace font-weight-normal fs-3 mb-2 px-3 text-capitalize'>{index + 1}. {question.question_text}</p>
+                                    <ul className='fs-5 list-unstyled ms-2 text-capitalize ms-3'>
                                         {question.answers.map((answer) => (
                                             <li key={answer.id}>
                                                 <Form.Check
@@ -108,12 +114,15 @@ const Exam = () => {
                             ))}
                             <Button variant="secondary" className="mt-3" onClick={handleSubmit}>Submit Exam</Button>
                         </div>
+
+
+
                 }
             </div>
 
 
-            <div className='col-md-6'>
-                <img src="https://img.freepik.com/premium-vector/inspirational-quote-about-dream_165578-123.jpg?w=2000" alt="" className="img-fluid" />
+            <div className='col-md-6 mt-5'>
+                <img src="https://www.ncirl.ie/Portals/0/Exams%20Office/Rules%20%26%20Regulations/Know%20the%20rules%21%20Poster.JPG" alt="" className="img-fluid" height={'100%'}/>
 
             </div>
         </div>
