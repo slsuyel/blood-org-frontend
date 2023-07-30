@@ -63,7 +63,7 @@ const Exam = () => {
             showConfirmButton: false,
             timer: 2000,
         });
-        Navigate('/studentdashboard')
+        Navigate('/profile')
     };
 
     if (isLoading) {

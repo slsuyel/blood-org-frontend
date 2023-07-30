@@ -23,6 +23,9 @@ import TeacherEdit from "../pages/Teacher/TeacherEdit";
 import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
 import StudentCheck from "../StudentsDashboard/Auth/StudentCheck";
 import HomePage from "../home/HomePage";
+import Services from "../home/Services";
+import AboutUs from "../home/AboutUs";
+import Profile from "../StudentsDashboard/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -35,23 +38,32 @@ export const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
+                path: 'services',
+                element: <Services />
+            },
+            {
+                path: 'about',
+                element: <AboutUs />
+            },
+            {
                 path: "/student/signin",
                 element: <StudentSignin />,
             },
             {
                 path: "/admin/signin",
-                element:  <Signin />,
+                element: <Signin />,
             },
             {
                 path: "/signup",
                 element: <Signup />,
             },
+           
             {
-                path: "/studentdashboard",
-                element: <StudentCheck><StudentsDashboard /></StudentCheck>,
+                path: "/profile",
+                element: <StudentCheck><Profile /></StudentCheck>,
             },
             {
-                path: "/studentdashboard/exam",
+                path: "/profile/exam",
                 element: <StudentCheck><Exam /></StudentCheck>,
             },
         ],
@@ -64,6 +76,7 @@ export const router = createBrowserRouter([
                 path: '',
                 element: <Home />
             },
+
             {
                 path: 'student',
                 element: <Students />

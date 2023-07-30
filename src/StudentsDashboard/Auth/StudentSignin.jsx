@@ -12,7 +12,7 @@ export default function StudentSignin() {
   const location = useLocation();
   const [founder_email, setFounder_email] = useState('');
   const [password, setPassword] = useState('');
-  const from = location.state?.from?.pathname || "/studentdashboard";
+  const from = location.state?.from?.pathname || "/profile";
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("")
   const { authenticated, loading } = useLoggedIn();
@@ -114,7 +114,7 @@ export default function StudentSignin() {
               </div>
             </div>
           </div>
-        </div> : (navigate("/studentdashboard", { replace: true })
+        </div> : (navigate("/profile", { replace: true })
         )
       }
     </>

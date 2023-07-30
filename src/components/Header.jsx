@@ -13,11 +13,11 @@ const Header = () => {
                     <Nav.Link className='text-dark' href="/">Home</Nav.Link>
                     <Nav.Link className='text-dark' href="/course">Course</Nav.Link>
                     <Nav.Link className='text-dark' href="/investor">Investor</Nav.Link>
-                    <Nav.Link className='text-dark' href="/student/register">Services</Nav.Link>
-                    <Nav.Link className='text-dark' href="#about">About Us</Nav.Link>
+                    <Nav.Link className='text-dark' href="/services">Services</Nav.Link>
+                    <Nav.Link className='text-dark' href="/about">About Us</Nav.Link>
 
                     {
-                        isLoggedIn == true ? <Nav.Link href="/studentdashboard"
+                        isLoggedIn == true ? <Nav.Link href="/profile"
                             style={{ backgroundColor: '#08118E' }}
                             className='ms-3 nav-link px-3 rounded-2 text-white'
                         >Profile</Nav.Link> : <>

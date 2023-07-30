@@ -1,7 +1,7 @@
 
 import React, { createContext, useState, useEffect } from "react";
 import { callApi } from "../utilities/functions";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 const AuthProviders = ({ children }) => {
@@ -28,12 +28,18 @@ const AuthProviders = ({ children }) => {
         checkUserAuthentication();
     }, [token]);
 
-    const studentLogOut =async () => {
+    const studentLogOut = async () => {
         const res = await callApi("POST", '/api/student/logout')
         console.log(res);
-        localStorage.removeItem("token")
-        localStorage.removeItem("studentId")
-        window.location.reload()
+        if (res.message == 'Logged out successfully') {
+            toast.success('Log Out successfully!', {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            localStorage.removeItem("token")
+            localStorage.removeItem("studentId")
+            window.location.reload()
+        }
+
     }
 
 

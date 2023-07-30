@@ -38,7 +38,7 @@ const Signup = () => {
   return (
     <>
       {authenticated ? (
-        navigate('/studentdashboard', { replace: true })
+        navigate('/profile', { replace: true })
       ) :
         (<div className='container'>
           <div>

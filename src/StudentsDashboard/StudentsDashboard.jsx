@@ -69,9 +69,9 @@ const StudentsDashboard = () => {
                             <div className='mb-3'>
                                 {
                                     !Number(studentData.rating) > 0 ? <div className="text-center">
-                                        <Link to='/studentdashboard/exam' className='btn btn-outline-primary text-dark text-decoration-none'><i className="fa-regular fa-file-lines"></i> Start Exam</Link>
+                                        <Link to='/profile/exam' className='btn btn-outline-primary text-dark text-decoration-none'><i className="fa-regular fa-file-lines"></i> Start Exam</Link>
                                     </div> : <div className="text-center">
-                                        <Link to='/studentdashboard/exam' className='btn btn-outline-primary text-dark text-decoration-none'>
+                                        <Link to='/profile/exam' className='btn btn-outline-primary text-dark text-decoration-none'>
 
                                             <i className="fa-regular fa-circle-check"></i>   See Your Performance</Link>
                                     </div>
