@@ -42,7 +42,6 @@ const AuthProviders = ({ children }) => {
 
     }
 
-
     const authInfo = {
         isLoggedIn, studentLogOut
     };

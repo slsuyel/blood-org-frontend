@@ -11,8 +11,8 @@ const Header = () => {
             <Navbar.Collapse id="responsive-navbar-nav ">
                 <Nav className="justify-content-evenly navbar-nav w-100">
                     <Nav.Link className='text-dark' href="/">Home</Nav.Link>
-                    <Nav.Link className='text-dark' href="/course">Course</Nav.Link>
-                    <Nav.Link className='text-dark' href="/investor">Investor</Nav.Link>
+                    {/* <Nav.Link className='text-dark' href="/course">Course</Nav.Link>
+                    <Nav.Link className='text-dark' href="/investor">Investor</Nav.Link> */}
                     <Nav.Link className='text-dark' href="/services">Services</Nav.Link>
                     <Nav.Link className='text-dark' href="/about">About Us</Nav.Link>
 
