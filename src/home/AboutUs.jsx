@@ -17,16 +17,16 @@ const AboutUs = () => {
                                         <div className="img-overlay bg-dark" />
                                     </div>
                                 </div>
-                                {/*end col*/}
+
                                 <div className="col-12">
                                     <div className="mt-4 pt-2 text-right">
-                                        <a href="javascript:void(0)" className="btn btn-info">Read More <i className="mdi mdi-chevron-right" /></a>
+                                        <a href="#" className="btn btn-info">Read More <i className="mdi mdi-chevron-right" /></a>
                                     </div>
                                 </div>
                             </div>
-                            {/*end row*/}
+
                         </div>
-                        {/*end col*/}
+
                         <div className="col-lg-6 col-md-6 col-6">
                             <div className="row">
                                 <div className="col-lg-12 col-md-12">
@@ -35,22 +35,22 @@ const AboutUs = () => {
                                         <div className="img-overlay bg-dark" />
                                     </div>
                                 </div>
-                                {/*end col*/}
+
                                 <div className="col-lg-12 col-md-12 mt-4 pt-2">
                                     <div className="card work-desk rounded border-0 shadow-lg overflow-hidden">
                                         <img src="https://www.bootdey.com/image/600x401/FF7F50/000000" className="img-fluid" alt="Image" />
                                         <div className="img-overlay bg-dark" />
                                     </div>
                                 </div>
-                                {/*end col*/}
+
                             </div>
-                            {/*end row*/}
+
                         </div>
-                        {/*end col*/}
+
                     </div>
-                    {/*end row*/}
+
                 </div>
-                {/*end col*/}
+
                 <div className="col-lg-6 col-md-6 col-12 order-1 order-md-2">
                     <div className="section-title ml-lg-5">
                         <h5 className="text-custom font-weight-normal mb-3">About Us</h5>
@@ -87,9 +87,9 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </div>
-                {/*end col*/}
+
             </div>
-            {/*enr row*/}
+
         </div>
 
     );
