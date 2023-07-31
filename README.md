@@ -19,13 +19,14 @@ Backend: Laravel, MySQL
 
 - Exam Review: The admin can receive answer sheets from students after they have taken exams. They can then review the exams and provide star ratings based on the student's performance.
 
-Admin Login Credentials:
+## Admin Login Credentials:
 Email: admin@gmail.com
 Password: 12345678
 
 ### Users or Students:
 
 - Register and login to the system.
+- Student Profile page.
 - Take exams with multiple-choice questions.
 - Submit answers to the multiple-choice questions.
 - Admin or teachers can review the exams and provide ratings.
