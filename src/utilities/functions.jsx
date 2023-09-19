@@ -9,7 +9,7 @@ export const callApi = async (method, url, dataObj = [], headers = {}) => {
       data: dataObj,
       headers: headers
     });
-
+    // console.log(response);
     return response.data;
   } catch (error) {
     if (error.response) {
@@ -23,10 +23,7 @@ export const callApi = async (method, url, dataObj = [], headers = {}) => {
 
 
 
-export const sumTwoNumbers = (num1, num2) => {
-  if (typeof num1 !== 'number' || typeof num2 !== 'number') {
-    throw new Error('Both inputs must be numbers.');
-  }
-
-  return num1 + num2;
+export const getName = (array, value) => {
+  const name = array.find(d => d.id === value);
+  return name.bn_name;
 };

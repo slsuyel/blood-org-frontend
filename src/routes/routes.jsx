@@ -4,20 +4,13 @@ import Signin from "../pages/auth/Signin";
 import Signup from "../pages/auth/Signup";
 import WithNavbar from "../layouts/WithNavbar";
 import Home from "../pages/home";
-import Blogs from "../pages/blogs";
-import Users from "../pages/users";
 import "../App.css";
 import Students from "../pages/Students/Students";
-import Question from "../pages/Question/Question";
 import ErrorPage from "../components/ErrorPage";
 import EditStudent from "../pages/Students/EditStudent";
 import StudentShow from "../pages/Students/StudentShow";
-import UserCheck from "./UserCheck";
 import Teacher from "../pages/Teacher/Teacher";
 import Batches from "../pages/Batches/Batches";
-import AddQuestions from "../pages/Question/AddQuestions";
-import StudentsDashboard from "../StudentsDashboard/StudentsDashboard";
-import Exam from "../StudentsDashboard/Exam";
 import TeacherShow from "../pages/Teacher/TeacherShow";
 import TeacherEdit from "../pages/Teacher/TeacherEdit";
 import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
@@ -26,6 +19,16 @@ import HomePage from "../home/HomePage";
 import Services from "../home/Services";
 import AboutUs from "../home/AboutUs";
 import Profile from "../StudentsDashboard/Profile";
+import DonarProfile from "../pages/Bloods/DonarProfile";
+import OrgSignIn from "../StudentsDashboard/Auth/OrgSignIn";
+import OrgRegi from "../StudentsDashboard/Auth/OrgRegi";
+import Organizations from "../home/Organizations";
+import AddUser from "../pages/subAdmin/AddUser";
+import ManageUsers from "../pages/subAdmin/ManageUsers";
+import PrivateRoute from "./PrivateRoute";
+import AdminCheck from "../StudentsDashboard/Auth/AdminCheck";
+import BlogLayout from "../layouts/BlogLayout";
+import BlogHome from "../blogs/Home/BlogHome";
 
 export const router = createBrowserRouter([
     {
@@ -34,94 +37,137 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
+
                 path: "/",
                 element: <HomePage />,
             },
             {
-                path: 'services',
+
+                path: 'all-donars',
                 element: <Services />
             },
             {
+
+                path: '/donar/:id',
+                element: <DonarProfile />
+            },
+            {
+
                 path: 'about',
                 element: <AboutUs />
             },
             {
-                path: "/student/signin",
+
+                path: "/donar/signin",
                 element: <StudentSignin />,
             },
             {
+
                 path: "/admin/signin",
                 element: <Signin />,
             },
             {
+
                 path: "/signup",
                 element: <Signup />,
             },
-           
             {
-                path: "/profile",
-                element: <StudentCheck><Profile /></StudentCheck>,
+
+                path: "organizations",
+                element: <Organizations />,
             },
             {
-                path: "/profile/exam",
-                element: <StudentCheck><Exam /></StudentCheck>,
+
+                path: "org-login",
+                element: <OrgSignIn />,
+            },
+            {
+
+                path: "/add-org",
+                element: <OrgRegi />,
+            },
+
+            {
+
+                path: "/profile",
+                element: <StudentCheck><Profile /></StudentCheck>
             },
         ],
     },
     {
         path: 'dashboard',
-        element: <UserCheck><WithNavbar /></UserCheck>,
+        element: <PrivateRoute> <WithNavbar /></PrivateRoute>,
         children: [
             {
+
                 path: '',
-                element: <Home />
+                element: <PrivateRoute> <Home /></PrivateRoute>
             },
 
             {
-                path: 'student',
-                element: <Students />
+
+                path: 'donars',
+                element: <PrivateRoute> <Students /></PrivateRoute>
             },
             {
-                path: 'student/edit/:id',
-                element: <EditStudent />
+
+                path: '/dashboard/add-donar',
+                element: <PrivateRoute> <AddUser /></PrivateRoute>
             },
             {
-                path: 'student/show/:id',
+
+                path: '/dashboard/manage',
+                element: <PrivateRoute> <ManageUsers /></PrivateRoute>
+            },
+            {
+
+                path: 'donar/edit/:id',
+                element: <PrivateRoute> <EditStudent /></PrivateRoute>
+            },
+            {
+
+                path: 'donar/show/:id',
                 element: <StudentShow />
             },
+
             {
-                path: 'question',
-                element: <Question />
+
+                path: 'organizations',
+                element: <AdminCheck> <Teacher /></AdminCheck>
             },
             {
-                path: 'question/add',
-                element: <AddQuestions />
+
+                path: 'manage-org',
+                element: <AdminCheck>  <Teacher /></AdminCheck>
             },
             {
-                path: 'teachers',
-                element: <Teacher />
+
+                path: 'settings',
+                element: <AdminCheck>  <Teacher /></AdminCheck>
             },
             {
-                path: 'teacher/show/:id',
-                element: <TeacherShow />
+
+                path: 'organization/show/:id',
+                element: <AdminCheck>  <TeacherShow /></AdminCheck>
             },
             {
-                path: 'teacher/edit/:id',
-                element: <TeacherEdit />
+
+                path: 'organization/edit/:id',
+                element: <AdminCheck>  <TeacherEdit />  </AdminCheck>
             },
+
+        ]
+    },
+    {
+        path: 'blogs',
+        element: <BlogLayout />,
+        children: [
             {
-                path: 'batches',
-                element: <Batches />
+
+                path: '',
+                element: <BlogHome />
             },
-            {
-                path: 'blogs',
-                element: <Blogs />
-            },
-            {
-                path: 'users',
-                element: <Users />
-            },
+
         ]
     }
-
 ]);

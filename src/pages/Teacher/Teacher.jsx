@@ -83,7 +83,7 @@ const Teacher = () => {
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {/* <tbody>
                         {teachers.length > 0 ? (
                             teachers.map((teacher, index) => (
                                 <tr key={teacher.id}>
@@ -92,9 +92,9 @@ const Teacher = () => {
                                     <td>{teacher.email}</td>
                                     <td>{teacher.role}</td>
                                     <td className='d-flex justify-content-around gap-2'>
-                                        <Link className='btn btn-primary text-decoration-none' to={`/dashboard/teacher/show/${teacher.id}`}>Show</Link>
+                                        <Link className='btn btn-primary text-decoration-none' to={`/dashboard/organization/show/${teacher.id}`}>Show</Link>
 
-                                        <Link className='btn btn-info text-decoration-none' to={`/dashboard/teacher/edit/${teacher.id}`}>Edit</Link>
+                                        <Link className='btn btn-info text-decoration-none' to={`/dashboard/organization/edit/${teacher.id}`}>Edit</Link>
 
                                         <button
                                             onClick={() => handleTeacherDelete(teacher.id)}
@@ -110,7 +110,7 @@ const Teacher = () => {
                                 </td>
                             </tr>
                         )}
-                    </tbody>
+                    </tbody> */}
                 </Table>
                 <Paginate
                     Totalpageprops={totalPages}
@@ -119,7 +119,9 @@ const Teacher = () => {
                     route='/dashboard/teachers'
                 />
             </div>
-
+{
+     teachers.map((teacher) => (<> </>))
+}
         </div>
 
     );

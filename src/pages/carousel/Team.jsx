@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import SimpleSlider from '../../components/SimpleSlider';
 
 const Team = () => {
+
+
+
     const data = [
         {
             role: 'Chairman',
@@ -72,8 +75,7 @@ const Team = () => {
     return (
         <div data-aos="zoom-in-down" className=' mx-auto' style={{ width: '85%' }}>
             <SimpleSlider
-                header={'why you should stable your career'}
-                details={'Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.'}
+               
                 data={data}
 
             />

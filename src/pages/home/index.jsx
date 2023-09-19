@@ -11,20 +11,20 @@ export default function Home() {
           <div className="col-sm-6">
             <h1 className="m-0"></h1>
           </div>
-          
+
         </div>
         <div className="container-fluid">
           <CardSubtitle className="text-muted" tag="h6">
-           Report
+            Report
           </CardSubtitle>
           <div className="bg-primary text-white my-3 p-3 rounded">
             <Row>
               <Col md="4">
-                <h6>Total Students</h6>
+                <h6>Total Donars</h6>
                 <h4 className="mb-0 fw-bold">2345</h4>
               </Col>
               <Col md="4">
-                <h6>Today Teachers</h6>
+                <h6>Toral Clubs</h6>
                 <h4 className="mb-0 fw-bold">145</h4>
               </Col>
               <Col md="4">
@@ -47,7 +47,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-shopping-cart" />
                 </div>
-                
+
               </div>
             </div>
             <div className="col-lg-3">
@@ -59,7 +59,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-user-plus" />
                 </div>
-                
+
               </div>
             </div>
             <div className="col-lg-3">
@@ -71,7 +71,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-calendar" />
                 </div>
-                
+
               </div>
             </div>
             <div className="col-lg-3">
@@ -83,7 +83,7 @@ export default function Home() {
                 <div className="icon">
                   <i className="fas fa-users" />
                 </div>
-                
+
               </div>
             </div>
           </div>

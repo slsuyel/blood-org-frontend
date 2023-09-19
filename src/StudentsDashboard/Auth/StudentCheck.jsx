@@ -9,7 +9,7 @@ const StudentCheck = ({ children }) => {
     return <Loader />;
   }
 
-  return authenticated ? children : <Navigate to="/student/signin" />;
+  return authenticated ? children : <Navigate to="/donar/signin" />;
 };
 
 export default StudentCheck;

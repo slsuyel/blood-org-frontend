@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router";
+import { useState, useEffect } from "react";
 import { callApi } from "../utilities/functions";
-import Loader from "../utilities/Loader";
-const UserCheck = ({ children }) => {
+
+const useAdminLoggedIn = () => {
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        const checkUserAuthentication = async () => {
+        const checkOrgAuthentication = async () => {
             const token = localStorage.getItem("token");
             if (!token) {
                 setAuthenticated(false);
@@ -14,9 +14,10 @@ const UserCheck = ({ children }) => {
                 return;
             }
             try {
-                const response = await callApi("POST", "/api/check/login", { token });
-               console.log(response);
-                if (response.message == 'Token is valid') {
+                const response = await callApi("POST", "/api/admin/check/login", { token });
+                // console.log(response);
+                if (response.message === "Token is valid") {
+                    console.log({ response });
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
@@ -27,13 +28,10 @@ const UserCheck = ({ children }) => {
             setLoading(false);
         };
 
-        checkUserAuthentication();
+        checkOrgAuthentication();
     }, []);
 
-    if (loading) {
-        return <Loader />;
-    }
-    return authenticated ? children : <Navigate to="/student/signin" />;
+    return { adminAuthenticated: authenticated,adminLoading: loading };
 };
 
-export default UserCheck;
+export default useAdminLoggedIn;

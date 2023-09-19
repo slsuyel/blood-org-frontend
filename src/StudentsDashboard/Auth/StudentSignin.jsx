@@ -10,7 +10,7 @@ export default function StudentSignin() {
   useTitle("Student Signin")
   const navigate = useNavigate();
   const location = useLocation();
-  const [founder_email, setFounder_email] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const from = location.state?.from?.pathname || "/profile";
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,11 +24,11 @@ export default function StudentSignin() {
 
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
     setIsSubmitting(true)
     setError("")
-    event.preventDefault();
     try {
-      const res = await callApi("POST", "/api/student/login", { founder_email, password });
+      const res = await callApi("POST", "/api/login", { email, password });
       if (res.token) {
         localStorage.setItem("token", res.token);
         toast.success('Login successfully!', {
@@ -45,75 +45,79 @@ export default function StudentSignin() {
     }
     finally {
       setIsSubmitting(false);
-      window.location.reload()
+     window.location.reload()
     }
   };
-
+  console.log(authenticated)
   return (
     <>
       {
-        !authenticated ? <div className="hold-transition login-page">
-          <div className="login-box">
-            <div className="login-logo">
-              <h3>Student Login</h3>
-            </div>
-            <div className="card">
-              <div className="card-body login-card-body">
-                <p className="login-box-msg">Login in to start your session</p>
-                <form onSubmit={handleSubmit}>
-                  <div className="input-group mb-3">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Email"
-                      value={founder_email}
-                      onChange={(e) => setFounder_email(e.target.value)}
-                    />
-                    <div className="input-group-append">
-                      <div className="input-group-text">
-                        <span className="fas fa-envelope" />
+        !authenticated ? <div className="mt-5 pt-1">
+          <div className="col-sm-12 col-md-6 mx-auto mb-5">
+            <div className="login-box mt-5 mx-auto ">
+              <div className="login-logo">
+                <h3>রক্তদাতা লগইন</h3>
+              </div>
+              <div className="card">
+                <div className="card-body login-card-body">
+                  <p className="login-box-msg">Login in to start your session</p>
+                  <form onSubmit={handleSubmit}>
+                    <div className="input-group mb-3">
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      <div className="input-group-append">
+                        <div className="input-group-text">
+                          <span className="fas fa-envelope" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="input-group mb-3">
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <div className="input-group-append">
-                      <div className="input-group-text">
-                        <span className="fas fa-lock" />
+                    <div className="input-group mb-3">
+                      <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <div className="input-group-append">
+                        <div className="input-group-text">
+                          <span className="fas fa-lock" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-8">
-                    </div>
-                    <div className="col-4">
-                      <p className="text-danger"> {error}</p>
+                    <div className="row">
 
-                      <button
-                        type="submit"
-                        className="btn btn-primary"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? 'Loading...' : 'Sign In'}
-                      </button>
+                      <div className="col-12 d-flex justify-content-between gap-2">
+                        <p className="text-danger mb-0"> {error}</p>
+
+                        <button
+                          type="submit"
+                          className="btn btn-primary"
+                          onClick={handleSubmit}
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? 'Loading...' : 'লগইন'}
+                        </button>
+                      </div>
                     </div>
+
+                  </form>
+                  <div className="d-flex gap-3 justify-content-between mt-2">
+                    <Link to={'/signup'} className="register-button">
+                      একাউন্ট তৈরি করুন
+                    </Link>
+
                   </div>
-                </form>
-                <p className="mb-0 mt-2">
-                  <Link to={'/signup'} className="text-center text-decoration-none">
-                    Register a new account
-                  </Link>
-                </p>
+                </div>
               </div>
             </div>
           </div>
+
         </div> : (navigate("/profile", { replace: true })
         )
       }

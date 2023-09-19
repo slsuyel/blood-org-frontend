@@ -1,34 +1,41 @@
+import { Navbar, Nav } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
+import useLoggedIn from '../hooks/useLoggedIn';
+import useOrgLoggedIn from './../hooks/useOrgLoggedIn';
+import useAdminLoggedIn from './../hooks/useAdminLoggedIn';
 
-import { useContext } from 'react';
-import { Navbar, Nav, } from 'react-bootstrap';
-import { AuthContext } from '../Providers/AuthProviders';
+const backgroundStyle = {
+    background: 'linear-gradient(218deg, #67c1d0, #be829d, #eaedea, #9ded9d)',
+    backgroundSize: '240% 240%',
+    animation: 'gradient-animation 4s ease infinite',
+};
+
 
 const Header = () => {
-    const { isLoggedIn } = useContext(AuthContext)
+    const { authenticated, loading } = useLoggedIn()
+    const { orgAuthenticated, } = useOrgLoggedIn()
+    const { adminAuthenticated, } = useAdminLoggedIn()
+
     return (
-        <Navbar collapseOnSelect expand="lg" fixed="top"  className=' bg-white border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3' variant="light">
+        <Navbar collapseOnSelect expand="lg" fixed="top" className='  border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3' variant="danger">
             <Navbar.Toggle aria-controls="responsive-navbar-nav " />
             <Navbar.Collapse id="responsive-navbar-nav ">
-                <Nav className="justify-content-evenly navbar-nav w-100">
-                    <Nav.Link className='text-dark' href="/">Home</Nav.Link>
-                    {/* <Nav.Link className='text-dark' href="/course">Course</Nav.Link>
-                    <Nav.Link className='text-dark' href="/investor">Investor</Nav.Link> */}
-                    <Nav.Link className='text-dark' href="/services">Services</Nav.Link>
-                    <Nav.Link className='text-dark' href="/about">About Us</Nav.Link>
+                <Nav className="align-items-center justify-content-evenly navbar-nav w-100">
+                    <NavLink exact to="/" activeClassName="active-link" className='text-white text-decoration-none'>হোম</NavLink>
+                    <NavLink to="/about" activeClassName="active-link" className='text-white text-decoration-none'>আমাদের সম্পর্কে</NavLink>
+                    <NavLink to="/all-donars" activeClassName="active-link" className='text-white text-decoration-none'>সকল ডোনার</NavLink>
+                    <NavLink to="/organizations" activeClassName="active-link" className='text-white text-decoration-none'>সহযোগী সংগঠন </NavLink>
 
-                    {
-                        isLoggedIn == true ? <Nav.Link href="/profile"
-                            style={{ backgroundColor: '#08118E' }}
-                            className='ms-3 nav-link px-3 rounded-2 text-white'
-                        >Profile</Nav.Link> : <>
-                            <Nav.Link href="/student/signin"
-                                style={{ backgroundColor: '#08118E' }}
-                                className='ms-3 nav-link px-3 rounded-2 text-white'
-                            >Login/Register</Nav.Link> <Nav.Link className='text-dark' href="/admin/signin">Admin Login</Nav.Link>
+                    <NavLink to="/blogs" activeClassName="active-link" className='text-white text-decoration-none'>নিউজ</NavLink>
+
+                    {authenticated === true ? (
+                        <NavLink to="/profile" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>প্রোফাইল</NavLink>
+                    ) : orgAuthenticated || adminAuthenticated ? <NavLink to="/dashboard" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>Dashboard</NavLink> : (
+                        <>
+                            <NavLink to="/donar/signin" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>লগিন/রেজিস্ট্রেশন</NavLink>
+
                         </>
-                    }
-
-
+                    )}
 
                 </Nav>
             </Navbar.Collapse>

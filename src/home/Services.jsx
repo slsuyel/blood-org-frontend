@@ -1,92 +1,64 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+const data = [1, 2, 3, 4, 5, 7, 8, 9, 10];
 
 const Services = () => {
     useEffect(() => {
         AOS.init();
     }, []);
     return (
-        <div data-aos="zoom-in-down" className="container bootstrap snippets bootdey">
-            <section id="services" className="current">
-                <div className="services-top">
-                    <div className="container bootstrap snippets bootdey">
-                        <div className="row text-center">
-                            <div className="col-sm-12 col-md-12 col-md-12">
-                                <h2>What We Offer</h2>
-                                <h2 style={{ fontSize: '60px', lineHeight: '60px', marginBottom: '20px', fontWeight: 900 }}>Our Services</h2>
-                                <p>Our <span className="highlight">experienced</span> and <span className="highlight">dedicated</span> staff provide these services with a smile.</p>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-offset-1 col-sm-12 col-md-12 col-md-10">
-                                <div className="services-list">
-                                    <div className="row">
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-magic highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">Web Design</div>
-                                                    <div className="info">Beauty and function</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
+        <div data-aos="zoom-in-down" className="container-fluid my-5 py-2">
+            <h2 className='mt-4 text-center'>সকল <span className='text-danger'>রক্তদাতার</span> তালিকাঃ</h2>
+            <div className='row my-5'>
+
+                {
+                    data.map((index) => <div key={index} className="col-lg-4 col-md-6 mb-5 ">
+
+                        <div className='mx-3 mb-5 llllllll'>
+                            <div className="bg-danger-subtle shadow text-center">
+                                <div className="group"> B+ </div>
+
+                                <Link to={`/donar/${index}`} className=' text-decoration-none '>
+                                    <div className="single-content-details">
+                                        <ul className='list-unstyled'>
+                                            <li className='bg-body mb-2'>
+                                                <div className='fs-2 text-decoration-none text-warning-emphasis'><i className="fa-solid fa-user"></i> Ashikur Rahman</div>
+                                            </li>
+                                            <li><i className="fa-solid fa-location-dot me-2"></i>ঠিকানাঃ তেতুঁলিয়া, পঞ্চগড়</li>
+                                            <li> জেলাঃ পঞ্চগড় </li>
+                                            <li>
+                                                <a className="text-decoration-none" href="tel:01751331330">যোগাযোগঃ 01751331330</a>
+                                            </li>
+                                            <li>&nbsp;</li>
+                                            <li className="bg-white fs-4 mb-2 text-danger">সর্বশেষ রক্তদান</li>
+
+                                            <div className='align-items-center d-flex gap-3 justify-content-center'>
+                                                <i className="text-blood fa-regular fa-calendar-check fs-2"></i>
+
+                                                <div>
+                                                    <li>10-March-2018</li>
+                                                    <li>2014 দিন আগে...</li>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-code highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">Development/Coding</div>
-                                                    <div className="info">Quality code that lasts</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-pencil highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">Copy Writing</div>
-                                                    <div className="info">Words that tell your story</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-bullhorn highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">SEO/PPCM</div>
-                                                    <div className="info">Converting users to customers</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-eye highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">Branding/Identity</div>
-                                                    <div className="info">Leave a lasting impression</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-sm-6 col-md-4 col-md-4">
-                                            <div className="service-block" style={{ visibility: 'visible' }}>
-                                                <div className="ico fa fa-umbrella highlight" />
-                                                <div className="text-block">
-                                                    <div className="name">Strategy/Planning</div>
-                                                    <div className="info">Thinking beyond tomorrow</div>
-                                                    <div className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        </ul>
                                     </div>
+                                </Link>
+                                <div className="bg-danger py-1">
+                                    <a href="tel:01751331330" className='text-decoration-none'>
+                                        <i className="fa fa-phone me-2" />
+                                        কল করুন
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
-            </section>
+                    )
+                }
+
+
+            </div>
         </div>
 
     );

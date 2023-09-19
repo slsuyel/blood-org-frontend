@@ -15,7 +15,7 @@ const AuthProviders = ({ children }) => {
                 return;
             }
             try {
-                const response = await callApi("POST", "/api/check/student/login", { token });
+                const response = await callApi("POST", "/api/check/login", { token });
                 if (response.message === "Token is valid") {
                     setIsLoggedIn(true);
                 } else {

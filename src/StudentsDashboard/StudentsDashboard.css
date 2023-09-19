@@ -28,12 +28,25 @@
     color: #000;
 }
 
-.selected-ans {
-    background-color: #007399b3;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 4px 8px 4px 8px;
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
+
+.date-update {
+    border-width: 1px;
+    color: #3a8a9e;
+    border-color: #d6bcd6;
+    font-weight: bold;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 3px 4px 0px 0px #899599;
+    text-shadow: 0px 1px 0px #e1e2ed;
+    background: linear-gradient(#ededed, #bab1ba);
+}
+
+.date-update:hover {
+    background: linear-gradient(#bab1ba, #ededed);
+}
+
+.react-date-picker__wrapper {
+    border: 0 
 }

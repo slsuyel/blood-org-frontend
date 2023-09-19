@@ -73,101 +73,53 @@ const Students = () => {
                 <Table striped responsive>
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>founder name</th>
-                            <th>company name</th>
-                            <th>founder_email</th>
-                            <th>founder_phone</th>
-                            <th>Action</th>
+                            <th className='text-center'>#</th>
+                            <th className='text-center'>Name & Address </th>
+                            <th className='text-center'>Group</th>
+                            <th className='text-center'>Phone</th>
+                            <th className='text-center'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {students.length > 0 ? (
-                            students.map((student, index) => (
-                                <tr key={student.id}>
-                                    <td>{index + pageNo}</td>
-                                    <td>{student.founder_name}</td>
-                                    <td>{student.company_name}</td>
-                                    <td>{student.founder_email}</td>
-                                    <td>{student.founder_phone}</td>
-                                    <td className='d-flex justify-content-around gap-2'>
-                                        <Link className='btn btn-primary text-decoration-none' to={`/dashboard/student/show/${student.id}`}>Show</Link>
+                        <tr>
 
-                                        <Link className='btn btn-info text-decoration-none' to={`/dashboard/student/edit/${student.id}`}>Edit</Link>
+                            <td className='text-center'>1</td>
+                            <td className='text-center'>
+                                <h6 className='mb-0 mb-1 text-nowrap text-success-emphasis'> Suyel Haq</h6>
 
-                                        <button
-                                            onClick={() => handleStudentDelete(student.id)}
-                                            className='btn btn-danger'> Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td colSpan="6">
-                                    <Loader />
-                                </td>
-                            </tr>
-                        )}
+                                <span className='fst-italic small text-nowrap text-sm'><i className="fa-solid fa-location-dot"></i> দেবীগঞ্জ পঞ্চগড়  </span>
+                            </td>
+                            <td className='fs-2 text-center text-danger'>A+</td>
+                            <td className='text-center'>
+                                <a href="tel:01751331330" className="text-decoration-none">01722597565  </a>  </td>
+
+                            <td >
+                                <div className='d-flex justify-content-around gap-2'>
+                                    <Link className='btn btn-primary text-decoration-none' to={`/donar/${'1'}`}>Show</Link>
+
+                                    <Link className='btn btn-info text-decoration-none' to={`/donar/edit/${'1'}`}>Edit</Link>
+
+                                    <button
+                                        onClick={() => handleUserDelete('1')}
+                                        className='btn btn-danger'> Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
                     </tbody>
+
                 </Table>
-          
-            <Paginate
-                Totalpageprops={totalPages}
-                per_page={per_page}
-                totalitems={totalitems}
-                route='/dashboard/student'
-            />
-        </div>
+
+                <Paginate
+                    Totalpageprops={totalPages}
+                    per_page={per_page}
+                    totalitems={totalitems}
+                    route='/dashboard/student'
+                />
+            </div>
         </div >
 
-        // <div className='content-wrapper'>
-        //     <div className="content-header">
-        //         <Table striped bordered>
-        //             <thead>
-        //                 <tr>
-        //                     <th>#</th>
-        //                     <th>founder name</th>
-        //                     <th>company name</th>
-        //                     <th>founder_email</th>
-        //                     <th>founder_phone</th>
-        //                     <th>Action</th>
-        //                 </tr>
-        //             </thead>
-        //             <tbody>
-        //                 {students.length > 0 ? (
-        //                     students.map((student, index) => (
-        //                         <tr key={student.id}>
-        //                             <td>{index + pageNo}</td>
-        //                             <td>{student.founder_name}</td>
-        //                             <td>{student.company_name}</td>
-        //                             <td>{student.founder_email}</td>
-        //                             <td>{student.founder_phone}</td>
-        //                             <td className='d-flex justify-content-around flex-wrap'>
-        //                                 <Link className='btn btn-primary text-decoration-none' to={`/dashboard/student/show/${student.id}`}>Show</Link>
 
-        //                                 <Link className='btn btn-info text-decoration-none' to={`/dashboard/student/edit/${student.id}`}>Edit</Link>
-
-        //                                 <button
-        //                                     onClick={() => handleStudentDelete(student.id)}
-        //                                     className='btn btn-danger'> Delete
-        //                                 </button>
-        //                             </td>
-        //                         </tr>
-        //                     ))
-        //                 ) : (
-        //                     <Loader />
-        //                 )}
-        //             </tbody>
-
-        //         </Table>
-        //         <Paginate
-        //             Totalpageprops={totalPages}
-        //             per_page={per_page}
-        //             totalitems={totalitems}
-        //         />
-        //     </div>
-        // </div>
     );
 };
 

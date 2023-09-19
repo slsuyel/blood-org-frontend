@@ -1,5 +1,5 @@
 import React from "react";
-import bar from "../assets/clock-time.gif"
+import bar from "../assets/images/clock-time.gif"
 import { Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { callApi } from "../utilities/functions";

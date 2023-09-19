@@ -16,10 +16,11 @@ const useLoggedIn = () => {
             }
 
             try {
-                const response = await callApi("POST", "/api/check/student/login", { token });
-                console.log(response);
+                const response = await callApi("POST", "/api/check/login", { token });
+                // console.log(response);
                 if (response.message === "Token is valid") {
-                    localStorage.setItem("studentId", response.student.id);
+                    // console.log({ response });
+                    localStorage.setItem("studentId", response.user.id);
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);
