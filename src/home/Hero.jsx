@@ -1,11 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import './home.css';
-
 import bloodorg from '../assets/images/blood-org.jpg'
 import blood from '../assets/images/blood.png'
 import { Link } from 'react-router-dom';
 import { getName } from '../utilities/functions';
+
+
+const socialOrganizations = [
+    "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
+    "বাংলাদেশ  চিকিৎসক সমিতি",
+    "বাংলাদেশ মহিলা সমাজ সংঘ",
+    "বাংলাদেশ প্রাণি পরিসর সংরক্ষণ সমিতি",
+    "বাংলাদেশ শিশু ও নারী বিষয়ক সমিতি",
+    "বাংলাদেশ আমরা",
+    "বাংলাদেশ গ্রামীণ উন্নয়ন সংস্থা",
+    "বাংলাদেশ গণিত উন্নয়ন পরিষদ",
+    "বাংলাদেশ বাণিজ্যিক গ্রন্থাগার",
+    "বাংলাদেশ কারখানা শ্রমিক সমিতি",
+];
+
+
 const Hero = () => {
+    const [isChecked, setIsChecked] = useState(false);
+
+
     const [selecteddivisions, setSelectedDivisions] = useState([]);
     const [divisions, setDivisions] = useState([]);
 
@@ -89,7 +107,9 @@ const Hero = () => {
         }
     }, [selectedUpazila]);
 
-
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
 
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
@@ -174,6 +194,29 @@ const Hero = () => {
                                     </option>
                                 ))}
                             </select>
+
+                        </div>
+                        <div className="form-group">
+                            <label>
+                                <input
+                                    className="me-2"
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    onChange={handleCheckboxChange}
+                                />
+                                সংগঠন থেকে খুঁজুন
+                            </label>
+
+                            {
+                                isChecked ? <select name="union" onChange={handleUnionChange} className="form-select">
+                                    <option defaultValue>সংগঠন সিলেক্ট করুন</option>
+                                    {socialOrganizations.map((union, index) => (
+                                        <option key={index} >
+                                            {union}
+                                        </option>
+                                    ))}
+                                </select> : ''
+                            }
 
                         </div>
 

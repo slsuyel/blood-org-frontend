@@ -29,11 +29,12 @@ import PrivateRoute from "./PrivateRoute";
 import AdminCheck from "../StudentsDashboard/Auth/AdminCheck";
 import BlogLayout from "../layouts/BlogLayout";
 import BlogHome from "../blogs/Home/BlogHome";
+import ScrollToTop from "../components/ScrollToTop";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <WithOutnavbar />,
+        element: <ScrollToTop><WithOutnavbar /></ScrollToTop>,
         errorElement: <ErrorPage />,
         children: [
             {
@@ -160,7 +161,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'blogs',
-        element: <BlogLayout />,
+        element: <ScrollToTop><BlogLayout /></ScrollToTop>,
         children: [
             {
 

@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../Providers/AuthProviders';
 import { Modal, Button } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
+import { Link } from 'react-router-dom';
 const Profile = () => {
     const [value, onChange] = useState(new Date());
     const { studentLogOut } = useContext(AuthContext)
@@ -12,7 +13,7 @@ const Profile = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    console.log(value);
+    // console.log(value);
     return (
         <div className="container mt-5 pt-5">
             <div className="main-body">
@@ -25,9 +26,12 @@ const Profile = () => {
                                     <div className="mt-3">
                                         <h4> নামঃ Sakib Hasan</h4>
                                         <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'> B+</span> </h5>
-                                        <p className="text-muted font-size-sm mb-1">Location : দেবীগঞ্জ পঞ্চগড়</p>
+
                                         <div>
-                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: 2-April-2023</h6>
+                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>2-April-2023</span></h6>
+
+                                            <p className="text-muted font-size-sm mb-0">ঠিকানাঃ দেবীগঞ্জ পঞ্চগড়</p>
+                                            <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'>   সুরাহা ব্লাড ফাউন্ডেশন</Link> </h5>
                                         </div>
 
                                         <div>
@@ -120,27 +124,29 @@ const Profile = () => {
                     </div>
                 </div></div>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title> সর্বশেষ রক্তদানের তারিখ আপডেট করুনঃ</Modal.Title>
-                </Modal.Header>
-                <Modal.Body className='align-items-center d-flex justify-content-around '>
+            <div className='w-100 mx-auto'>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title> সর্বশেষ <span className='text-danger'>রক্তদানের</span> তারিখ আপডেট করুনঃ</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body className='align-items-center d-flex justify-content-around '>
 
-                    <div> <DatePicker onChange={onChange} value={value} /></div>
-                    <div className='border border-dark px-1 text-danger'>
-                        রক্তদানের জন্যে লাল শুভেচ্ছা
-                    </div>
+                        <div className='border border-danger'> <DatePicker onChange={onChange} value={value} /></div>
+                        <div className='border border-dark px-1 text-danger'>
+                            <span className='text-danger'>রক্তদানের</span> জন্যে লাল শুভেচ্ছা
+                        </div>
 
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </div>
 
         </div>
 

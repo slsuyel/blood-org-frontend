@@ -1,1 +1,1 @@
-export const baseUrl = 'https://bloodapi.tmscedu.com';
+export const baseUrl = 'https://bloodapi.tmscedu.com'

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DonarProfile = () => {
     return (
@@ -13,15 +14,18 @@ const DonarProfile = () => {
                                     <div className="mt-3">
                                         <h4>ডোনার নামঃ Sakib Hasan</h4>
                                         <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'> B+</span> </h5>
+
+
+
                                         <div>
                                             <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>2-April-2023</span></h6>
 
-
+                                            <p className="text-muted font-size-sm mb-0">ঠিকানাঃ দেবীগঞ্জ পঞ্চগড়</p>
+                                            <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'>   সুরাহা ব্লাড ফাউন্ডেশন</Link> </h5>
                                         </div>
 
-                                        <p className="text-muted font-size-sm mb-0">ঠিকানাঃ দেবীগঞ্জ পঞ্চগড়</p>
 
-                                        <p className="fs-4 my-2 text-gray text-muted">সুরাহা ব্লাড ফাউন্ডেশন</p>
+
 
                                         <div>
                                             <a href="tel:01751331330" className='bg-danger me-2 px-2 text-decoration-none'>

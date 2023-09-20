@@ -109,12 +109,14 @@ const OrgSignIn = () => {
                                         </div>
                                     </div>
                                 </form>
-                                <p className="mb-0 mt-2">
+                                <div className="d-flex align-items-center gap-3 justify-content-between mt-2">
                                     <Link to={'/add-org'} className="register-button">
-                                        সংগঠন যোগ করুন
+                                        একাউন্ট তৈরি করুন
                                     </Link>
 
-                                </p>
+                                    <a className="text-nowrap text-secondary text-sm" href="#">Forgot Password</a>
+
+                                </div>
                             </div>
                         </div>
                     </div>

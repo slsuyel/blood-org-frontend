@@ -29,12 +29,14 @@ export default function StudentSignin() {
     setError("")
     try {
       const res = await callApi("POST", "/api/login", { email, password });
+      console.log(res);
       if (res.token) {
         localStorage.setItem("token", res.token);
         toast.success('Login successfully!', {
           position: toast.POSITION.TOP_RIGHT
         });
         navigate(from, { replace: true });
+        window.location.reload()
       } else {
         console.log('Login failed: Token missing in the response.');
         setError("Login failed")
@@ -45,10 +47,10 @@ export default function StudentSignin() {
     }
     finally {
       setIsSubmitting(false);
-     window.location.reload()
+
     }
   };
-  console.log(authenticated)
+  // console.log(authenticated)
   return (
     <>
       {
@@ -103,14 +105,17 @@ export default function StudentSignin() {
                         >
                           {isSubmitting ? 'Loading...' : 'লগইন'}
                         </button>
+
                       </div>
                     </div>
 
                   </form>
-                  <div className="d-flex gap-3 justify-content-between mt-2">
+                  <div className="d-flex align-items-center gap-3 justify-content-between mt-2">
                     <Link to={'/signup'} className="register-button">
                       একাউন্ট তৈরি করুন
                     </Link>
+
+                    <a className="text-nowrap text-secondary text-sm" href="#">Forgot Password</a>
 
                   </div>
                 </div>
