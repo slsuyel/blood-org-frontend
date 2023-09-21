@@ -1,19 +1,23 @@
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import './StudentsDashboard.css'
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../Providers/AuthProviders';
+import React, { useState } from 'react';
+
 import { Modal, Button } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 const Profile = () => {
+    const navigate = useNavigate()
     const [value, onChange] = useState(new Date());
-    const { studentLogOut } = useContext(AuthContext)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // console.log(value);
+    const studentLogOut = () => {
+        localStorage.removeItem("token")
+        navigate('/')
+        window.location.reload()
+    }
     return (
         <div className="container mt-5 pt-5">
             <div className="main-body">

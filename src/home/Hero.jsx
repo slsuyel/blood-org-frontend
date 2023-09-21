@@ -22,6 +22,7 @@ const socialOrganizations = [
 
 const Hero = () => {
     const [isChecked, setIsChecked] = useState(false);
+    const [org, setOrg] = useState('');
 
 
     const [selecteddivisions, setSelectedDivisions] = useState([]);
@@ -35,6 +36,12 @@ const Hero = () => {
 
     const [unions, setUnions] = useState([]);
     const [selectedUnion, setSelectedUnion] = useState('');
+
+    const [donarDiv, setDonarDiv] = useState('')
+    const [donarDist, setDonarDist] = useState('')
+
+    const [donarUpazila, setDonarUpazila] = useState('')
+    const [donarUnions, setDonarUnions] = useState('')
 
 
     useEffect(() => {
@@ -111,6 +118,28 @@ const Hero = () => {
         setIsChecked(!isChecked);
     };
 
+    const handleOrgChange = (event) => {
+        const selectedOption = event.target.value;
+        setOrg(selectedOption);
+    };
+
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        const searchData = {
+            blood_group: event.target.group.value,
+            division: donarDiv,
+            district: donarDist,
+            thana: donarUpazila,
+            union: donarUnions,
+            org
+        };
+
+        console.log(searchData);
+    }
+
+
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
             <div className='container row mx-auto mt-5 pt-5'>
@@ -120,23 +149,11 @@ const Hero = () => {
                         <img src={blood} alt="" width={'30px'} /> <span className="mx-2">রক্তদাতা খুঁজুন</span>
                         <img src={bloodorg} alt="" width={'30px'} />
                     </h3>
-                    <form id="bangladesh">
-                        {/* <div className="form-group">
-                            <div className="select-location_area select-grouph-area">
-                                <select
-                                    name="type"
-                                    id="donor_type"
-                                    className="form-select fw-bold text-danger"
-                                >
-                                    <option value="blood" selected="">
-                                        ব্লাড
-                                    </option>
-                                </select>
-                            </div>
-                        </div> */}
+                    <form onSubmit={handleFormSubmit}>
+
                         <div className="form-group">
                             <div className="select-grouph-area">
-                                <select name="group" className="form-select fw-bold text-danger">
+                                <select required name="group" className="form-select fw-bold text-danger">
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
                                     <option value="B+">B+</option>
@@ -151,7 +168,7 @@ const Hero = () => {
                         <div className="form-group">
 
                             {/* <label className='fw-medium' htmlFor='facebook_link'>বিভাগ</label> */}
-                            <select name="district" onChange={handleDivChange} className="form-select ">
+                            <select required name="district" onChange={handleDivChange} className="form-select ">
                                 <option defaultValue>বিভাগ সিলেক্ট করুন</option>
                                 {divisions?.map(d => <option key={d.id} value={d.id} > {d.bn_name}</option>)}
                             </select>
@@ -161,7 +178,7 @@ const Hero = () => {
                         <div className="form-group">
 
                             {/* <label className='fw-medium' htmlFor='facebook_link'>জেলা</label> */}
-                            <select name="district" onChange={handleDistrictChange} className="form-select ">
+                            <select required name="district" onChange={handleDistrictChange} className="form-select ">
                                 <option defaultValue>জেলা সিলেক্ট করুন</option>
                                 {districts?.map(d => <option key={d.id} value={d.id}>{d.bn_name}</option>)}
                             </select>
@@ -172,7 +189,7 @@ const Hero = () => {
                         <div className="form-group">
 
                             {/* <label className='fw-medium' htmlFor='upazila'>উপজেলা</label> */}
-                            <select name="upazila" onChange={handleUpazilaChange} className="form-select">
+                            <select required name="upazila" onChange={handleUpazilaChange} className="form-select">
                                 <option defaultValue>উপজেলা সিলেক্ট করুন</option>
                                 {upazilas.map(u => (
                                     <option key={u.id} value={u.id}>
@@ -186,7 +203,7 @@ const Hero = () => {
                         <div className="form-group">
                             {/*                             
                                 <label className='fw-medium' htmlFor='union'>ইউনিয়ন</label> */}
-                            <select name="union" onChange={handleUnionChange} className="form-select">
+                            <select required name="union" onChange={handleUnionChange} className="form-select">
                                 <option defaultValue>ইউনিয়ন সিলেক্ট করুন</option>
                                 {unions.map(union => (
                                     <option key={union.id} value={union.id}>
@@ -208,7 +225,7 @@ const Hero = () => {
                             </label>
 
                             {
-                                isChecked ? <select name="union" onChange={handleUnionChange} className="form-select">
+                                isChecked ? <select name="union" onChange={handleOrgChange} className="form-select">
                                     <option defaultValue>সংগঠন সিলেক্ট করুন</option>
                                     {socialOrganizations.map((union, index) => (
                                         <option key={index} >

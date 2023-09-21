@@ -9,6 +9,7 @@ import Loader from '../../utilities/Loader';
 import DatePicker from 'react-date-picker';
 
 const Signup = () => {
+
   const [selecteddivisions, setSelectedDivisions] = useState([]);
   const [divisions, setDivisions] = useState([]);
 
@@ -35,16 +36,15 @@ const Signup = () => {
   const [date, onChange] = useState(new Date());
 
   const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const year = date?.getFullYear();
+    const month = String(date?.getMonth() + 1).padStart(2, '0');
+    const day = String(date?.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
 
-
   const resDate = formatDate(date)
 
-  console.log(resDate);
+  // console.log(resDate);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -56,7 +56,7 @@ const Signup = () => {
     fetch('divisions.json')
       .then(res => res.json())
       .then(data => setDivisions(data))
-      .catch(error => console.error('Error fetching districts data:', error));
+      .catch(error => setError('Error fetching districts data:', error));
   }, []);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const Signup = () => {
           const filteredDistricts = data.filter(d => d.division_id === selecteddivisions);
           setDistricts(filteredDistricts);
         })
-        .catch(error => console.error('Error fetching upazilas data:', error));
+        .catch(error => setError('Error fetching upazilas data:', error));
     }
   }, [selecteddivisions]);
 
@@ -168,14 +168,23 @@ const Signup = () => {
       password: event.target.password.value,
     };/* https://bloodapi.tmscedu.com */
     try {
-      await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
-      setIsSubmitting(false);
-      toast.success('Signup successfully!', {
-        position: toast.POSITION.TOP_RIGHT
-      });
-      navigate('/profile')
+      const res = await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
+
+      if (res.token) {
+        setIsSubmitting(false);
+        toast.success('Signup successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        navigate('/profile')
+      }
+      else {
+        setIsSubmitting(false);
+        setError('Fill up all input form');
+        console.error('Fill up all input form');
+      }
     } catch (error) {
       setIsSubmitting(false);
+      setError('Fill up all input form');
       console.error('Error fetching data:', error);
     }
     console.log(formData);
@@ -196,7 +205,7 @@ const Signup = () => {
           <div className='row my-3'>
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='donar_name'>নাম<span className='text-danger'> *</span></label>
-              <input
+              <input required
 
                 type='text'
                 className='form-control'
@@ -209,7 +218,7 @@ const Signup = () => {
 
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='donar_phone'>মোবাইল নাম্বার ( ইংরেজি )  <span className='text-danger'> *</span></label>
-              <input
+              <input required
 
                 type='number'
                 className='form-control'
@@ -235,7 +244,7 @@ const Signup = () => {
 
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='donar_email'>ইমেইল <span className='text-danger'> *</span></label>
-              <input
+              <input required
 
                 type='email'
                 className='form-control'
@@ -272,7 +281,7 @@ const Signup = () => {
                 Whatsapp Number
               </label>
               <input
-                type='text'
+                typ requirede='text'
                 className='form-control'
                 id='whatsapp_number'
                 name='whatsapp_number'
@@ -284,7 +293,7 @@ const Signup = () => {
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='guardian_phone'> গার্ডিয়ান ফোন নাম্বার  <span className='text-danger'> *</span></label>
               <input
-                type='number'
+                typ requirede='number'
                 className='form-control'
                 id='guardian_phone'
                 name='guardian_phone'
@@ -379,7 +388,7 @@ const Signup = () => {
 
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='password'>Password <span className='text-danger'> *</span></label>
-              <input
+              <input required
 
                 type='password'
                 className='form-control'
@@ -390,7 +399,7 @@ const Signup = () => {
             </div>
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='confirm_password'>Confirm Password <span className='text-danger'> *</span></label>
-              <input
+              <input required
 
                 type='password'
                 className='form-control'
@@ -412,7 +421,7 @@ const Signup = () => {
               I accept the terms and conditions <span className='text-danger'> *</span>
             </label>
           </div>
-          <p className='text-danger'>{error}</p>
+          <p className='ms-3 my-2 text-danger'>{error}</p>
           <div className='text-center'>
             <button
               type='submit'

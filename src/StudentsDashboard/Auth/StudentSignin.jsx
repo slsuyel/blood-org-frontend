@@ -35,8 +35,8 @@ export default function StudentSignin() {
         toast.success('Login successfully!', {
           position: toast.POSITION.TOP_RIGHT
         });
-        navigate(from, { replace: true });
         window.location.reload()
+        navigate(from, { replace: true });
       } else {
         console.log('Login failed: Token missing in the response.');
         setError("Login failed")
