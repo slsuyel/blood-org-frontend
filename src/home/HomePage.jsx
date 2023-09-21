@@ -3,7 +3,7 @@ import Hero from './Hero';
 import Others from './Others';
 import About from './About';
 import Team from '../pages/carousel/Team';
-import Feedback from '../pages/carousel/Feedback';
+import Location from '../pages/carousel/Location';
 
 const HomePage = () => {
     return (
@@ -12,7 +12,7 @@ const HomePage = () => {
             <Team />
             <About />
             <Others />
-            {/* <Feedback /> */}
+            <Location />
         </div>
     );
 };
