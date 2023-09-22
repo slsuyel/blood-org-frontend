@@ -17,7 +17,7 @@ const useOrgLoggedIn = () => {
                 const response = await callApi("POST", "/api/organization/check/login", { token });
                 // console.log(response);
                 if (response.message === "Token is valid") {
-                    console.log({ response });
+                    localStorage.setItem("orgId", response.organization.id);
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../utilities/Loader";
-import useStudent from "../../hooks/useStudent";
+import useDonor from "../../hooks/useDonor";
 import { Rating } from "@smastrom/react-rating";
 import { callApi } from "../../utilities/functions";
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const StudentShow = () => {
     const { id } = useParams();
-    const { studentData: initialStudentData, isLoading } = useStudent(id);
+    const { studentData: initialStudentData, isLoading } = useDonor(id);
     const [studentData, setStudentData] = useState(initialStudentData);
     const [rating, setRating] = useState(0);
 

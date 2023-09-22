@@ -40,14 +40,22 @@ export default function Sidebar() {
                     <p className='text-nowrap text-white'>Home</p>
                   </Link>
                 </li>
-
+{/* <i class="fa-solid fa-user"></i> */}
+                <li className="nav-item">
+                    <Link to="/dashboard/org-profile" className="nav-link">
+                      <i className="nav-icon fa-solid fa-user"></i>
+                      <p className='text-nowrap text-white'>Profile</p>
+                    </Link>
+                  </li>
                   <li className="nav-item">
                     <Link to="/dashboard/add-donar" className="nav-link">
                       <i className="nav-icon fa-solid fa-user-plus"></i>
                       <p className='text-nowrap text-white'>Add Donor</p>
                     </Link>
-
                   </li>
+                 
+
+
                   <li className="nav-item">
                     <Link to="/dashboard/manage" className="nav-link">
                       <i className="nav-icon fa-solid fa-user-pen"></i>
@@ -65,7 +73,7 @@ export default function Sidebar() {
                   </li>
 
                   <li className="nav-item">
-                    <Link to="/dashboard/settings" className="nav-link">
+                    <Link to="/dashboard/org/settings" className="nav-link">
                       <i className="nav-icon fa-solid fa-gear"></i>
                       <p className='text-nowrap text-white'> Settings </p>
                     </Link>

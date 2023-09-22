@@ -30,6 +30,8 @@ import AdminCheck from "../StudentsDashboard/Auth/AdminCheck";
 import BlogLayout from "../layouts/BlogLayout";
 import BlogHome from "../blogs/Home/BlogHome";
 import ScrollToTop from "../components/ScrollToTop";
+import OrgSetting from "../pages/Organizations/OrgSetting";
+import SingleOrg from "../pages/Organizations/SingleOrg";
 
 export const router = createBrowserRouter([
     {
@@ -77,6 +79,11 @@ export const router = createBrowserRouter([
                 path: "organizations",
                 element: <Organizations />,
             },
+            // {
+
+            //     path: "org/details/:id",
+            //     element: <SingleOrg />,
+            // },
             {
 
                 path: "org-login",
@@ -106,7 +113,10 @@ export const router = createBrowserRouter([
             },
 
             {
-
+                path: 'org-profile',
+                element: <PrivateRoute> <SingleOrg/></PrivateRoute>
+            },
+            {
                 path: 'donars',
                 element: <PrivateRoute> <Students /></PrivateRoute>
             },
@@ -140,6 +150,11 @@ export const router = createBrowserRouter([
 
                 path: 'manage-org',
                 element: <AdminCheck>  <Teacher /></AdminCheck>
+            },
+            {
+
+                path: 'org/settings',
+                element: <PrivateRoute><OrgSetting /></PrivateRoute>
             },
             {
 

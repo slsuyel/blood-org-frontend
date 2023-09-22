@@ -1,13 +1,13 @@
 import React from 'react';
 import { callApi } from '../../utilities/functions';
 import { useNavigate, useParams } from 'react-router-dom';
-import useStudent from '../../hooks/useStudent';
+import useDonor from '../../hooks/useDonor';
 import Loader from '../../utilities/Loader';
 import { toast } from 'react-toastify';
 
 const EditStudent = () => {
     const { id } = useParams();
-    const { studentData, isLoading } = useStudent(id);
+    const { studentData, isLoading } = useDonor(id);
     const Navigate = useNavigate()
 
     const handleUpdate = (e) => {

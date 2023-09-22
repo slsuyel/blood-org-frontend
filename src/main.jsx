@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
@@ -15,16 +15,14 @@ import {
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthProviders from './Providers/AuthProviders';
-
-
 const queryClient = new QueryClient()
-
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProviders>
     <QueryClientProvider client={queryClient}>
+
       <RouterProvider router={router} />
+      
       <ToastContainer />
     </QueryClientProvider>
   </AuthProviders>

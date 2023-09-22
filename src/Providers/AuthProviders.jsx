@@ -36,7 +36,7 @@ const AuthProviders = ({ children }) => {
                 position: toast.POSITION.TOP_RIGHT
             });
             localStorage.removeItem("token")
-            localStorage.removeItem("studentId")
+            localStorage.removeItem("donorId")
             window.location.reload()
         }
 

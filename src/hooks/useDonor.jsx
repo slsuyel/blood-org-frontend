@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { callApi } from '../utilities/functions';
-
-const useStudent = (id,api='/api/students') => {
-    const [studentData, setStudentData] = useState(null);
+/* /api/organizations/1 */
+const useDonor = (id,api='/api/doner') => {
+    const [donorData, setDonorData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
                 const response = await callApi("GET", `${api}/${id}`);
-                setStudentData(response);
+                setDonorData(response);
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error fetching student data:', error);
@@ -19,7 +19,7 @@ const useStudent = (id,api='/api/students') => {
         fetchStudentData();
     }, [id]);
 
-    return { studentData, isLoading };
+    return {  donorData, isLoading };
 };
 
-export default useStudent;
+export default useDonor;

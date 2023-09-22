@@ -10,7 +10,7 @@ import { AuthContext } from '../Providers/AuthProviders';
 const StudentsDashboard = () => {
     const {studentLogOut} = useContext(AuthContext)
     const [meetLink, setMeetLink] = useState("https://meet.google.com/oms-mqwt-vzv");
-    const id = localStorage.getItem("studentId")
+    const id = localStorage.getItem("donorId")
     const { studentData, isLoading } = useStudent(id, `/api/students/profile`)
 
 

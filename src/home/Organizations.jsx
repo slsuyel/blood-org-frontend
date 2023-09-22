@@ -1,15 +1,18 @@
 import React from 'react';
 import img from '../assets/images/orggg.jpg'
+import { Link } from 'react-router-dom';
 
 const data = Array.from({ length: 100 }, () =>
     Math.floor(Math.random() * 1000) + 1
 );
+
 const Organizations = () => {
+
     return (
         <div className='container mx-auto w-100 mt-5 pt-5'>
             <div className='row'>
                 {data?.map((d, index) => (
-                    <div key={index} className=" col-md-4 mb-5" >
+                    <Link /* to={`/org/details/${index+1}`} */ className=" col-md-4 mb-5 text-decoration-none" key={index}>
                         <div className="card bggg" >
 
                             <div className='text-center'>
@@ -27,7 +30,7 @@ const Organizations = () => {
 
 
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

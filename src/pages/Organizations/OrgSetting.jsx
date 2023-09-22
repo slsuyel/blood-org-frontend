@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { callApi, getName } from '../../utilities/functions';
-import { Link, useNavigate } from 'react-router-dom';
-import DatePicker from 'react-date-picker';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import PassChange from './PassChange';
 
-const AddUser = () => {
-    const orgId = localStorage.getItem('orgId')
+const OrgSetting = () => {
     const [selecteddivisions, setSelectedDivisions] = useState([]);
     const [divisions, setDivisions] = useState([]);
 
@@ -18,8 +17,6 @@ const AddUser = () => {
     const [unions, setUnions] = useState([]);
     const [selectedUnion, setSelectedUnion] = useState('');
 
-    const [donarOrganization, setDonarOrganization] = useState('');
-    const [donarGender, setDonarGender] = useState('পুরুষ');
     const [whatsappNumber, setWhatsappNumber] = useState('');
 
     const [donarDiv, setDonarDiv] = useState('')
@@ -29,23 +26,11 @@ const AddUser = () => {
     const [donarUnions, setDonarUnions] = useState('')
 
     const [error, setError] = useState('');
-    const [date, onChange] = useState(new Date());
-
-    const formatDate = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
-    };
-
-
-    const resDate = formatDate(date)
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [termsAccepted, setTermsAccepted] = useState(false);
-
     const navigate = useNavigate();
 
+    const id = localStorage.getItem('orgId')
 
     useEffect(() => {
         fetch('/divisions.json')
@@ -66,12 +51,6 @@ const AddUser = () => {
                 .catch(error => console.error('Error fetching upazilas data:', error));
         }
     }, [selecteddivisions]);
-
-
-    const handleGenderChange = (e) => {
-        setDonarGender(e.target.value);
-        console.log(e.target.value);
-    };
 
     // Function to handle WhatsApp number input
     const handleWhatsappNumberChange = (e) => {
@@ -130,61 +109,58 @@ const AddUser = () => {
 
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
         setIsSubmitting(true)
+        event.preventDefault();
         setError('');
+
         if (event.target.password.value !== event.target.confirm_password.value) {
             setError('Password Not Matched');
             setIsSubmitting(false)
             return;
         }
+
         if (!termsAccepted) {
             setError('Please accept the terms and conditions.');
             setIsSubmitting(false)
             return;
         }
+
         const formData = {
             name: event.target.donar_name.value,
             mobile: event.target.donar_phone.value,
-            blood_group: event.target.group.value,
-            email: event.target.donar_email.value,
-            gender: donarGender,
-            guardian_phone: event.target.guardian_phone.value,
-            last_donate_date: resDate,
             whatsapp_number: whatsappNumber,
             division: donarDiv,
             district: donarDist,
             thana: donarUpazila,
             union: donarUnions,
-            password: event.target.password.value,
-            org: orgId,
         };
+
         try {
-            const response = await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
-            setIsSubmitting(false);
-            if (response.token) {
-                toast.success('Signup successfully!', {
-                    position: toast.POSITION.TOP_RIGHT
-                });
-                navigate('/dashboard')
-            }
-            else {
-                setIsSubmitting(false);
-                console.error('Error fetching data:', error);
-            }
+            const response = await callApi("PUT", `/api/organizations/${id}`, formData, { 'Content-Type': 'application/json' });
+
+            console.log(response);
+
+            // setIsSubmitting(false);
+            // toast.success('Info Update successfully!', {
+            //     position: toast.POSITION.TOP_RIGHT
+            // });
+            // navigate('/')
         } catch (error) {
             setIsSubmitting(false);
             console.error('Error fetching data:', error);
         }
+
         console.log(formData);
     };
+
+
 
     return (
         <div className='content-wrapper'>
             <div className="content-header">
                 <div className='container'>
                     <div>
-                        <h2 className='bg-dark-subtle mb-4 my-2 py-1 text-center'> <span className='text-danger'>রক্তদাতা </span> রেজিস্ট্রেশন</h2>
+                        <h2 className='bg-dark-subtle mb-4 my-2 py-1 text-center'> <span className='text-danger'>ব্লাড ব্যাংক </span> তথ্য আপডেট</h2>
                     </div>
                     <form onSubmit={handleFormSubmit}>
                         <div className='row my-3'>
@@ -213,54 +189,8 @@ const AddUser = () => {
 
                                 />
                             </div>
-                            <div className="form-group col-md-6">
-                                <label className='fw-medium' htmlFor='donar_email'>রক্তের গ্রুপ <span className='text-danger'> *</span></label>
-                                <select name="group" className="form-select">
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
-                                </select>
-                            </div>
-
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='donar_email'>ইমেইল <span className='text-danger'> *</span></label>
-                                <input
-
-                                    type='email'
-                                    className='form-control'
-                                    id='donar_email'
-                                    name='donar_email'
-                                    placeholder=' Email'
-
-                                />
-                            </div>
 
 
-
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='donar_gender'>
-                                    জেন্ডার <span className='text-danger'> *</span>{' '}
-                                    <span className='fst-italic text-danger-emphasis text-sm'>
-                                        ~নারী ডোনারদের মোবাইল নাম্বার গোপন রাখা হবে ~
-                                    </span>{' '}
-                                </label>
-                                <select
-                                    name='donar_gender'
-                                    className='form-control'
-                                    id='donar_gender'
-                                    value={donarGender}
-                                    onChange={handleGenderChange}
-                                >
-                                    <option disabled>-Select-</option>
-                                    <option>পুরুষ</option>
-                                    <option>নারী</option>
-                                </select>
-                            </div>
                             <div className='form-group col-md-6'>
                                 <label className='fw-medium' htmlFor='whatsapp_number'>
                                     Whatsapp Number
@@ -274,28 +204,6 @@ const AddUser = () => {
                                     value={whatsappNumber}
                                     onChange={handleWhatsappNumberChange}
                                 />
-                            </div>
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='guardian_phone'> গার্ডিয়ান ফোন নাম্বার  <span className='text-danger'> *</span></label>
-                                <input
-                                    type='number'
-                                    className='form-control'
-                                    id='guardian_phone'
-                                    name='guardian_phone'
-                                    placeholder='eg: 017********'
-
-                                />
-                            </div>
-
-
-
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='password'>সর্বশেষ রক্তদানের তারিখ<span className='text-danger'> *</span></label>
-                                <div className='bg-white py-1 rounded border'>
-                                    <div className='ms-3 text-blood'>
-                                        <DatePicker onChange={onChange} value={date} />
-                                    </div>
-                                </div>
                             </div>
 
 
@@ -347,57 +255,28 @@ const AddUser = () => {
                                     </select>
                                 </div>
                             </div>
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='password'>Password <span className='text-danger'> *</span></label>
-                                <input
 
-                                    type='password'
-                                    className='form-control'
-                                    id='password'
-                                    name='password'
-                                    placeholder=' Password'
-                                />
-                            </div>
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='confirm_password'>Confirm Password <span className='text-danger'> *</span></label>
-                                <input
+                        </div>
 
-                                    type='password'
-                                    className='form-control'
-                                    id='confirm_password'
-                                    name='confirm_password'
-                                    placeholder='Confirm password'
-                                />
-                            </div>
-                        </div>
-                        <div className='form-check'>
-                            <input
-                                type='checkbox'
-                                className='form-check-input border-danger'
-                                id='acceptTerms'
-                                checked={termsAccepted}
-                                onChange={() => setTermsAccepted(!termsAccepted)}
-                            />
-                            <label className='form-check-label' htmlFor='acceptTerms'>
-                                I accept the terms and conditions <span className='text-danger'> *</span>
-                            </label>
-                        </div>
-                        <p className='text-danger'>{error}</p>
+                        <p className='text-danger mb-0'>{error}</p>
                         <div className='text-center'>
                             <button
                                 type='submit'
-                                disabled={isSubmitting || !termsAccepted}
                                 className='border-0 btn fw-medium mb-3 px-5 py-2 rounded-0 rounded-2 text-white'
                                 style={{ backgroundColor: '#08118E' }}>
-                                {isSubmitting ? 'Loading...' : 'রেজিস্ট্রেশন করুন'}
+                                {isSubmitting ? 'Loading...' : 'Update করুন'}
                             </button>
                         </div>
                     </form >
 
+                    <hr />
+                  
+                    <PassChange />
                 </div >
             </div>
+
         </div>
     );
 };
 
-export default AddUser;
+export default OrgSetting;

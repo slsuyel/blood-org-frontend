@@ -20,7 +20,7 @@ const useLoggedIn = () => {
                 // console.log(response);
                 if (response.message === "Token is valid") {
                     // console.log({ response });
-                    localStorage.setItem("studentId", response.user.id);
+                    localStorage.setItem("donorId", response.user.id);
                     setAuthenticated(true);
                 } else {
                     setAuthenticated(false);

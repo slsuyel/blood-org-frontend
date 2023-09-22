@@ -1,7 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { callApi } from '../../utilities/functions';
+import useDonor from '../../hooks/useDonor';
+import Loader from '../../utilities/Loader';
 
 const DonarProfile = () => {
+    const { id } = useParams()
+    const { donorData, isLoading } = useDonor(id)
+
+    if (isLoading) {
+        return <Loader />
+    }
+
+
     return (
         <div className="container mt-5 pt-5">
             <div className="main-body">
@@ -12,27 +23,27 @@ const DonarProfile = () => {
                                 <div className="d-flex flex-column align-items-center text-center">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
                                     <div className="mt-3">
-                                        <h4>ডোনার নামঃ Sakib Hasan</h4>
-                                        <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'> B+</span> </h5>
+                                        <h4>ডোনার নামঃ {donorData.name}</h4>
+                                        <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'>{donorData.blood_group}</span> </h5>
 
 
 
                                         <div>
-                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>2-April-2023</span></h6>
+                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>{donorData.last_donate_date}</span></h6>
 
-                                            <p className="text-muted font-size-sm mb-0">ঠিকানাঃ দেবীগঞ্জ পঞ্চগড়</p>
-                                            <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'>   সুরাহা ব্লাড ফাউন্ডেশন</Link> </h5>
+                                            <p className="text-muted font-size-sm mb-0">ঠিকানাঃ {donorData.union}, {donorData.thana}, {donorData.district}</p>
+                                            <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5>
                                         </div>
 
 
 
 
                                         <div>
-                                            <a href="tel:01751331330" className='bg-danger me-2 px-2 text-decoration-none'>
+                                            <a href={`tel:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
                                                 <i className="fa fa-phone me-2" />
                                                 কল করুন
                                             </a>
-                                            <a href="tel:01751331330" className='bg-danger me-2 px-2 text-decoration-none'>
+                                            <a href={`tel:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
                                                 <i className="fa-message fa-solid me-1"></i>
                                                 মেসেজ করুন
                                             </a>
@@ -53,7 +64,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0"> Name :</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        Sakib Hasan
+                                        {donorData.name}
                                     </div>
                                 </div>
                                 <hr />
@@ -63,7 +74,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0"> Gender :	</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        Sakib Hasan
+                                        {donorData.gander}
                                     </div>
                                 </div>
                                 <hr />
@@ -72,7 +83,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0">Email :</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        Sakib Hasan
+                                        {donorData.email}
                                     </div>
                                 </div>
                                 <hr />
@@ -81,7 +92,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0">Phone :</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        Sakib Hasan
+                                        {donorData.mobile}
                                     </div>
                                 </div>
 
@@ -91,7 +102,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0">Whatsapp :</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        <a className='fs-5 text-decoration-none' href='https://wa.me/01722597565'>  <i className="fa-brands fa-whatsapp"></i> এখানে ক্লিক করুন</a>
+                                        <a className='fs-5 text-decoration-none' href={`https://wa.me/+88${donorData.whatsapp_number}`}>  <i className="fa-brands fa-whatsapp"></i> এখানে ক্লিক করুন</a>
 
 
                                     </div>
