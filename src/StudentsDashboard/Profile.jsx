@@ -369,7 +369,9 @@ const Profile = () => {
                                     <div className="mt-3">
                                         <h4>ডোনার নামঃ {donorData.name}</h4>
                                         <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'>{donorData.blood_group}</span> </h5>
-
+                                        {
+                                            console.log(donorData.blood_group)
+                                        }
                                         <div>
                                             <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>{donorData.last_donate_date.substr(0, 10)}</span></h6>
 

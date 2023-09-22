@@ -32,6 +32,7 @@ import BlogHome from "../blogs/Home/BlogHome";
 import ScrollToTop from "../components/ScrollToTop";
 import OrgSetting from "../pages/Organizations/OrgSetting";
 import SingleOrg from "../pages/Organizations/SingleOrg";
+import SearchBlood from "../pages/Bloods/SearchBlood";
 
 export const router = createBrowserRouter([
     {
@@ -45,7 +46,11 @@ export const router = createBrowserRouter([
                 element: <HomePage />,
             },
             {
+                path: "search/filter-doners/:group/:donarUnions",
+                element: <SearchBlood />,
+            },
 
+            {
                 path: 'all-donars',
                 element: <Services />
             },
@@ -114,7 +119,7 @@ export const router = createBrowserRouter([
 
             {
                 path: 'org-profile',
-                element: <PrivateRoute> <SingleOrg/></PrivateRoute>
+                element: <PrivateRoute> <SingleOrg /></PrivateRoute>
             },
             {
                 path: 'donars',

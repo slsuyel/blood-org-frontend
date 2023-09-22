@@ -9,21 +9,12 @@ import { getName } from '../utilities/functions';
 const socialOrganizations = [
     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
     "বাংলাদেশ  চিকিৎসক সমিতি",
-    "বাংলাদেশ মহিলা সমাজ সংঘ",
-    "বাংলাদেশ প্রাণি পরিসর সংরক্ষণ সমিতি",
-    "বাংলাদেশ শিশু ও নারী বিষয়ক সমিতি",
-    "বাংলাদেশ আমরা",
-    "বাংলাদেশ গ্রামীণ উন্নয়ন সংস্থা",
-    "বাংলাদেশ গণিত উন্নয়ন পরিষদ",
-    "বাংলাদেশ বাণিজ্যিক গ্রন্থাগার",
-    "বাংলাদেশ কারখানা শ্রমিক সমিতি",
 ];
 
 
 const Hero = () => {
     const [isChecked, setIsChecked] = useState(false);
     const [org, setOrg] = useState('');
-
 
     const [selecteddivisions, setSelectedDivisions] = useState([]);
     const [divisions, setDivisions] = useState([]);
@@ -42,6 +33,8 @@ const Hero = () => {
 
     const [donarUpazila, setDonarUpazila] = useState('')
     const [donarUnions, setDonarUnions] = useState('')
+
+    const [group, setGroup] = useState('A,p')
 
 
     useEffect(() => {
@@ -123,23 +116,6 @@ const Hero = () => {
         setOrg(selectedOption);
     };
 
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-
-        const searchData = {
-            blood_group: event.target.group.value,
-            division: donarDiv,
-            district: donarDist,
-            thana: donarUpazila,
-            union: donarUnions,
-            org
-        };
-
-        console.log(searchData);
-    }
-
-
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
             <div className='container row mx-auto mt-5 pt-5'>
@@ -149,19 +125,25 @@ const Hero = () => {
                         <img src={blood} alt="" width={'30px'} /> <span className="mx-2">রক্তদাতা খুঁজুন</span>
                         <img src={bloodorg} alt="" width={'30px'} />
                     </h3>
-                    <form onSubmit={handleFormSubmit}>
+                    <form>
 
                         <div className="form-group">
                             <div className="select-grouph-area">
-                                <select required name="group" className="form-select fw-bold text-danger">
-                                    <option value="A+">A+</option>
-                                    <option value="A-">A-</option>
-                                    <option value="B+">B+</option>
-                                    <option value="B-">B-</option>
-                                    <option value="O+">O+</option>
-                                    <option value="O-">O-</option>
-                                    <option value="AB+">AB+</option>
-                                    <option value="AB-">AB-</option>
+                                <select
+                                    required
+                                    name="group"
+                                    className="form-select fw-bold text-danger"
+                                    value={group}
+                                    onChange={e => setGroup(e.target.value)}
+                                >
+                                    <option value="A,p">A+</option>
+                                    <option value="A,n">A-</option>
+                                    <option value="B,p">B+</option>
+                                    <option value="B,n">B-</option>
+                                    <option value="O,p">O+</option>
+                                    <option value="O,n">O-</option>
+                                    <option value="AB,p">AB+</option>
+                                    <option value="AB,n">AB-</option>
                                 </select>
                             </div>
                         </div>
@@ -241,9 +223,10 @@ const Hero = () => {
                         <div className="align-items-center d-flex form-group justify-content-between">
 
                             <div >
-                                <button type="submit" className="myButton">
+                                <Link to={`/search/filter-doners/${group}/${donarUnions}`} className="myButton">
                                     <i className="fa fa-search" /> <span>খুঁজুন</span>
-                                </button>
+                                </Link>
+
                             </div>
 
                             <div >
