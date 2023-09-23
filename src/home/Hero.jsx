@@ -311,7 +311,7 @@ const Hero = () => {
                                                     checked={isChecked}
                                                     onChange={handleCheckboxChange}
                                                 />
-                                                সংগঠন থেকে খুঁজুন
+                                                সংগঠন থেকে খুঁজুন {isChecked ? <span className='bg-danger ms-3 px-1 rounded-end-pill text-sm'> ** শুধুমাত্র সিলেক্ট করা সংগঠন থেকে তথ্য দেখাবে </span> : ''}
                                             </label>
 
                                             {
