@@ -7,26 +7,25 @@ import useLoggedIn from "../../hooks/useLoggedIn";
 import Loader from "../../utilities/Loader";
 
 export default function StudentSignin() {
-  useTitle("Student Signin")
+  useTitle("Student Signin");
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const from = location.state?.from?.pathname || "/profile";
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
   const { authenticated, loading } = useLoggedIn();
-
+  const [showPassword, setShowPassword] = useState(false); // Added state for password visibility
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true)
-    setError("")
+    setIsSubmitting(true);
+    setError("");
     try {
       const res = await callApi("POST", "/api/login", { email, password });
       console.log(res);
@@ -35,28 +34,26 @@ export default function StudentSignin() {
         toast.success('Login successfully!', {
           position: toast.POSITION.TOP_RIGHT
         });
-        window.location.reload()
+        window.location.reload();
         navigate(from, { replace: true });
       } else {
         console.log('Login failed: Token missing in the response.');
-        setError("Login failed")
+        setError("Login failed");
       }
     } catch (error) {
       console.error('Error occurred during login:', error);
-      setError("Login failed")
-    }
-    finally {
+      setError("Login failed");
+    } finally {
       setIsSubmitting(false);
-
     }
   };
-  // console.log(authenticated)
+
   return (
     <>
-      {
-        !authenticated ? <div className="mt-5 pt-1">
+      {!authenticated ? (
+        <div className="mt-5 pt-1">
           <div className="col-sm-12 col-md-6 mx-auto mb-5">
-            <div className="login-box mt-5 mx-auto ">
+            <div className="login-box mt-5 mx-auto">
               <div className="login-logo">
                 <h3>রক্তদাতা লগইন</h3>
               </div>
@@ -80,7 +77,7 @@ export default function StudentSignin() {
                     </div>
                     <div className="input-group mb-3">
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"} // Toggle between text and password
                         className="form-control"
                         placeholder="Password"
                         value={password}
@@ -88,15 +85,23 @@ export default function StudentSignin() {
                       />
                       <div className="input-group-append">
                         <div className="input-group-text">
-                          <span className="fas fa-lock" />
+                          <span
+                            className=""
+                            onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                            style={{ cursor: "pointer" }}
+                          >
+                            {showPassword ? (
+                              <i className="fa-solid fa-lock-open"></i>
+                            ) : (
+                              <i className="fa-solid fa-lock"></i>
+                            )}
+                          </span>
                         </div>
                       </div>
                     </div>
                     <div className="row">
-
                       <div className="col-12 d-flex justify-content-between gap-2">
                         <p className="text-danger mb-0"> {error}</p>
-
                         <button
                           type="submit"
                           className="btn btn-primary"
@@ -105,27 +110,25 @@ export default function StudentSignin() {
                         >
                           {isSubmitting ? 'Loading...' : 'লগইন'}
                         </button>
-
                       </div>
                     </div>
-
                   </form>
                   <div className="d-flex align-items-center gap-3 justify-content-between mt-2">
                     <Link to={'/signup'} className="register-button">
                       একাউন্ট তৈরি করুন
                     </Link>
-
-                    <a className="text-nowrap text-secondary text-sm" href="#">Forgot Password</a>
-
+                    <a className="text-nowrap text-secondary text-sm" href="#">
+                      Forgot Password
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-        </div> : (navigate("/profile", { replace: true })
-        )
-      }
+        </div>
+      ) : (
+        navigate("/profile", { replace: true })
+      )}
     </>
   );
 }

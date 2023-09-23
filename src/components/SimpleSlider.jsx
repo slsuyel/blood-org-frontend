@@ -1,7 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import img from '../assets/images/orggg.jpg'
-
+import img from '../assets/images/orgs/org-demo.jpg'
 export default function SimpleSlider({ data }) {
     var settings = {
         // variableWidth :true,

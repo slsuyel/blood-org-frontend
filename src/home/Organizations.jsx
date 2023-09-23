@@ -1,8 +1,9 @@
 import React from 'react';
-import img from '../assets/images/orggg.jpg'
+// import img from '../assets/images/orggg.jpg'
+import orgDemo from '../assets/images/orgs/org-demo.jpg'
 import { Link } from 'react-router-dom';
 
-const data = Array.from({ length: 100 }, () =>
+const data = Array.from({ length: 12 }, () =>
     Math.floor(Math.random() * 1000) + 1
 );
 
@@ -16,8 +17,8 @@ const Organizations = () => {
                         <div className="card bggg" >
 
                             <div className='text-center'>
-                                <img src='https://admin.roktobondhu.com/storage/files/received_6935558146476387.jpeg' alt=""
-                                    height={'100px'} className=" mx-auto mb-2" />
+                                <img src={orgDemo} alt=""
+                                    height={'130px'} className=" mx-auto mb-2" />
                             </div>
                             <div className=' text-center' style={{ marginBottom: '125px' }}>
                                 <h4 className=' text-center'>সুরাহা ব্লাড ফাউন্ডেশন</h4>

@@ -62,20 +62,20 @@ const Hero = () => {
     }, [selecteddivisions]);
     const handleDivChange = event => {
         setSelectedDivisions(event.target.value);
-        // setDonarDiv(getName(divisions, event.target.value))
+        setDonarDiv(getName(divisions, event.target.value))
         setSelectedDistrict('');
 
     };
 
     const handleDistrictChange = event => {
         setSelectedDistrict(event.target.value);
-        // setDonarDist(getName(districts, event.target.value))
+        setDonarDist(getName(districts, event.target.value))
         setSelectedUpazila('');
     };
 
     const handleUpazilaChange = event => {
         setSelectedUpazila(event.target.value);
-        // setDonarUpazila(getName(upazilas, event.target.value))
+        setDonarUpazila(getName(upazilas, event.target.value))
     };
 
     const handleUnionChange = event => {
@@ -116,15 +116,35 @@ const Hero = () => {
         setOrg(selectedOption);
     };
 
+    /*     const [donarDiv, setDonarDiv] = useState('')
+        const [donarDist, setDonarDist] = useState('')
+        const [donarUpazila, setDonarUpazila] = useState('') */
+
     const handleSearch = async (event) => {
         event.preventDefault();
-
-        if (!donarUnions) {
+        
+        if (!donarDiv) {
+            toast.error('বিভাগ সিলেক্ট করুন!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            return;
+        } else if (!donarDist) {
+            toast.error('জেলা সিলেক্ট করুন!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            return;
+        } else if (!donarUpazila) {
+            toast.error('উপজেলা সিলেক্ট করুন!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            return;
+        } else if (!donarUnions) {
             toast.error('ইউনিয়ন সিলেক্ট করুন!', {
                 position: toast.POSITION.TOP_CENTER
             });
-            return
+            return;
         }
+
         const blood_group = group;
         let filter_by = 'union';
         let search = donarUnions;

@@ -9,7 +9,7 @@ import Loader from '../../utilities/Loader';
 const OrgSignIn = () => {
     const { orgAuthenticated, loading } = useOrgLoggedIn()
     const { adminAuthenticated, adminLoading } = useAdminLoggedIn()
-
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || "/dashboard";
@@ -83,7 +83,7 @@ const OrgSignIn = () => {
                                     </div>
                                     <div className="input-group mb-3">
                                         <input
-                                            type="password"
+                                            type={showPassword ? "text" : "password"}
                                             className="form-control"
                                             placeholder="Password"
                                             value={password}
@@ -91,7 +91,17 @@ const OrgSignIn = () => {
                                         />
                                         <div className="input-group-append">
                                             <div className="input-group-text">
-                                                <span className="fas fa-lock" />
+                                                <span
+                                                    className=""
+                                                    onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                                                    style={{ cursor: "pointer" }}
+                                                >
+                                                    {showPassword ? (
+                                                        <i className="fa-solid fa-lock-open"></i>
+                                                    ) : (
+                                                        <i className="fa-solid fa-lock"></i>
+                                                    )}
+                                                </span>
                                             </div>
                                         </div>
                                     </div>

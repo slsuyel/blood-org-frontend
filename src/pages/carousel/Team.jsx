@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import SimpleSlider from '../../components/SimpleSlider';
-
+import orgDemo from '../../assets/images/orgs/org-demo.jpg'
 const Team = () => {
 
 
