@@ -45,11 +45,6 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: <HomePage />,
             },
-           
-            {
-                path: "search/filter-doners/:group/:searchType",
-                element: <SearchBlood />,
-            },
 
             {
                 path: 'all-donars',

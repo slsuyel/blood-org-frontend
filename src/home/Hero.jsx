@@ -4,7 +4,8 @@ import bloodorg from '../assets/images/blood-org.jpg'
 import blood from '../assets/images/blood.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { callApi, getName } from '../utilities/functions';
-
+import Loader from '../utilities/Loader';
+import SearchBlood from '../pages/Bloods/SearchBlood';
 
 const socialOrganizations = [
     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
@@ -14,7 +15,7 @@ const socialOrganizations = [
 
 
 const Hero = () => {
-
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const [isFieldsSelected, setIsFieldsSelected] = useState(false);
@@ -52,8 +53,6 @@ const Hero = () => {
         }
     }, [selecteddivisions, selectedDistrict, selectedUnion]);
 
-
-
     useEffect(() => {
         fetch('/divisions.json')
             .then(res => res.json())
@@ -73,7 +72,6 @@ const Hero = () => {
                 .catch(error => console.error('Error fetching upazilas data:', error));
         }
     }, [selecteddivisions]);
-
 
     const handleDivChange = event => {
         setSelectedDivisions(event.target.value);
@@ -133,9 +131,9 @@ const Hero = () => {
         setOrg(selectedOption);
     };
 
-
-    const handleSearch = (event) => {
+    const handleSearch = async (event) => {
         event.preventDefault();
+
         const blood_group = group;
         let filter_by = 'union';
         let search = donarUnions;
@@ -143,27 +141,28 @@ const Hero = () => {
             filter_by = 'org';
             search = org;
         }
-        navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
+
+        setLoading(true);
+
+        try {
+            const result = await getDonorsData(`blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`);
+            setDonors(result.doners.data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
-    // const getDonorsData = (event) => {
-    //     event.preventDefault();
-    //     const blood_group = group;
-    //     let filter_by = 'union';
-    //     let search = donarUnions;
-    //     if (isChecked) {
-    //         filter_by = 'org';
-    //         search = org;
-    //     }
-    //     navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
-    // }
-
+    const getDonorsData = async (param) => {
+        const response = await callApi("get", `/api/filter-doners?${param}`);
+        return response;
+    }
 
 
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
             <div className='container row mx-auto mt-5 pt-5'>
-
                 <div className="col-md-8 mx-auto">
                     <h3 className='bg-cyan bg-warning py-1 text-center text-danger'>
                         <img src={blood} alt="" width={'30px'} /> <span className="mx-2">রক্তদাতা খুঁজুন</span>
@@ -276,7 +275,7 @@ const Hero = () => {
                                     <i className="fa fa-search" /> <span>খুঁজুন</span>
                                 </Link> */}
 
-                                <button onClick={handleSearch}>
+                                <button onClick={handleSearch} className='myButton'>
                                     search
                                 </button>
 
@@ -292,6 +291,12 @@ const Hero = () => {
                     </form>
                 </div>
             </div>
+
+            {
+                donors ? <SearchBlood donors={donors} group={group} loading={loading} /> : ''
+            }
+
+
         </div>
     );
 };
