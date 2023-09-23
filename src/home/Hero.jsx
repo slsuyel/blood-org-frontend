@@ -8,11 +8,11 @@ import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
 import { toast } from 'react-toastify';
 
-const socialOrganizations = [
-    "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
-    "বাংলাদেশ  চিকিৎসক সমিতি",
-    "name"
-];
+// const socialOrganizations = [
+//     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
+//     "বাংলাদেশ  চিকিৎসক সমিতি",
+//     "name"
+// ];
 
 
 const Hero = () => {
@@ -41,6 +41,10 @@ const Hero = () => {
     const [donors, setDonors] = useState([]);
     const [hide, setHide] = useState(true);
 
+    const [orgByUnions, setOrgByUnions] = useState([]);
+    const [orgLoading, setOrgLoading] = useState(false);
+
+
     useEffect(() => {
         fetch('/divisions.json')
             .then(res => res.json())
@@ -60,6 +64,27 @@ const Hero = () => {
                 .catch(error => console.error('Error fetching upazilas data:', error));
         }
     }, [selecteddivisions]);
+
+
+    useEffect(() => {
+        setOrgLoading(true)
+        const fetchData = async () => {
+            try {
+                const response = await callApi("get", `/api/organizations?union=${donarUnions}`);
+                setOrgByUnions(response.organizations)
+                setOrgLoading(false)
+            } catch (error) {
+                setOrgLoading(false)
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, [donarUnions]);
+
+
+
+
+
     const handleDivChange = event => {
         setSelectedDivisions(event.target.value);
         setDonarDiv(getName(divisions, event.target.value))
@@ -107,6 +132,10 @@ const Hero = () => {
         }
     }, [selectedUpazila]);
 
+
+
+
+
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
     };
@@ -122,7 +151,7 @@ const Hero = () => {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        
+
         if (!donarDiv) {
             toast.error('বিভাগ সিলেক্ট করুন!', {
                 position: toast.POSITION.TOP_CENTER
@@ -181,7 +210,7 @@ const Hero = () => {
         return response;
     }
 
-
+    // console.log(orgLoading);
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
             <div className='container row mx-auto mt-5 pt-5'>
@@ -260,28 +289,50 @@ const Hero = () => {
                             </select>
 
                         </div>
-                        <div className="form-group">
-                            <label>
-                                <input
-                                    className="me-2"
-                                    type="checkbox"
-                                    checked={isChecked}
-                                    onChange={handleCheckboxChange}
-                                />
-                                সংগঠন থেকে খুঁজুন
-                            </label>
 
+
+                        <div>
                             {
-                                isChecked ? <select name="organization" onChange={handleOrgChange} className="form-select">
-                                    <option defaultValue >সংগঠন সিলেক্ট করুন</option>
-                                    {socialOrganizations.map((organization, index) => (
-                                        <option key={index} value={index}>
-                                            {organization}
-                                        </option>
-                                    ))}
-                                </select> : ''
-                            }
+                                orgLoading ?
+                                    <div className='bg-white d-flex gap-3 mb-2 p-1 ps-3 py-2 rounded'>
+                                        {donarUnions ? `${donarUnions} ইউনিয়নের ` : ''}
+                                        সংগঠন খোঁজা হচ্ছে . . .
+                                        <div className="union-loader"></div>
 
+                                    </div>
+
+
+                                    : <> {
+                                        orgByUnions.length > 0 ? <div className="form-group">
+                                            <label>
+                                                <input
+                                                    className="me-2"
+                                                    type="checkbox"
+                                                    checked={isChecked}
+                                                    onChange={handleCheckboxChange}
+                                                />
+                                                সংগঠন থেকে খুঁজুন
+                                            </label>
+
+                                            {
+                                                isChecked ? <select name="organization" onChange={handleOrgChange} className="form-select">
+                                                    <option defaultValue >সংগঠন সিলেক্ট করুন</option>
+                                                    {orgByUnions?.map((organization) => (
+                                                        <option key={organization.id} value={organization.id}>
+                                                            {organization.name}
+                                                        </option>
+                                                    ))}
+                                                </select> : ''
+                                            }
+
+                                        </div> : ''
+
+
+                                        //  <h5 className='bg-white fs-5 mb-3 ps-2 py-1 py-2 rounded-1 text-danger'>আপনার ইউনিয়নে কোনও সংগঠন খুজে পাওয়া যাচ্ছে না !  <Link className="fs-5 ms-3 text-decoration-none text-success" to='/add-org'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> সংগঠন Add করুন </Link> </h5>
+                                    }
+
+                                    </>
+                            }
                         </div>
 
 
