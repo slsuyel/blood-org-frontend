@@ -102,7 +102,7 @@ const DonarProfile = () => {
                                         <h6 className="mb-0">Whatsapp :</h6>
                                     </div>
                                     <div className="col-sm-9 text-secondary">
-                                        <a className='fs-5 text-decoration-none' href={`https://wa.me/+88${donorData.whatsapp_number}`}>  <i className="fa-brands fa-whatsapp"></i> এখানে ক্লিক করুন</a>
+                                        <a className='fs-5 text-decoration-none' href={`https://wa.me/+88${donorData?.whatsapp_number}`}>  <i className="fa-brands fa-whatsapp"></i> এখানে ক্লিক করুন</a>
 
 
                                     </div>

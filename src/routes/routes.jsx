@@ -16,7 +16,7 @@ import TeacherEdit from "../pages/Teacher/TeacherEdit";
 import StudentSignin from "../StudentsDashboard/Auth/StudentSignin";
 import StudentCheck from "../StudentsDashboard/Auth/StudentCheck";
 import HomePage from "../home/HomePage";
-import Services from "../home/Services";
+
 import AboutUs from "../home/AboutUs";
 import Profile from "../StudentsDashboard/Profile";
 import DonarProfile from "../pages/Bloods/DonarProfile";
@@ -32,7 +32,7 @@ import BlogHome from "../blogs/Home/BlogHome";
 import ScrollToTop from "../components/ScrollToTop";
 import OrgSetting from "../pages/Organizations/OrgSetting";
 import SingleOrg from "../pages/Organizations/SingleOrg";
-import SearchBlood from "../pages/Bloods/SearchBlood";
+import AllUsers from "../home/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
 
             {
                 path: 'all-donars',
-                element: <Services />
+                element: <AllUsers />
             },
             {
 
@@ -80,11 +80,7 @@ export const router = createBrowserRouter([
                 path: "organizations",
                 element: <Organizations />,
             },
-            // {
 
-            //     path: "org/details/:id",
-            //     element: <SingleOrg />,
-            // },
             {
 
                 path: "org-login",

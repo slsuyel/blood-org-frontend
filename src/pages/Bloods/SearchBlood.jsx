@@ -21,6 +21,9 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
                                 donors.length > 0 ? <thead>
                                     <tr className=' text-center text-nowrap'>
                                         <th className='bg-danger-subtle'>
+                                            ক্রমিকঃ
+                                        </th>
+                                        <th className='bg-danger-subtle'>
                                             <i className="fa-solid fa-user"></i>  নামঃ
                                         </th>
                                         {/* <th className='bg-danger-subtle'>
@@ -38,13 +41,17 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
 
                             <tbody>
                                 {
-                                    donors.map(d =>
+                                    donors.map((d, index) =>
                                         <tr key={d.id}>
+                                            <td className='text-center'>{index + 1}</td>
+
                                             <td className='border text-start text-nowrap fs-5'>
                                                 <div className='ms-4'>
-                                                    <Link className='text-danger text-capitalize text-decoration-none mb-1' to={`/donar/${d.id}`}>  {d.name}
+                                                    <Link className='text-danger text-capitalize text-decoration-none' to={`/donar/${d.id}`}>
 
-                                                        <p className='mb-0 text-danger-emphasis text-sm'> <i className="fa-solid fa-location-dot"></i> {d.union}, {d.thana}</p>
+                                                        <h5><i className="fa-solid fa-user-check"></i> {d.name}</h5>
+
+                                                        <p className='mb-0 mt-2 text-danger-emphasis text-sm'> <i className="fa-solid fa-location-dot"></i> {d.union}, {d.thana}</p>
 
                                                     </Link>
 
@@ -54,7 +61,7 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
                                             </td>
                                             {/*  <td className='border pt-3 text-center text-nowrap'> href="tel:01751331330"
                                                 {d.union}, {d.thana}
-                                            </td> */} {console.log(d)}
+                                            </td> */} 
                                             <td className="border text-center text-nowrap">
 
                                                 <div className="d-flex gap-4 justify-content-center mt-3 text-center text-nowrap">
@@ -69,8 +76,22 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
                                                     <i className="fs-4 fa-regular fa-envelope text-danger"></i>
                                                 </a> */}
                                             </td>
+                                            {/* <td className='border pt-3 text-center text-nowrap'>
+                                                {d.last_donate_date}
+                                               
+                                            </td> */}
                                             <td className='border pt-3 text-center text-nowrap'>
                                                 {d.last_donate_date}
+                                                <br />
+                                                {
+                                                    ((lastDonationDate) => {
+                                                        const today = new Date();
+                                                        const lastDonation = new Date(lastDonationDate);
+                                                        const timeDifference = today - lastDonation;
+                                                        const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                                                        return daysDifference;
+                                                    })(d.last_donate_date)
+                                                } দিন আগে
                                             </td>
                                         </tr>
                                     )

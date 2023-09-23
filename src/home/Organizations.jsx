@@ -1,30 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // import img from '../assets/images/orggg.jpg'
 import orgDemo from '../assets/images/orgs/org-demo.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Paginate from '../components/Paginate';
+import { callApi } from '../utilities/functions';
 
-const data = Array.from({ length: 12 }, () =>
-    Math.floor(Math.random() * 1000) + 1
-);
+
 
 const Organizations = () => {
 
+
+    const [pageNo, setPageNo] = useState(1)
+    const [totalPages, setTotalPages] = useState()
+    const [per_page, setPer_page] = useState()
+    const [totalitems, setTotalitems] = useState()
+    const location = useLocation();
+    const [allOrgs, setAllOrgs] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, [location]);
+
+    const fetchData = async () => {
+        try {
+            const searchParams = new URLSearchParams(window.location.search);
+            const page = searchParams.get('page') ? searchParams.get('page') : 1
+            const data = await callApi("get", `/api/organizations/lists?page=${page}`);
+            setAllOrgs(data.organizations.data);
+            setTotalPages(data.links)
+            setPer_page(data.per_page)
+            setTotalitems(data.total)
+            if (page == 1) {
+                setPageNo(1);
+            } else {
+                setPageNo((page - 1) * data.per_page + 1);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    console.log(allOrgs);
     return (
         <div className='container mx-auto w-100 mt-5 pt-5'>
             <div className='row'>
-                {data?.map((d, index) => (
-                    <Link /* to={`/org/details/${index+1}`} */ className=" col-md-4 mb-5 text-decoration-none" key={index}>
+                {allOrgs?.map((org, index) => (
+                    <Link /* to={`/org/details/${index+1}`} */ className=" col-md-4 mb-5 text-decoration-none" key={org.id}>
                         <div className="card bggg" >
 
                             <div className='text-center'>
-                                <img src={orgDemo} alt=""
+                                <img src={org.logo ? org.logo : orgDemo} alt=""
                                     height={'130px'} className=" mx-auto mb-2" />
                             </div>
                             <div className=' text-center' style={{ marginBottom: '125px' }}>
-                                <h4 className=' text-center'>সুরাহা ব্লাড ফাউন্ডেশন</h4>
-                                <h5 className="fs-6 mb-0 text-secondary">মনোহরদী, নরসিংদী</h5>
-                                <a className="my-1 text-decoration-none" href="tel:01761698300">
-                                    01761698300
+                                <h4 className=' text-center'>{org.mobile}</h4>
+                                <h5 className="fs-6 mb-0 text-secondary">
+                                    <i className="fa-solid fa-location-dot me-2"></i>   {org.union}, {org.thana}, {org.district}</h5>
+                                <a className="my-1 text-decoration-none" href={`tel:${org.mobile}`}>
+                                    {org.mobile}
                                 </a>
                             </div>
 
@@ -34,6 +67,14 @@ const Organizations = () => {
                     </Link>
                 ))}
             </div>
+
+            <Paginate
+                Totalpageprops={totalPages}
+                per_page={per_page}
+                totalitems={totalitems}
+                route='/dashboard/student'
+            />
+
         </div>
     );
 };
