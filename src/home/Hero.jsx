@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi, getName } from '../utilities/functions';
 import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
+import { toast } from 'react-toastify';
 
 const socialOrganizations = [
     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
@@ -38,7 +39,7 @@ const Hero = () => {
     const [donarUnions, setDonarUnions] = useState('')
     const [group, setGroup] = useState('A,p')
     const [donors, setDonors] = useState([]);
-    const [hide, setHide] = useState(false);
+    const [hide, setHide] = useState(true);
 
     useEffect(() => {
         fetch('/divisions.json')
@@ -117,6 +118,13 @@ const Hero = () => {
 
     const handleSearch = async (event) => {
         event.preventDefault();
+
+        if (!donarUnions) {
+            toast.error('ইউনিয়ন সিলেক্ট করুন!', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            return
+        }
         const blood_group = group;
         let filter_by = 'union';
         let search = donarUnions;
@@ -130,7 +138,7 @@ const Hero = () => {
         setLoading(true);
         try {
             const result = await getDonorsData(`blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`);
-            setHide(true)
+            setHide(false)
             setDonors(result.doners.data);
 
         } catch (error) {
