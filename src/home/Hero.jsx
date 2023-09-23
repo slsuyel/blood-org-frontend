@@ -29,6 +29,7 @@ const Hero = () => {
     const [unions, setUnions] = useState([]);
 
     const location = useLocation();
+    const navigate = useNavigate()
     const [selectedUnion, setSelectedUnion] = useState('');
     const [donarDiv, setDonarDiv] = useState('')
     const [donarDist, setDonarDist] = useState('')
@@ -37,7 +38,7 @@ const Hero = () => {
     const [donarUnions, setDonarUnions] = useState('')
     const [group, setGroup] = useState('A,p')
     const [donors, setDonors] = useState([]);
-    const navigate = useNavigate()
+    const [hide, setHide] = useState(false);
 
     useEffect(() => {
         fetch('/divisions.json')
@@ -124,12 +125,14 @@ const Hero = () => {
             search = org;
         }
 
-        navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
+        // navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
 
         setLoading(true);
         try {
             const result = await getDonorsData(`blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`);
+            setHide(true)
             setDonors(result.doners.data);
+
         } catch (error) {
             console.error(error);
         } finally {
@@ -284,7 +287,7 @@ const Hero = () => {
             </div>
 
             {
-                donors ? <SearchBlood donors={donors} group={group} loading={loading} /> : ''
+                donors ? <SearchBlood donors={donors} group={group} loading={loading} hide={hide} /> : ''
             }
 
 

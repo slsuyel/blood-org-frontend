@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import Loader from '../../utilities/Loader';
 import { Link } from 'react-router-dom';
 
-const SearchBlood = ({ donors, group, loading }) => {
+const SearchBlood = ({ donors, group, loading, hide }) => {
 
     if (loading) {
         return <Loader />
