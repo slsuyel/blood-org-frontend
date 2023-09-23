@@ -1,42 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { callApi } from '../../utilities/functions';
-import Loader from '../../utilities/Loader'; // Import the Loader component
+import Loader from '../../utilities/Loader';
 import { Table } from 'reactstrap';
 
 const SearchBlood = () => {
-    const { group, donarUnions } = useParams();
+    const { group, searchType } = useParams();
     const [donors, setDonors] = useState([]);
-    const [loading, setLoading] = useState(true); // Set loading to true initially
+    const [loading, setLoading] = useState(true);
+
+    console.log(searchType);
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await callApi("get", `/api/filter-doners?blood_group=${group}&filter_by=union&search=${donarUnions}`);
+                const response = await callApi("get", `/api/filter-doners?blood_group=${group}&filter_by=${searchType}`);
                 setDonors(response.doners.data);
-                setLoading(false); // Set loading to false when data is fetched
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
-                setLoading(false); // Set loading to false in case of an error
+                setLoading(false);
             }
         };
 
         fetchData();
-    }, [group, donarUnions]);
+    }, [group, searchType]);
 
     if (loading) {
         return <Loader />;
     }
     return (
         <div className='my-5 pt-5 container-fluid'>
-
-
             <div className='row'>
-
                 <div className='col-md-10 mx-auto'>
-
-                    <h2 className='mt-4 text-center'> {donarUnions} এলাকার <span className='text-danger'> {group === 'A,p' ? 'A+' : group === 'A,n' ? 'A-' : group === 'B,p' ? 'B+' : group === 'B,n' ? 'B-' : group === 'AB,p' ? 'AB+' : group === 'AB,n' ? 'AB-' : group === 'O,p' ? 'O+' : group === 'O,n' ? 'O-' : group}</span> রক্তদাতার তালিকাঃ</h2>
-
+                    <h2 className='mt-4 text-center'>  <span className='text-danger'> {group === 'A,p' ? 'A+' : group === 'A,n' ? 'A-' : group === 'B,p' ? 'B+' : group === 'B,n' ? 'B-' : group === 'AB,p' ? 'AB+' : group === 'AB,n' ? 'AB-' : group === 'O,p' ? 'O+' : group === 'O,n' ? 'O-' : group}</span> রক্তদাতার তালিকাঃ</h2>
                     {
                         donors.length > 0 ? <Table hover responsive className='shadow'>
                             <thead>
@@ -76,8 +74,6 @@ const SearchBlood = () => {
                                                 <a href="">
                                                     <i className="fs-4 fa-regular fa-envelope text-danger"></i>
                                                 </a>
-
-
                                             </td>
                                             <td className='border pt-3 text-center text-nowrap'>
                                                 {d.last_donate_date}
@@ -85,47 +81,34 @@ const SearchBlood = () => {
                                         </tr>
                                     )
                                 }
-
                             </tbody>
                         </Table> :
-                         <div className='bg-white my-4 p-5 shadow text-danger'>
-
-                            <h5 className='bg-danger-subtle py-3 text-center text-danger'>দুঃখিত ! কোন তথ্য পাওয়া যায়নি</h5>
-
-                            <div className="row">
-
-                                <div className="col-lg-4 pt-2">
-                                    <div className="media align-items-center rounded shadow p-3">
-                                        <i className="fa-solid fa-lock h4 mb-0 text-danger" />
-                                        <h6 className="ml-3 mb-0"><a href="/donar/signin" className="text-danger text-decoration-none">রক্তদাতা লগইন করুন</a></h6>
+                            <div className='bg-white my-4 p-5 shadow text-danger'>
+                                <h5 className='bg-danger-subtle py-3 text-center text-danger'>দুঃখিত ! কোন তথ্য পাওয়া যায়নি</h5>
+                                <div className="row">
+                                    <div className="col-lg-4 pt-2">
+                                        <div className="media align-items-center rounded shadow p-3">
+                                            <i className="fa-solid fa-lock h4 mb-0 text-danger" />
+                                            <h6 className="ml-3 mb-0"><a href="/donar/signin" className="text-danger text-decoration-none">রক্তদাতা লগইন করুন</a></h6>
+                                        </div>
                                     </div>
-                                </div>{/* <i class="fa-solid fa-lock"></i> */}
-                                <div className="col-lg-4 pt-2">
-                                    <div className="media align-items-center rounded shadow p-3">
-                                        <i className="fa fa-user h4 mb-0 text-danger" />
-                                        <h6 className="ml-3 mb-0"><a href="/signup" className="text-danger text-decoration-none">রক্তদাতা রেজিস্ট্রেশন করুন</a></h6>
+                                    <div className="col-lg-4 pt-2">
+                                        <div className="media align-items-center rounded shadow p-3">
+                                            <i className="fa fa-user h4 mb-0 text-danger" />
+                                            <h6 className="ml-3 mb-0"><a href="/signup" className="text-danger text-decoration-none">রক্তদাতা রেজিস্ট্রেশন করুন</a></h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="col-lg-4 pt-2">
-                                    <div className="media align-items-center rounded shadow p-3">
-                                        <i className="text-danger fs-4 fa-solid fa-users-rays"></i>
-                                        <h6 className="ml-3 mb-0"><a href="/add-org" className="text-danger text-decoration-none">রক্তদাতা সংগঠন যোগ করুন</a></h6>
+                                    <div className="col-lg-4 pt-2">
+                                        <div className="media align-items-center rounded shadow p-3">
+                                            <i className="text-danger fs-4 fa-solid fa-users-rays"></i>
+                                            <h6 className="ml-3 mb-0"><a href="/add-org" className="text-danger text-decoration-none">রক্তদাতা সংগঠন যোগ করুন</a></h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     }
-
-
-
-
-
                 </div>
-
-
-
             </div>
-
         </div>
     );
 };

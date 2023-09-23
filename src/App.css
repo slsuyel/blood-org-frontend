@@ -274,3 +274,10 @@ input[type=number]:focus,
   }
 }
 
+/* Add this to your CSS */
+.disabled-myButton {
+  pointer-events: none;
+  background-color: #ccc !important;
+  color: #999;
+  cursor: not-allowed;
+}

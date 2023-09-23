@@ -9,10 +9,13 @@ import { getName } from '../utilities/functions';
 const socialOrganizations = [
     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
     "বাংলাদেশ  চিকিৎসক সমিতি",
+    "name"
 ];
 
 
 const Hero = () => {
+    const [isFieldsSelected, setIsFieldsSelected] = useState(false);
+
     const [isChecked, setIsChecked] = useState(false);
     const [org, setOrg] = useState('');
 
@@ -38,7 +41,17 @@ const Hero = () => {
 
 
     useEffect(() => {
-        fetch('divisions.json')
+        if (selecteddivisions && selectedDistrict && selectedUnion) {
+            setIsFieldsSelected(true);
+        } else {
+            setIsFieldsSelected(false);
+        }
+    }, [selecteddivisions, selectedDistrict, selectedUnion]);
+
+
+
+    useEffect(() => {
+        fetch('/divisions.json')
             .then(res => res.json())
             .then(data => setDivisions(data))
             .catch(error => console.error('Error fetching districts data:', error));
@@ -46,7 +59,7 @@ const Hero = () => {
 
     useEffect(() => {
         if (selecteddivisions) {
-            fetch('districts.json')
+            fetch('/districts.json')
                 .then(response => response.json())
                 .then(data => {
                     // console.log(data);
@@ -85,7 +98,7 @@ const Hero = () => {
 
     useEffect(() => {
         if (selectedDistrict) {
-            fetch('upazilas.json')
+            fetch('/upazilas.json')
                 .then(response => response.json())
                 .then(data => {
                     const filteredUpazilas = data.filter(upazila => upazila.district_id === selectedDistrict);
@@ -97,7 +110,7 @@ const Hero = () => {
 
     useEffect(() => {
         if (selectedUpazila) {
-            fetch('unions.json')
+            fetch('/unions.json')
                 .then(response => response.json())
                 .then(data => {
                     const filteredUnions = data.filter(union => union.upazilla_id === selectedUpazila);
@@ -115,6 +128,9 @@ const Hero = () => {
         const selectedOption = event.target.value;
         setOrg(selectedOption);
     };
+
+    console.log(org);
+
 
     return (
         <div className=' parallax-image  align-items-center w-100 ' id='top'>
@@ -207,11 +223,11 @@ const Hero = () => {
                             </label>
 
                             {
-                                isChecked ? <select name="union" onChange={handleOrgChange} className="form-select">
-                                    <option defaultValue>সংগঠন সিলেক্ট করুন</option>
-                                    {socialOrganizations.map((union, index) => (
+                                isChecked ? <select name="organization" onChange={handleOrgChange} className="form-select">
+                                    <option defaultValue >সংগঠন সিলেক্ট করুন</option>
+                                    {socialOrganizations.map((organization, index) => (
                                         <option key={index} >
-                                            {union}
+                                            {organization}
                                         </option>
                                     ))}
                                 </select> : ''
@@ -223,9 +239,15 @@ const Hero = () => {
                         <div className="align-items-center d-flex form-group justify-content-between">
 
                             <div >
-                                <Link to={`/search/filter-doners/${group}/${donarUnions}`} className="myButton">
+                                <Link
+                                    to=
+                                    {`/search/filter-doners/${group}/${isChecked ? 'org' : 'union'}&search=${isChecked ? org : donarUnions}`}
+
+                                    className={`myButton ${isFieldsSelected ? '' : 'disabled-myButton'}`}
+                                >
                                     <i className="fa fa-search" /> <span>খুঁজুন</span>
                                 </Link>
+
 
                             </div>
 
