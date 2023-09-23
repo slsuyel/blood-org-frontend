@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './home.css';
 import bloodorg from '../assets/images/blood-org.jpg'
 import blood from '../assets/images/blood.png'
-import { Link } from 'react-router-dom';
-import { getName } from '../utilities/functions';
+import { Link, useNavigate } from 'react-router-dom';
+import { callApi, getName } from '../utilities/functions';
 
 
 const socialOrganizations = [
@@ -14,6 +14,9 @@ const socialOrganizations = [
 
 
 const Hero = () => {
+
+    const navigate = useNavigate();
+
     const [isFieldsSelected, setIsFieldsSelected] = useState(false);
 
     const [isChecked, setIsChecked] = useState(false);
@@ -39,6 +42,7 @@ const Hero = () => {
 
     const [group, setGroup] = useState('A,p')
 
+    const [donors, setDonors] = useState([]);
 
     useEffect(() => {
         if (selecteddivisions && selectedDistrict && selectedUnion) {
@@ -129,7 +133,31 @@ const Hero = () => {
         setOrg(selectedOption);
     };
 
-    console.log(org);
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const blood_group = group;
+        let filter_by = 'union';
+        let search = donarUnions;
+        if (isChecked) {
+            filter_by = 'org';
+            search = org;
+        }
+        navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
+    }
+
+    // const getDonorsData = (event) => {
+    //     event.preventDefault();
+    //     const blood_group = group;
+    //     let filter_by = 'union';
+    //     let search = donarUnions;
+    //     if (isChecked) {
+    //         filter_by = 'org';
+    //         search = org;
+    //     }
+    //     navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
+    // }
+
 
 
     return (
@@ -226,7 +254,7 @@ const Hero = () => {
                                 isChecked ? <select name="organization" onChange={handleOrgChange} className="form-select">
                                     <option defaultValue >সংগঠন সিলেক্ট করুন</option>
                                     {socialOrganizations.map((organization, index) => (
-                                        <option key={index} >
+                                        <option key={index} value={index}>
                                             {organization}
                                         </option>
                                     ))}
@@ -239,14 +267,18 @@ const Hero = () => {
                         <div className="align-items-center d-flex form-group justify-content-between">
 
                             <div >
-                                <Link
+                                {/* <Link
                                     to=
                                     {`/search/filter-doners/${group}/${isChecked ? 'org' : 'union'}&search=${isChecked ? org : donarUnions}`}
 
                                     className={`myButton ${isFieldsSelected ? '' : 'disabled-myButton'}`}
                                 >
                                     <i className="fa fa-search" /> <span>খুঁজুন</span>
-                                </Link>
+                                </Link> */}
+
+                                <button onClick={handleSearch}>
+                                    search
+                                </button>
 
 
                             </div>

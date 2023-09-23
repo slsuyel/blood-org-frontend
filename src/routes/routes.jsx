@@ -45,10 +45,7 @@ export const router = createBrowserRouter([
                 path: "/",
                 element: <HomePage />,
             },
-            // {/* search/filter-doners/A,p/union&search=পাকশী */
-            //     path: "search/filter-doners/:group/:searchType",
-            //     element: <SearchBlood />,
-            // },
+           
             {
                 path: "search/filter-doners/:group/:searchType",
                 element: <SearchBlood />,
