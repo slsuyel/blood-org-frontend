@@ -105,7 +105,7 @@ export const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <PrivateRoute> <WithNavbar /></PrivateRoute>,
+        element: <ScrollToTop><PrivateRoute> <WithNavbar /></PrivateRoute></ScrollToTop>,
         children: [
             {
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './home.css';
 import bloodorg from '../assets/images/blood-org.jpg'
 import blood from '../assets/images/blood.png'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callApi, getName } from '../utilities/functions';
 import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
@@ -16,42 +16,28 @@ const socialOrganizations = [
 
 const Hero = () => {
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-
-    const [isFieldsSelected, setIsFieldsSelected] = useState(false);
-
     const [isChecked, setIsChecked] = useState(false);
     const [org, setOrg] = useState('');
 
     const [selecteddivisions, setSelectedDivisions] = useState([]);
-    const [divisions, setDivisions] = useState([]);
-
-    const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState('');
-
-    const [upazilas, setUpazilas] = useState([]);
     const [selectedUpazila, setSelectedUpazila] = useState('');
 
+    const [divisions, setDivisions] = useState([]);
+    const [districts, setDistricts] = useState([]);
+    const [upazilas, setUpazilas] = useState([]);
     const [unions, setUnions] = useState([]);
-    const [selectedUnion, setSelectedUnion] = useState('');
 
+    const location = useLocation();
+    const [selectedUnion, setSelectedUnion] = useState('');
     const [donarDiv, setDonarDiv] = useState('')
     const [donarDist, setDonarDist] = useState('')
-
     const [donarUpazila, setDonarUpazila] = useState('')
+
     const [donarUnions, setDonarUnions] = useState('')
-
     const [group, setGroup] = useState('A,p')
-
     const [donors, setDonors] = useState([]);
-
-    useEffect(() => {
-        if (selecteddivisions && selectedDistrict && selectedUnion) {
-            setIsFieldsSelected(true);
-        } else {
-            setIsFieldsSelected(false);
-        }
-    }, [selecteddivisions, selectedDistrict, selectedUnion]);
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('/divisions.json')
@@ -72,29 +58,26 @@ const Hero = () => {
                 .catch(error => console.error('Error fetching upazilas data:', error));
         }
     }, [selecteddivisions]);
-
     const handleDivChange = event => {
         setSelectedDivisions(event.target.value);
-
-        setDonarDiv(getName(divisions, event.target.value))
-
+        // setDonarDiv(getName(divisions, event.target.value))
         setSelectedDistrict('');
 
     };
 
     const handleDistrictChange = event => {
         setSelectedDistrict(event.target.value);
-        setDonarDist(getName(districts, event.target.value))
+        // setDonarDist(getName(districts, event.target.value))
         setSelectedUpazila('');
     };
 
     const handleUpazilaChange = event => {
         setSelectedUpazila(event.target.value);
-        setDonarUpazila(getName(upazilas, event.target.value))
+        // setDonarUpazila(getName(upazilas, event.target.value))
     };
 
     const handleUnionChange = event => {
-        setSelectedUnion(event.target.value);
+        // setSelectedUnion(event.target.value);
         setDonarUnions(getName(unions, event.target.value))
     };
 
@@ -133,7 +116,6 @@ const Hero = () => {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-
         const blood_group = group;
         let filter_by = 'union';
         let search = donarUnions;
@@ -142,8 +124,9 @@ const Hero = () => {
             search = org;
         }
 
-        setLoading(true);
+        navigate(`?blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`)
 
+        setLoading(true);
         try {
             const result = await getDonorsData(`blood_group=${blood_group}&filter_by=${filter_by}&search=${search}`);
             setDonors(result.doners.data);
@@ -155,6 +138,14 @@ const Hero = () => {
     }
 
     const getDonorsData = async (param) => {
+
+        // const searchParams = new URLSearchParams(location.search);
+        // const bloodGroup = searchParams.get('blood_group');
+        // const filter_by = searchParams.get('filter_by');
+        // const search = searchParams.get('search');
+
+        // console.log(bloodGroup, filter_by, search);
+
         const response = await callApi("get", `/api/filter-doners?${param}`);
         return response;
     }

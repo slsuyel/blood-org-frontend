@@ -9,30 +9,30 @@ const SearchBlood = ({ donors, group, loading }) => {
         return <Loader />
     }
 
-    console.log(donors);
-
     return (
-        <div className='row'>
+        <div className='row w-100 mx-auto'>
             <div className='col-md-10 mx-auto'>
                 <h2 className='mt-4 text-center'>  <span className='text-danger'> {group === 'A,p' ? 'A+' : group === 'A,n' ? 'A-' : group === 'B,p' ? 'B+' : group === 'B,n' ? 'B-' : group === 'AB,p' ? 'AB+' : group === 'AB,n' ? 'AB-' : group === 'O,p' ? 'O+' : group === 'O,n' ? 'O-' : group}</span> রক্তদাতার তালিকাঃ</h2>
                 <Table hover responsive className='shadow'>
-                    <thead>
-                        <tr className=' text-center text-nowrap'>
-                            <th className='bg-danger-subtle'>
-                                <i className="fa-solid fa-user"></i>  নামঃ
-                            </th>
-                            <th className='bg-danger-subtle'>
-                                <i className="fa-solid fa-location-dot"></i>  ঠিকানাঃ
-                            </th>
-                            <th className='bg-danger-subtle'>
-                                <i className="fa-regular fa-address-card"></i>   যোগাযোগঃ
-                            </th>
-                            <th className='bg-danger-subtle'>
-                                <i className="fa-regular fa-clock"></i> সর্বশেষ রক্তদানঃ
-                            </th>
-                        </tr>
-                    </thead>
 
+                    {
+                        donors.length > 0 ? <thead>
+                            <tr className=' text-center text-nowrap'>
+                                <th className='bg-danger-subtle'>
+                                    <i className="fa-solid fa-user"></i>  নামঃ
+                                </th>
+                                <th className='bg-danger-subtle'>
+                                    <i className="fa-solid fa-location-dot"></i>  ঠিকানাঃ
+                                </th>
+                                <th className='bg-danger-subtle'>
+                                    <i className="fa-regular fa-address-card"></i>   যোগাযোগঃ
+                                </th>
+                                <th className='bg-danger-subtle'>
+                                    <i className="fa-regular fa-clock"></i> সর্বশেষ রক্তদানঃ
+                                </th>
+                            </tr>
+                        </thead> : <th className='bg-danger-subtle py-3 text-center text-danger'>দুঃখিত ! কোন তথ্য পাওয়া যায়নি</th>
+                    }
 
                     <tbody>
                         {
@@ -66,6 +66,9 @@ const SearchBlood = ({ donors, group, loading }) => {
                 </Table>
             </div>
         </div>
+
+
+
     );
 };
 

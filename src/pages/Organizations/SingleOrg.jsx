@@ -9,7 +9,6 @@ const SingleOrg = () => {
     if (isLoading) {
         return <Loader />
     }
-    console.log(org);
 
     return (
 
