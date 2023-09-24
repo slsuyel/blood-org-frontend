@@ -535,7 +535,7 @@ const OrgRegi = () => {
                             onChange={() => setTermsAccepted(!termsAccepted)}
                         />
                         <label className='form-check-label' htmlFor='acceptTerms'>
-                            I accept the terms and conditions <span className='text-danger'> *</span>
+                            I accept the <Link className='text-decoration-none' to={'/terms&condition'}>terms & conditions</Link>  <span className='text-danger'> *</span>
                         </label>
                     </div>
                     <p className='text-danger mb-0'>{error}</p>

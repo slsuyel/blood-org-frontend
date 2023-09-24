@@ -33,6 +33,7 @@ import ScrollToTop from "../components/ScrollToTop";
 import OrgSetting from "../pages/Organizations/OrgSetting";
 import SingleOrg from "../pages/Organizations/SingleOrg";
 import AllUsers from "../home/AllUsers";
+import TearmsAndCondition from "../pages/Share/TearmsAndCondition";
 
 export const router = createBrowserRouter([
     {
@@ -71,9 +72,12 @@ export const router = createBrowserRouter([
                 element: <Signin />,
             },
             {
-
                 path: "/signup",
                 element: <Signup />,
+            },
+            {
+                path: "/terms&condition",
+                element: <TearmsAndCondition />,
             },
             {
 

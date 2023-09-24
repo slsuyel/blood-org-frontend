@@ -4,6 +4,7 @@ import orgDemo from '../assets/images/orgs/org-demo.jpg'
 import { Link, useLocation } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import { callApi } from '../utilities/functions';
+import Loader from '../utilities/Loader';
 
 
 
@@ -16,6 +17,7 @@ const Organizations = () => {
     const [totalitems, setTotalitems] = useState()
     const location = useLocation();
     const [allOrgs, setAllOrgs] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchData();
@@ -26,21 +28,28 @@ const Organizations = () => {
             const searchParams = new URLSearchParams(window.location.search);
             const page = searchParams.get('page') ? searchParams.get('page') : 1
             const data = await callApi("get", `/api/organizations/lists?page=${page}`);
+
             setAllOrgs(data.organizations.data);
-            setTotalPages(data.links)
-            setPer_page(data.per_page)
-            setTotalitems(data.total)
-            if (page == 1) {
+            setTotalPages(data.links);
+            setPer_page(data.per_page);
+            setTotalitems(data.total);
+
+            if (page === 1) {
                 setPageNo(1);
             } else {
                 setPageNo((page - 1) * data.per_page + 1);
             }
+
+            setIsLoading(false);
         } catch (error) {
             console.error('Error fetching data:', error);
+            setIsLoading(false);
         }
     };
 
-    console.log(allOrgs);
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <div className='container mx-auto w-100 mt-5 pt-5'>
             <div className='row'>
@@ -53,7 +62,7 @@ const Organizations = () => {
                                     height={'130px'} className=" mx-auto mb-2" />
                             </div>
                             <div className=' text-center' style={{ marginBottom: '125px' }}>
-                                <h4 className=' text-center'>{org.mobile}</h4>
+                                <h4 className=' text-center'>{org.name}</h4>
                                 <h5 className="fs-6 mb-0 text-secondary">
                                     <i className="fa-solid fa-location-dot me-2"></i>   {org.union}, {org.thana}, {org.district}</h5>
                                 <a className="my-1 text-decoration-none" href={`tel:${org.mobile}`}>

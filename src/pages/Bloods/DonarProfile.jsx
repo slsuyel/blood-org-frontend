@@ -36,14 +36,14 @@ const DonarProfile = () => {
                                         </div>
 
 
-
-
                                         <div>
                                             <a href={`tel:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
                                                 <i className="fa fa-phone me-2" />
                                                 কল করুন
                                             </a>
-                                            <a href={`tel:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
+
+                                        
+                                            <a href={`sms:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
                                                 <i className="fa-message fa-solid me-1"></i>
                                                 মেসেজ করুন
                                             </a>

@@ -260,9 +260,9 @@ const Signup = () => {
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='donar_gender'>
                 জেন্ডার <span className='text-danger'> *</span>{' '}
-                <span className='fst-italic text-danger-emphasis text-sm'>
+                {/* <span className='fst-italic text-danger-emphasis text-sm'>
                   ~নারী ডোনারদের মোবাইল নাম্বার গোপন রাখা হবে ~
-                </span>{' '}
+                </span>{' '} */}
               </label>
               <select
                 name='donar_gender'
@@ -418,7 +418,7 @@ const Signup = () => {
               onChange={() => setTermsAccepted(!termsAccepted)}
             />
             <label className='form-check-label' htmlFor='acceptTerms'>
-              I accept the terms and conditions <span className='text-danger'> *</span>
+              I accept the <Link className='text-decoration-none' to={'/terms&condition'}>terms & conditions</Link> <span className='text-danger'> *</span>
             </label>
           </div>
           <p className='ms-3 my-2 text-danger'>{error}</p>
