@@ -34,6 +34,7 @@ import OrgSetting from "../pages/Organizations/OrgSetting";
 import SingleOrg from "../pages/Organizations/SingleOrg";
 import AllUsers from "../home/AllUsers";
 import TearmsAndCondition from "../pages/Share/TearmsAndCondition";
+import OrgSingleShow from "../home/OrgSingleShow";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +56,11 @@ export const router = createBrowserRouter([
 
                 path: '/donar/:id',
                 element: <DonarProfile />
+            },
+            {/* org/details/5 */
+
+                path: 'org/details/:id',
+                element: <OrgSingleShow />
             },
             {
 

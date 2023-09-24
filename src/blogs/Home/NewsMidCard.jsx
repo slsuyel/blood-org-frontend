@@ -17,7 +17,7 @@ const NewsMidCard = () => {
                         </span>
                     ))
                     : null} </p> */}
-                <Link to={`/posts/}`} className="text-decoration-none text-dark ">
+                <Link to={``} className="text-decoration-none text-dark ">
                     <h6 className="fw-normal lh-base mb-3">৪৩ তম প্রতিষ্ঠা বার্ষিকী উপলক্ষে বর্ণাঢ্য শোভাযাত্রা ও সমাবেশ </h6>
                 </Link>
                 <p style={{ fontSize: '12px' }} className="mb-1 opacity-75">ফরিদপুর প্রতিনিধি: ফরিদপুরে জাতীয়তাবাদী স্বেচ্ছাসেবক দলের ৪৩ তম প্রতিষ্ঠা বার্ষিকী উপলক্ষে বর্ণাঢ্য শোভাযাত্রা ও সমাবেশ অনুষ্ঠি . . .</p>

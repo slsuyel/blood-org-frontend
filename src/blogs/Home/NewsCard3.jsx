@@ -24,7 +24,7 @@ const NewsCard3 = () => {
                         ))
                         : null}
                 </p> */}
-                    <Link to={`/posts`} className="text-decoration-none text-dark ">
+                    <Link to={``} className="text-decoration-none text-dark ">
                         <h6 className="fw-normal lh-base mb-3">
                             প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের লালদিয়ায়
 
@@ -49,7 +49,7 @@ const NewsCard3 = () => {
                         ))
                         : null}
                 </p> */}
-                    <Link to={`/posts`} className="text-decoration-none text-dark ">
+                    <Link to={``} className="text-decoration-none text-dark ">
                         <h6 className="fw-normal lh-base mb-3">
                             প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের লালদিয়ায়
 
@@ -74,7 +74,7 @@ const NewsCard3 = () => {
                         ))
                         : null}
                 </p> */}
-                    <Link to={`/posts`} className="text-decoration-none text-dark ">
+                    <Link to={``} className="text-decoration-none text-dark ">
                         <h6 className="fw-normal lh-base mb-3">
                             প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের লালদিয়ায়
 

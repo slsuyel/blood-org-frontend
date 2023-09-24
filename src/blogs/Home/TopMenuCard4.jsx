@@ -24,7 +24,7 @@ const TopMenuCard4 = () => {
                 ))
                 : null}
             </p> */}
-            <Link to={`/posts/}`} className="text-decoration-none ">
+            <Link to={``} className="text-decoration-none ">
               <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">    প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের ...</p>
             </Link>
           </div>
@@ -48,7 +48,7 @@ const TopMenuCard4 = () => {
                 ))
                 : null}
             </p> */}
-            <Link to={`/posts/}`} className="text-decoration-none ">
+            <Link to={``} className="text-decoration-none ">
               <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">    প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের ...</p>
             </Link>
           </div>
@@ -72,7 +72,7 @@ const TopMenuCard4 = () => {
                 ))
                 : null}
             </p> */}
-            <Link to={`/posts/}`} className="text-decoration-none ">
+            <Link to={``} className="text-decoration-none ">
               <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">    প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের ...</p>
             </Link>
           </div>
@@ -96,7 +96,7 @@ const TopMenuCard4 = () => {
                 ))
                 : null}
             </p> */}
-            <Link to={`/posts/}`} className="text-decoration-none ">
+            <Link to={``} className="text-decoration-none ">
               <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">    প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের ...</p>
             </Link>
           </div>

@@ -13,7 +13,7 @@ const TopMenu = ({ header, Sidebar }) => {
                 <div className="circle-with-text mt-3" style={{ borderBottom: '2px solid red', marginBottom: '-18px', marginLeft: '-12px' }}><div className="red-circle" /><h2 className=" fw-bold mb-0 opacity-75 pb-2 text-primary">{header}</h2></div>
 
                 <div>
-                    <Link to={`/news`} className='onhover text-decoration-none'>আরও দেখুন <i className="fa-solid fa-arrow-right-long"></i></Link>
+                    <Link to={``} className='onhover text-decoration-none'>আরও দেখুন <i className="fa-solid fa-arrow-right-long"></i></Link>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@ const TopMenu = ({ header, Sidebar }) => {
                                     ))
                                     : null}
                             </p> */}
-                            <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                            <Link to={``} className="text-decoration-none text-dark ">
                                 <h6 className="fs-4 lh-base onhover">প্রধানমন্ত্রী শেখ হাসিনা বলেছেন, বাংলাদেশের সংশ্লিষ্ট কর্তৃপক্ষ চট্টগ্রামের লালদিয়ায় </h6>
                             </Link>
 

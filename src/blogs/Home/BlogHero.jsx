@@ -8,7 +8,7 @@ const BlogHero = () => {
         <>
             <div className="row w-100 mx-auto mx-4">
                 <div className="col-md-6 position-relative">
-                    <Link to={`f`}>  <div className="img-contain">
+                    <Link to={``}>  <div className="img-contain">
                         <img src='https://newsnow-server.vercel.app/uploaded-images/1693247943329-prothomalo-bangla_2023-08_1cadac3a-afe3-4dde-9b41-0a328e900cdb_27082023_cm_1.webp' alt="Zoomable Image" />
                         <div className="overlay"></div>
                     </div></Link>

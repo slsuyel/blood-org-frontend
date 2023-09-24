@@ -29,7 +29,7 @@ const Signup = () => {
   const [donarDist, setDonarDist] = useState('')
 
   const [donarUpazila, setDonarUpazila] = useState('')
-  const [donarUnions, setDonarUnions] = useState('')
+  const [donarUnions, setDonarUnions] = useState(null)
 
   const [error, setError] = useState('');
   const [date, onChange] = useState(new Date());
@@ -164,7 +164,7 @@ const Signup = () => {
     fetchData();
   }, [donarUnions]);
 
-
+  // console.log(new Date().toISOString().split('T')[0]);
 
 
 
@@ -188,8 +188,10 @@ const Signup = () => {
       blood_group: event.target.group.value,
       email: event.target.donar_email.value,
       gender: donarGender,
-      guardian_phone: event.target.guardian_phone.value,
-      last_donate_date: resDate,
+      // guardian_phone: event.target.guardian_phone.value,
+      // last_donate_date: resDate,
+      guardian_phone: null,
+      last_donate_date: new Date().toISOString().split('T')[0],
       whatsapp_number: whatsappNumber,
       division: donarDiv,
       district: donarDist,
@@ -198,6 +200,8 @@ const Signup = () => {
       org: org,
       password: event.target.password.value,
     };/* https://bloodapi.tmscedu.com */
+
+
     try {
       const res = await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
       console.log(formData);
@@ -210,6 +214,7 @@ const Signup = () => {
         navigate('/profile')
       }
       else {
+        console.log(res);
         setIsSubmitting(false);
         if (res.data.errors.mobile) {
           setError(res.data.errors.mobile);
@@ -328,7 +333,7 @@ const Signup = () => {
                 onChange={handleWhatsappNumberChange}
               />
             </div>
-            <div className='form-group col-md-6'>
+            {/* <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='guardian_phone'> গার্ডিয়ান ফোন নাম্বার  <span className='text-danger'> *</span></label>
               <input
                 typ requirede='number'
@@ -338,10 +343,10 @@ const Signup = () => {
                 placeholder='eg: 017********'
 
               />
-            </div>
+            </div> */}
 
 
-
+            {/* 
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='password'>সর্বশেষ রক্তদানের তারিখ<span className='text-danger'> *</span></label>
               <div className='bg-white py-1 rounded border'>
@@ -349,7 +354,7 @@ const Signup = () => {
                   <DatePicker onChange={onChange} value={date} />
                 </div>
               </div>
-            </div>
+            </div> */}
 
 
             <div className="form-group col-md-6">

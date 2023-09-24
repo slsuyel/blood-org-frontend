@@ -20,7 +20,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -41,7 +41,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -62,7 +62,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -83,7 +83,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -104,7 +104,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -125,7 +125,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -146,7 +146,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>
@@ -167,7 +167,7 @@ const HeroNewsCard = () => {
                                 </span>
                             ))
                             : null} </p> */}
-                        <Link to={`/posts/`} className="text-decoration-none text-dark ">
+                        <Link to={``} className="text-decoration-none text-dark ">
                             <p style={{ fontSize: '14px' }} className="mb-0 fw-normal lh-base">কনটেইনার টার্মিনাল নির্মাণে মার্সকের প্রস্তাব বিবেচনা করবে সরকার</p>
                         </Link>
                     </div>

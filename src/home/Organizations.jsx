@@ -54,7 +54,7 @@ const Organizations = () => {
         <div className='container mx-auto w-100 mt-5 pt-5'>
             <div className='row'>
                 {allOrgs?.map((org, index) => (
-                    <Link /* to={`/org/details/${index+1}`} */ className=" col-md-4 mb-5 text-decoration-none" key={org.id}>
+                    <Link to={`/org/details/${org.id}`} className=" col-md-4 mb-5 text-decoration-none" key={org.id}>
                         <div className="card bggg" >
 
                             <div className='text-center'>

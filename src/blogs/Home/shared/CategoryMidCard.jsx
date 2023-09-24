@@ -14,7 +14,7 @@ const CategoryMidCard = ({ header, Sidebar }) => {
                 </div>
 
                 <div>
-                    <Link to={`/news`} className='onhover text-decoration-none'>আরও দেখুন <i className="fa-solid fa-arrow-right-long"></i></Link>
+                    <Link to={``} className='onhover text-decoration-none'>আরও দেখুন <i className="fa-solid fa-arrow-right-long"></i></Link>
                 </div>
             </div>
 

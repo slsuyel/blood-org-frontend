@@ -32,7 +32,7 @@ const Hero = () => {
     const [donarDist, setDonarDist] = useState('')
     const [donarUpazila, setDonarUpazila] = useState('')
 
-    const [donarUnions, setDonarUnions] = useState('')
+    const [donarUnions, setDonarUnions] = useState(null)
     const [group, setGroup] = useState('A,p')
     const [donors, setDonors] = useState([]);
     const [hide, setHide] = useState(true);
