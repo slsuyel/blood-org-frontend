@@ -202,6 +202,7 @@ const Signup = () => {
       const res = await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
       console.log(formData);
       if (res.token) {
+        localStorage.setItem("token", res.token);
         setIsSubmitting(false);
         toast.success('Signup successfully!', {
           position: toast.POSITION.TOP_RIGHT

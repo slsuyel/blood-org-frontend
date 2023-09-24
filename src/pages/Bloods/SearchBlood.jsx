@@ -15,6 +15,10 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
                 !hide ? <div className='row w-100 mx-auto bg-white shadow my-3 py-3'>
                     <div className='col-md-8 mx-auto'>
                         <h2 className='mt-4 text-center'>  <span className='text-danger'> {group === 'A,p' ? 'A+' : group === 'A,n' ? 'A-' : group === 'B,p' ? 'B+' : group === 'B,n' ? 'B-' : group === 'AB,p' ? 'AB+' : group === 'AB,n' ? 'AB-' : group === 'O,p' ? 'O+' : group === 'O,n' ? 'O-' : group}</span> রক্তদাতার তালিকাঃ</h2>
+
+                        <p className='font-italic mb-0 text-end text-sm'> শুধুমাত্র রক্তদানের উপযোগী ব্যক্তিদের তথ্য দেখা যাবে। </p>
+
+
                         <Table hover responsive className='shadow'>
 
                             {
@@ -61,7 +65,7 @@ const SearchBlood = ({ donors, group, loading, hide }) => {
                                             </td>
                                             {/*  <td className='border pt-3 text-center text-nowrap'> href="tel:01751331330"
                                                 {d.union}, {d.thana}
-                                            </td> */} 
+                                            </td> */}
                                             <td className="border text-center text-nowrap">
 
                                                 <div className="d-flex gap-4 justify-content-center mt-3 text-center text-nowrap">

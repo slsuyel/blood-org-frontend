@@ -24,7 +24,9 @@ const OrgSignIn = () => {
         setError('')
         try {
             const res = await callApi("POST", "/api/organization/login", { email, password });
+
             if (res.token) {
+
                 localStorage.setItem("token", res.token);
                 toast.success('Login successfully!', {
                     position: toast.POSITION.TOP_RIGHT

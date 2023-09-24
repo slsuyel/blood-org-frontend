@@ -375,14 +375,15 @@ const OrgRegi = () => {
             const response = await callApi("POST", "/api/organizations/register", formData, { 'Content-Type': 'application/json' });
 
             if (response.token) {
+                localStorage.setItem("token", response.token);
                 setIsSubmitting(false);
                 toast.success('Registration successfully!', {
                     position: toast.POSITION.TOP_RIGHT
                 });
-                navigate('/')
+                navigate('/dashboard')
             }
             else {
-                
+
                 setIsSubmitting(false);
                 console.error('Error fetching data:', error);
             }
