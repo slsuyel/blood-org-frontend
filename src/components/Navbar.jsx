@@ -12,7 +12,7 @@ export default function Navbar() {
     const res = await callApi("POST", '/api/logout')
     console.log(res);
     localStorage.removeItem("token")
-    navigate('/admin/signin')
+    navigate('/')
   }
 
   return (

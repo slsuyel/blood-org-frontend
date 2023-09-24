@@ -372,19 +372,26 @@ const OrgRegi = () => {
         };
 
         try {
-            await callApi("POST", "/api/organizations/register", formData, { 'Content-Type': 'application/json' });
-            setIsSubmitting(false);
-            toast.success('Registration successfully!', {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            // navigate('/')
+            const response = await callApi("POST", "/api/organizations/register", formData, { 'Content-Type': 'application/json' });
+
+            if (response.token) {
+                setIsSubmitting(false);
+                toast.success('Registration successfully!', {
+                    position: toast.POSITION.TOP_RIGHT
+                });
+                navigate('/')
+            }
+            else {
+                
+                setIsSubmitting(false);
+                console.error('Error fetching data:', error);
+            }
+
         } catch (error) {
             setIsSubmitting(false);
             console.error('Error fetching data:', error);
         }
 
-
-        console.log(formData);
     };
 
 

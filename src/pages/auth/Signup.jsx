@@ -75,7 +75,7 @@ const Signup = () => {
 
   const handleGenderChange = (e) => {
     setDonarGender(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleOrganizationChange = (e) => {
@@ -179,15 +179,21 @@ const Signup = () => {
       }
       else {
         setIsSubmitting(false);
-        setError('Fill up all input form');
-        console.error('Fill up all input form');
+        if (res.data.errors.mobile) {
+          setError(res.data.errors.mobile);
+        } else if (res.data.errors.email) {
+          setError(res.data.errors.email);
+        } else {
+          setError("Fill up all input form");
+        }
+
       }
     } catch (error) {
       setIsSubmitting(false);
       setError('Fill up all input form');
       console.error('Error fetching data:', error);
     }
-    console.log(formData);
+
   };
 
 
