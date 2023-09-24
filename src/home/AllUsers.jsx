@@ -106,8 +106,11 @@ import { Link, useLocation } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import { callApi } from '../utilities/functions';
 import Loader from '../utilities/Loader';
+import useTitle from '../hooks/useTitle';
 
 const AllUsers = () => {
+    useTitle('সকল রক্তদাতার তালিকাঃ')
+    
     const [pageNo, setPageNo] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [per_page, setPer_page] = useState();

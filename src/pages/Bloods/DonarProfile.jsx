@@ -3,8 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { callApi } from '../../utilities/functions';
 import useDonor from '../../hooks/useDonor';
 import Loader from '../../utilities/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const DonarProfile = () => {
+    useTitle('রক্তদাতার প্রোফাইল')
+
+
     const { id } = useParams()
     const { donorData, isLoading } = useDonor(id)
 

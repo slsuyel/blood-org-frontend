@@ -54,21 +54,22 @@ const Footer = () => {
                         <p className="fs-5 mb-1 ps-3 mt-2">গুরুত্বপূর্ণ লিংকঃ</p>
                         <ul className="list-unstyled importantLInk" style={{ padding: "0px 11px" }}>
                             <li>
-                                <Link className="text-decoration-none text-white" to='/add-org'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> সংগঠন Add করুন </Link>
+                                <Link className="text-decoration-none text-white" to='/about'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> আমাদের সম্পর্কে </Link>
                             </li>
                             <li>
-                                <Link className="text-decoration-none text-white" to='/org-login'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> সংগঠন লগিন করুন </Link>
+                                <Link className="text-decoration-none text-white" to='/terms&condition'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> টার্মস এবং কন্ডিশনস </Link>
                             </li>
                             <li>
-                                <Link className="text-decoration-none text-white" to='/admin/signin'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> Admin </Link>
+                                <Link className="text-decoration-none text-white" to='/terms&condition#privacy'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> গোপনীয়তা নীতি </Link>
                             </li>
+                         
 
-                            <li>
-                                <a className="text-decoration-none text-white" href="http://www.panchagarh.gov.bd/" target="_blank">
-                                    <i className="fas fa-check-circle" aria-hidden="true" /> &nbsp; পঞ্চগড়
-                                    জেলা
-                                </a>
-                            </li>
+
+                           {/*  <li>
+                                <Link className="text-decoration-none text-white" to='/admin/signin'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> Admin </Link>
+                            </li> */}
+
+                            
 
 
                         </ul>

@@ -5,11 +5,12 @@ import { Link, useLocation } from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import { callApi } from '../utilities/functions';
 import Loader from '../utilities/Loader';
+import useTitle from '../hooks/useTitle';
 
 
 
 const Organizations = () => {
-
+    useTitle('রক্তদাতা সংগঠনের তালিকা')
 
     const [pageNo, setPageNo] = useState(1)
     const [totalPages, setTotalPages] = useState()

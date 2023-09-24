@@ -7,11 +7,15 @@ import { callApi, getName } from '../utilities/functions';
 import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
 import { toast } from 'react-toastify';
+import useTitle from '../hooks/useTitle';
 
 
 
 
 const Hero = () => {
+
+    useTitle('রক্তদাতা খুঁজুন')
+
     const [loading, setLoading] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [org, setOrg] = useState('');

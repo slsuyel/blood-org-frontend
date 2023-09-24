@@ -7,8 +7,10 @@ import 'react-calendar/dist/Calendar.css';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import Loader from '../../utilities/Loader';
 import DatePicker from 'react-date-picker';
+import useTitle from '../../hooks/useTitle';
 
 const Signup = () => {
+  useTitle("রক্তদাতা রেজিস্ট্রেশন")
 
   const [selecteddivisions, setSelectedDivisions] = useState([]);
   const [divisions, setDivisions] = useState([]);

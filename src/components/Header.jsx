@@ -1,54 +1,7 @@
-// import { Navbar, Nav } from 'react-bootstrap';
-// import { NavLink } from 'react-router-dom';
-// import useLoggedIn from '../hooks/useLoggedIn';
-// import useOrgLoggedIn from './../hooks/useOrgLoggedIn';
-// import useAdminLoggedIn from './../hooks/useAdminLoggedIn';
 
-// const backgroundStyle = {
-//     background: 'linear-gradient(218deg, #67c1d0, #be829d, #eaedea, #9ded9d)',
-//     backgroundSize: '240% 240%',
-//     animation: 'gradient-animation 4s ease infinite',
-// };
-
-
-// const Header = () => {
-//     const { authenticated, loading } = useLoggedIn()
-//     const { orgAuthenticated, } = useOrgLoggedIn()
-//     const { adminAuthenticated, } = useAdminLoggedIn()
-
-//     return (
-//         <Navbar collapseOnSelect expand="lg" fixed="top" className='  border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3' variant="danger">
-//             <Navbar.Toggle aria-controls="responsive-navbar-nav " />
-//             <Navbar.Collapse id="responsive-navbar-nav ">
-//                 <Nav className="justify-content-evenly navbar-nav w-100">
-//                     <NavLink exact to="/" activeClassName="active-link" className='text-white mt-2 text-decoration-none'>হোম</NavLink>
-//                     <NavLink to="/about" activeClassName="active-link" className='text-white mt-2 text-decoration-none'>আমাদের সম্পর্কে</NavLink>
-//                     <NavLink to="/all-donars" activeClassName="active-link" className='text-white mt-2 text-decoration-none'>সকল ডোনার</NavLink>
-//                     <NavLink to="/organizations" activeClassName="active-link" className='text-white mt-2 text-decoration-none'>সহযোগী সংগঠন </NavLink>
-
-//                     <NavLink to="/blogs" activeClassName="active-link" className='text-white mt-2 text-decoration-none'>নিউজ</NavLink>
-
-//                     {authenticated === true ? (
-//                         <NavLink to="/profile" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>প্রোফাইল</NavLink>
-//                     ) : orgAuthenticated || adminAuthenticated ? <NavLink to="/dashboard" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>Dashboard</NavLink> : (
-//                         <>
-//                             <NavLink to="/donar/signin" style={backgroundStyle} className='ms-3 nav-link px-3 rounded-2 text-bg-info'>লগিন/রেজিস্ট্রেশন</NavLink>
-
-//                         </>
-//                     )}
-
-//                 </Nav>
-//             </Navbar.Collapse>
-//         </Navbar>
-//     );
-// };
-
-// export default Header;
-
-
-import { Navbar, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import { useState } from 'react'; // Import useState
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { NavLink, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react'; // Import useState
 import useLoggedIn from '../hooks/useLoggedIn';
 import useOrgLoggedIn from './../hooks/useOrgLoggedIn';
 import useAdminLoggedIn from './../hooks/useAdminLoggedIn';
@@ -60,16 +13,25 @@ const backgroundStyle = {
 };
 
 const Header = () => {
+
+    const location = useLocation()
+
     const { authenticated, loading } = useLoggedIn();
     const { orgAuthenticated } = useOrgLoggedIn();
     const { adminAuthenticated } = useAdminLoggedIn();
 
     const [navbarExpanded, setNavbarExpanded] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false); // State to control dropdown
 
+    useEffect(() => {
+        setDropdownOpen(false);
+    }, [location.pathname]);
 
     const closeNavbar = () => {
         setNavbarExpanded(false);
     };
+
+
 
     return (
         <Navbar
@@ -78,11 +40,11 @@ const Header = () => {
             fixed="top"
             className='border-2 border-bottom fw-bold navbar navbar-expand-lg navbar-light py-2 shadow-sm px-3'
             variant="danger"
-            expanded={navbarExpanded} 
+            expanded={navbarExpanded}
         >
             <Navbar.Toggle
                 aria-controls="responsive-navbar-nav"
-                onClick={() => setNavbarExpanded(!navbarExpanded)} 
+                onClick={() => setNavbarExpanded(!navbarExpanded)}
             />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="justify-content-evenly navbar-nav w-100">
@@ -91,7 +53,7 @@ const Header = () => {
                         to="/"
                         activeClassName="active-link"
                         className='text-white mt-2 text-decoration-none'
-                        onClick={closeNavbar} 
+                        onClick={closeNavbar}
                     >
                         হোম
                     </NavLink>
@@ -99,7 +61,7 @@ const Header = () => {
                         to="/about"
                         activeClassName="active-link"
                         className='text-white mt-2 text-decoration-none'
-                        onClick={closeNavbar} 
+                        onClick={closeNavbar}
                     >
                         আমাদের সম্পর্কে
                     </NavLink>
@@ -107,7 +69,7 @@ const Header = () => {
                         to="/all-donars"
                         activeClassName="active-link"
                         className='text-white mt-2 text-decoration-none'
-                        onClick={closeNavbar} 
+                        onClick={closeNavbar}
                     >
                         সকল ডোনার
                     </NavLink>
@@ -115,7 +77,7 @@ const Header = () => {
                         to="/organizations"
                         activeClassName="active-link"
                         className='text-white mt-2 text-decoration-none'
-                        onClick={closeNavbar} 
+                        onClick={closeNavbar}
                     >
                         সহযোগী সংগঠন
                     </NavLink>
@@ -123,16 +85,16 @@ const Header = () => {
                         to="/blogs"
                         activeClassName="active-link"
                         className='text-white mt-2 text-decoration-none'
-                        onClick={closeNavbar} 
+                        onClick={closeNavbar}
                     >
                         নিউজ
                     </NavLink>
-                    {authenticated === true ? (
+                    {/* {authenticated === true ? (
                         <NavLink
                             to="/profile"
                             style={backgroundStyle}
                             className='ms-3 nav-link px-3 rounded-2 text-bg-info'
-                            onClick={closeNavbar} 
+                            onClick={closeNavbar}
                         >
                             প্রোফাইল
                         </NavLink>
@@ -141,7 +103,7 @@ const Header = () => {
                             to="/dashboard"
                             style={backgroundStyle}
                             className='ms-3 nav-link px-3 rounded-2 text-bg-info'
-                            onClick={closeNavbar} 
+                            onClick={closeNavbar}
                         >
                             Dashboard
                         </NavLink>
@@ -151,12 +113,67 @@ const Header = () => {
                                 to="/donar/signin"
                                 style={backgroundStyle}
                                 className='ms-3 nav-link px-3 rounded-2 text-bg-info'
-                                onClick={closeNavbar} 
+                                onClick={closeNavbar}
                             >
                                 লগিন/রেজিস্ট্রেশন
                             </NavLink>
                         </>
-                    )}
+                    )} */}
+
+                    <NavDropdown className='rounded'
+                        title={`${authenticated ? ' প্রোফাইল' : orgAuthenticated || adminAuthenticated ? "Dashboard" : 'লগিন / রেজিস্ট্রেশন'}`} id="basic-nav-dropdown"
+                        style={backgroundStyle}
+                        show={dropdownOpen} // Set the show prop to control the dropdown
+                        onToggle={(isOpen) => setDropdownOpen(isOpen)} // Handle dropdown open/close
+
+                    >
+                        {authenticated === true ? (
+                            <NavLink
+                                to="/profile"
+
+                                className='  my-1 nav-link pt-1 px-3 py-0 text-nowrap '
+                                onClick={closeNavbar}
+                            >
+                                প্রোফাইল
+                            </NavLink>
+                        ) : orgAuthenticated || adminAuthenticated ? (
+                            <NavLink
+                                to="/dashboard"
+
+                                className='  my-1 nav-link pt-1 px-3 py-0 text-nowrap '
+                                onClick={closeNavbar}
+                            >
+                                Dashboard
+                            </NavLink>
+                        ) : (
+                            <>
+                                <NavLink
+                                    to="/donar/signin"
+
+                                    className='my-0 py-1 nav-link  px-3 text-nowrap '
+                                    onClick={closeNavbar}
+                                >
+                                    <i className="fa-solid fa-user"></i>  রক্তদাতা লগিন/রেজিঃ
+                                </NavLink>
+                                <hr className='m-0' />
+                                <NavLink
+                                    to="org-login"
+
+                                    className=' my-0 py-1 nav-link  px-3 text-nowrap '
+                                    onClick={closeNavbar}
+                                >
+                                    <i className="fa-solid fa-layer-group"></i>   সংগঠন লগিন/রেজিঃ
+                                </NavLink>
+                            </>
+                        )}
+
+
+
+
+                    </NavDropdown>
+
+
+
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

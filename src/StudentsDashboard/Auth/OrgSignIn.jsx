@@ -5,8 +5,13 @@ import { toast } from 'react-toastify';
 import useOrgLoggedIn from '../../hooks/useOrgLoggedIn';
 import useAdminLoggedIn from '../../hooks/useAdminLoggedIn';
 import Loader from '../../utilities/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const OrgSignIn = () => {
+
+    useTitle('রক্তদাতা সংগঠন লগইন')
+
+
     const { orgAuthenticated, loading } = useOrgLoggedIn()
     const { adminAuthenticated, adminLoading } = useAdminLoggedIn()
     const [showPassword, setShowPassword] = useState(false);

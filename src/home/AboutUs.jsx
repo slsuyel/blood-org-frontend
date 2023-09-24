@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import img1 from '../assets/images/1.png'
 import img2 from '../assets/images/2.png'
 import img3 from '../assets/images/3.png'
+import useTitle from '../hooks/useTitle';
 const AboutUs = () => {
-    useEffect(() => {
-        AOS.init();
-    }, []);
+
+    useTitle('About Us')
+
     return (
         <div data-aos="zoom-in-down" className="container my-5 py-5">
             <div className="row align-items-center">
@@ -21,7 +22,7 @@ const AboutUs = () => {
                                 </div>
 
                                 <div className="col-12">
-                                
+
                                 </div>
                             </div>
 

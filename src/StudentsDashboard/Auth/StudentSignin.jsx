@@ -7,7 +7,7 @@ import useLoggedIn from "../../hooks/useLoggedIn";
 import Loader from "../../utilities/Loader";
 
 export default function StudentSignin() {
-  useTitle("Student Signin");
+  useTitle("রক্তদাতা লগইন");
   const navigate = useNavigate();
   const location = useLocation();
   const [email, setEmail] = useState('');

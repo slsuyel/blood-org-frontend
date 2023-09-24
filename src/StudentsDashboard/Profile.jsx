@@ -280,8 +280,13 @@ import Loader from '../utilities/Loader';
 import { callApi } from '../utilities/functions';
 import avatar from '../assets/images/avatar.svg';
 import { toast } from 'react-toastify';
+import useTitle from '../hooks/useTitle';
 
 const Profile = () => {
+    useTitle('রক্তদাতার প্রোফাইল')
+
+
+
     const navigate = useNavigate();
     const id = localStorage.getItem('donorId');
     const { donorData, isLoading } = useDonor(id);

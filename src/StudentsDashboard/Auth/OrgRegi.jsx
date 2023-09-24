@@ -236,8 +236,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import Loader from '../../utilities/Loader';
 import { callApi, getName } from '../../utilities/functions';
 import { toast } from 'react-toastify';
+import useTitle from './../../hooks/useTitle';
 
 const OrgRegi = () => {
+
+    useTitle('ব্লাড ব্যাংক রেজিস্ট্রেশন')
+
     const [selecteddivisions, setSelectedDivisions] = useState([]);
     const [divisions, setDivisions] = useState([]);
 
