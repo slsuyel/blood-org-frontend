@@ -8,11 +8,7 @@ import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
 import { toast } from 'react-toastify';
 
-// const socialOrganizations = [
-//     "বাংলাদেশ রেড ক্রিসেন্ট সোসাইটি",
-//     "বাংলাদেশ  চিকিৎসক সমিতি",
-//     "name"
-// ];
+
 
 
 const Hero = () => {

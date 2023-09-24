@@ -22,7 +22,6 @@ const Signup = () => {
   const [unions, setUnions] = useState([]);
   const [selectedUnion, setSelectedUnion] = useState('');
 
-  const [donarOrganization, setDonarOrganization] = useState('');
   const [donarGender, setDonarGender] = useState('পুরুষ');
   const [whatsappNumber, setWhatsappNumber] = useState('');
 
@@ -34,6 +33,12 @@ const Signup = () => {
 
   const [error, setError] = useState('');
   const [date, onChange] = useState(new Date());
+
+  const [orgByUnions, setOrgByUnions] = useState([]);
+  const [orgLoading, setOrgLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+
 
   const formatDate = (date) => {
     const year = date?.getFullYear();
@@ -48,6 +53,7 @@ const Signup = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [org, setOrg] = useState('');
 
   const navigate = useNavigate();
 
@@ -78,9 +84,17 @@ const Signup = () => {
     // console.log(e.target.value);
   };
 
-  const handleOrganizationChange = (e) => {
-    setDonarOrganization(e.target.value);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
   };
+
+  const handleOrgChange = (event) => {
+    const selectedOption = event.target.value;
+    setOrg(selectedOption);
+    console.log(selectedOption);
+  };
+
   // Function to handle WhatsApp number input
   const handleWhatsappNumberChange = (e) => {
     setWhatsappNumber(e.target.value);
@@ -135,6 +149,23 @@ const Signup = () => {
     }
   }, [selectedUpazila]);
 
+  useEffect(() => {
+    setOrgLoading(true)
+    const fetchData = async () => {
+      try {
+        const response = await callApi("get", `/api/organizations?union=${donarUnions}`);
+        setOrgByUnions(response.organizations)
+        setOrgLoading(false)
+      } catch (error) {
+        setOrgLoading(false)
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, [donarUnions]);
+
+
+
 
 
   const handleFormSubmit = async (event) => {
@@ -164,12 +195,12 @@ const Signup = () => {
       district: donarDist,
       thana: donarUpazila,
       union: donarUnions,
-      // donarOrganization,
+      org: org,
       password: event.target.password.value,
     };/* https://bloodapi.tmscedu.com */
     try {
       const res = await callApi("POST", "/api/register", formData, { 'Content-Type': 'application/json' });
-
+      console.log(formData);
       if (res.token) {
         setIsSubmitting(false);
         toast.success('Signup successfully!', {
@@ -369,28 +400,50 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* <div className='form-group col-md-6'>
-              <label className='fw-medium' htmlFor='areaOrganization'>
-                সংগঠন সিলেক্ট করুন
-                <span className='fst-italic ms-4 text-decoration-underline text-sm text-success'>
-                  ~ কোন সংগঠন না থাকলে স্কিপ করুন ~
-                </span>{' '}
-              </label>
-              <select
-                name='areaOrganization'
-                className='form-control'
-                id='areaOrganization'
-                value={donarOrganization}
-                onChange={handleOrganizationChange}
-              >
-                <option disabled value=''>-Select-</option>
-                {organizationOptions.map((org) => (
-                  <option key={org.value} value={org.value}>
-                    {org.label}
-                  </option>
-                ))}
-              </select>
-            </div> */}
+
+            <div className={`${orgByUnions.length < 0 ? "d-none form-group col-md-6 " : ''}`}>
+              {
+                orgLoading ?
+                  <div className=' my-2'>
+                    {donarUnions ? `${donarUnions} ইউনিয়নের ` : ''}
+                    সংগঠন খোঁজা হচ্ছে . . . <span className='bg-danger ms-3 px-1 rounded-end-pill text-sm'> ** সংগঠন পাওয়া না গেলে সংগঠন রেজিস্টার করতে হবে। </span>
+                    <div className="union-loader"></div>
+
+                  </div>
+
+
+                  : <> {
+                    orgByUnions.length > 0 ? <div className="col-md-6 mb-2">
+                      <label>
+                        <input
+                          className="me-2"
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={handleCheckboxChange}
+                        />
+                        সংগঠনের অধিনে রেজিস্টার করুন {isChecked ? <span className='bg-danger ms-3 px-1 rounded-end-pill text-sm'> ** সংগঠন পাওয়া না গেলে সংগঠন রেজিস্টার করতে হবে। </span> : ''}
+                      </label>
+
+                      {
+                        isChecked ? <select name="organization" onChange={handleOrgChange} className="form-select">
+                          <option defaultValue >সংগঠন সিলেক্ট করুন</option>
+                          {orgByUnions?.map((organization) => (
+                            <option key={organization.id} value={organization.id}>
+                              {organization.name}
+                            </option>
+                          ))}
+                        </select> : ''
+                      }
+
+                    </div> : ''
+
+                  }
+
+                  </>
+              }
+            </div>
+
+
 
             <div className='form-group col-md-6'>
               <label className='fw-medium' htmlFor='password'>Password <span className='text-danger'> *</span></label>

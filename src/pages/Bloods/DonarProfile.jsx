@@ -32,7 +32,14 @@ const DonarProfile = () => {
                                             <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>{donorData.last_donate_date}</span></h6>
 
                                             <p className="text-muted font-size-sm mb-0">ঠিকানাঃ {donorData.union}, {donorData.thana}, {donorData.district}</p>
-                                            <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5>
+
+                                            {/* <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5> */}
+
+
+                                            {
+                                                donorData?.organization?.name ? <>  <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5> </> : ''
+                                            }
+
                                         </div>
 
 
@@ -42,7 +49,7 @@ const DonarProfile = () => {
                                                 কল করুন
                                             </a>
 
-                                        
+
                                             <a href={`sms:${donorData.mobile}`} className='bg-danger me-2 px-2 text-decoration-none'>
                                                 <i className="fa-message fa-solid me-1"></i>
                                                 মেসেজ করুন
