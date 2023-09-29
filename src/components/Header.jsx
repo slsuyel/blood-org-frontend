@@ -120,9 +120,10 @@ const Header = () => {
                         </>
                     )} */}
 
-                    <NavDropdown className='rounded'
+                    <NavDropdown className='rounded ps-2 '
                         title={`${authenticated ? ' প্রোফাইল' : orgAuthenticated || adminAuthenticated ? "Dashboard" : 'লগিন / রেজিস্ট্রেশন'}`} id="basic-nav-dropdown"
                         style={backgroundStyle}
+                       
                         show={dropdownOpen} // Set the show prop to control the dropdown
                         onToggle={(isOpen) => setDropdownOpen(isOpen)} // Handle dropdown open/close
 
@@ -167,12 +168,7 @@ const Header = () => {
                             </>
                         )}
 
-
-
-
                     </NavDropdown>
-
-
 
                 </Nav>
             </Navbar.Collapse>
