@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import img1 from '../assets/images/1.png'
 import img2 from '../assets/images/2.png'
 import img3 from '../assets/images/3.png'
 import useTitle from '../hooks/useTitle';
 import { Link } from 'react-router-dom';
+import Loader from '../utilities/Loader';
 const AboutUs = () => {
-
     useTitle('About Us')
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 250);
+        return () => clearTimeout(timer);
+    }, []);
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div  className="container my-5 py-5">
