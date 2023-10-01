@@ -1,5 +1,6 @@
 import React from 'react';
 import useTitle from '../../hooks/useTitle';
+import { Link } from 'react-router-dom';
 
 const TearmsAndCondition = () => {
     useTitle('টার্মস এবং কন্ডিশনস')
@@ -87,7 +88,10 @@ const TearmsAndCondition = () => {
 
             </div>
 
+            <Link className='border fs-4 px-2 rounded text-danger text-decoration-none' to='/be-aware'>
+                <i className="fa-solid fa-triangle-exclamation fa-fade"></i>  রক্তদানে ও গ্রহণে সতর্কতা <i className="fa-solid fa-triangle-exclamation fa-fade"></i>
 
+            </Link>
         </div>
     );
 };

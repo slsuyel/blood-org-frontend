@@ -35,6 +35,7 @@ import SingleOrg from "../pages/Organizations/SingleOrg";
 import AllUsers from "../home/AllUsers";
 import TearmsAndCondition from "../pages/Share/TearmsAndCondition";
 import OrgSingleShow from "../home/OrgSingleShow";
+import Alert from "../blogs/pages/Shared/Alert";
 
 export const router = createBrowserRouter([
     {
@@ -89,6 +90,11 @@ export const router = createBrowserRouter([
 
                 path: "organizations",
                 element: <Organizations />,
+            },
+            {
+
+                path: "be-aware",
+                element: <Alert />,
             },
 
             {

@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import img1 from '../assets/images/1.png'
 import img2 from '../assets/images/2.png'
 import img3 from '../assets/images/3.png'
+import { Link } from 'react-router-dom';
 const About = () => {
     useEffect(() => {
         AOS.init();
@@ -24,7 +25,7 @@ const About = () => {
 
                                 <div className="col-12">
                                     <div className="mt-4 pt-2 text-right">
-                                        <a href="/about" className="btn btn-info"><i className="fa-solid fa-circle-check"></i> আরও জানুন </a>
+                                        <Link to='/about'><i className="fa-solid fa-circle-check"></i> আরও জানুন</Link>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +62,9 @@ const About = () => {
                         <h4 className="mb-2 text-danger">
                             লক্ষ ও উদ্দেশ্য
                         </h4>
-                        <p className="text-muted mb-0">♻ আমরা কোন একক সংগঠনের জন্য নয়, বরং সকল ব্যক্তির, সংগঠনের সুবিধার জন্যই। যাঁরা রক্তদেন তাঁদেরকে এবং রক্তদান সম্পর্কিত বিভিন্ন সংগঠনগুলোকে এক প্লাটফর্মে নিয়ে এসে রক্ত দেওয়া-পাওয়ার কাজটা সহজ করাই এর উদ্দেশ্য। আপনিও রক্তদাতা হলে website এ রেজিস্ট্রেশন করুন।
+                        <p className="text-muted mb-0">♻
+
+                            আমরা কোন একক সংগঠনের জন্য নয়, বরং সকল ব্যক্তির, সংগঠনের সুবিধার জন্যই। যাঁরা রক্তদেন তাঁদেরকে এবং রক্তদান সম্পর্কিত বিভিন্ন সংগঠনগুলোকে এক প্লাটফর্মে নিয়ে এসে রক্ত দেওয়া-পাওয়ার কাজটা সহজ করাই এর উদ্দেশ্য। আপনিও রক্তদাতা হলে website এ রেজিস্ট্রেশন করুন।
                             <br />
                             আপনার পরিচিত ব্লাড ডোনারদের এই ওয়েবসাইট সম্পর্কে জানান। মনে রাখবেন, সহজে রক্তদাতা পাওয়ার পূর্বশর্ত স্বেচ্ছায় রক্তদান। যতো বেশি জেনুইন রক্তদাতা রেজিস্ট্রেশন করবেন, রক্ত পাওয়া ততো সহজ হবে
                         </p>

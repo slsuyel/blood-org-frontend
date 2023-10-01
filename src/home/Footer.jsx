@@ -56,20 +56,25 @@ const Footer = () => {
                             <li>
                                 <Link className="text-decoration-none text-white" to='/about'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> আমাদের সম্পর্কে </Link>
                             </li>
+                           {/* <i class="fa-solid fa-triangle-exclamation fa-fade"></i> */}
+                           
+                            <li>
+                                <Link className="text-decoration-none text-white" to='/be-aware'> <i className="me-1 fas fa-check-circle" aria-hidden="true" />রক্তদান ও গ্রহণে সতর্কতা  </Link>
+                            </li>
+
+
                             <li>
                                 <Link className="text-decoration-none text-white" to='/terms&condition'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> টার্মস এবং কন্ডিশনস </Link>
                             </li>
-                            <li>
-                                <Link className="text-decoration-none text-white" to='/terms&condition#privacy'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> গোপনীয়তা নীতি </Link>
-                            </li>
-                         
 
 
-                           {/*  <li>
+
+
+                            {/*  <li>
                                 <Link className="text-decoration-none text-white" to='/admin/signin'> <i className="me-1 fas fa-check-circle" aria-hidden="true" /> Admin </Link>
                             </li> */}
 
-                            
+
 
 
                         </ul>
