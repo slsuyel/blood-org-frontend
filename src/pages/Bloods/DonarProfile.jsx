@@ -89,7 +89,7 @@ const DonarProfile = () => {
                                     </div>
                                 </div>
                                 <hr />
-                                <div className="row">
+                               {/*  <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Email :</h6>
                                     </div>
@@ -97,7 +97,7 @@ const DonarProfile = () => {
                                         {donorData.email}
                                     </div>
                                 </div>
-                                <hr />
+                                <hr /> */}
                                 <div className="row">
                                     <div className="col-sm-3">
                                         <h6 className="mb-0">Phone :</h6>
@@ -127,6 +127,48 @@ const DonarProfile = () => {
 
                             </div>
                         </div>
+
+                        <div>
+                            <h5>রক্তদানের হিস্টোরি</h5>
+
+                            <div className="table-responsive">
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th className='text-nowrap text-center' scope="col">#</th>
+                                            <th className='text-nowrap text-center' scope="col">তারিখঃ</th>
+                                            <th className='text-nowrap text-center' scope="col"> গ্রহীতার নামঃ</th>
+                                            <th className='text-nowrap text-center' scope="col">ঠিকানাঃ</th>
+                                            <th className='text-nowrap text-center' scope="col">হাসপাতাল</th>
+                                            <th className='text-nowrap text-center' scope="col">মোবাইলঃ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {donorData.donation_logs.map((h, index) => (
+                                            <tr key={index}>
+                                                <th className='text-nowrap text-center' scope="row">{index + 1}</th>
+                                                <td className='text-nowrap text-center'>{h.date}</td>
+                                                <td className='text-nowrap text-center'>{h.blood_taker_name}</td>
+                                                <td className='text-nowrap text-center'>{h.hospital}</td>
+                                                <td className='text-nowrap text-center'>{h.address}</td>
+                                                <td className='text-nowrap text-center'>{(() => {
+                                                    const phoneNumber = h.blood_taker_phone;
+                                                    const masked = phoneNumber.substring(0, 3) + '******' + phoneNumber.substring(9);
+                                                    return masked;
+                                                })()}</td>
+
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
+
+
                     </div></div></div></div>
 
     );

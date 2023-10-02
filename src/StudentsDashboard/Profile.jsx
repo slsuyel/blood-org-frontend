@@ -110,8 +110,6 @@ const Profile = () => {
                                             {
                                                 donorData.donation_logs.length > 0 ? <p className='fs-5 my-1'>মোট রক্ত দিয়েছেন
                                                     <span> {donorData.donation_logs?.length} </span>
-
-
                                                     বার</p> : ''
                                             }
 
@@ -213,11 +211,47 @@ const Profile = () => {
 
                                 <div className="row">
                                     <div className="col-sm-12">
-                                        <a className="btn btn-info " target="__blank" href="">Edit info</a>
+                                        <Link className="btn btn-info ">Edit info</Link>
+                                      
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div>
+                            <h5>রক্তদানের হিস্টোরি</h5>
+
+                            <div className="table-responsive">
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th className='text-nowrap text-center' scope="col">#</th>
+                                            <th className='text-nowrap text-center' scope="col">তারিখঃ</th>
+                                            <th className='text-nowrap text-center' scope="col"> গ্রহীতার নামঃ</th>
+                                            <th className='text-nowrap text-center' scope="col">ঠিকানাঃ</th>
+                                            <th className='text-nowrap text-center' scope="col">হাসপাতাল</th>
+                                            <th className='text-nowrap text-center' scope="col">মোবাইলঃ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {donorData.donation_logs.map((h, index) => (
+                                            <tr key={index}>
+                                                <th className='text-nowrap text-center' scope="row">{index + 1}</th>
+                                                <td className='text-nowrap text-center'>{h.date}</td>
+                                                <td className='text-nowrap text-center'>{h.blood_taker_name}</td>
+                                                <td className='text-nowrap text-center'>{h.hospital}</td>
+                                                <td className='text-nowrap text-center'>{h.address}</td>
+                                                <td className='text-nowrap text-center'>{h.blood_taker_phone}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+
+
                     </div>
                 </div></div>
 

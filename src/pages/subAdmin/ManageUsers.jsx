@@ -147,8 +147,8 @@ const ManageUsers = () => {
                                     <a href="tel:01751331330" className="text-decoration-none">{d.mobile}  </a>  </td>
 
                                 <td >
-                                    <div className='d-flex justify-content-around gap-2'>
-                                        <Link className='btn btn-primary text-decoration-none' to={`/donar/${d.id}`}>Show</Link>
+                                    <div className='text-nowrap d-flex justify-content-around gap-2'>
+                                        <Link className='btn btn-primary text-decoration-none' to={`/donar/${d.id}`}>View</Link>
 
                                         <button
                                             onClick={() => {
