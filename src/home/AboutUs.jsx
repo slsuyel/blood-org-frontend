@@ -12,7 +12,7 @@ const AboutUs = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 250);
+        }, 150);
         return () => clearTimeout(timer);
     }, []);
     if (isLoading) {

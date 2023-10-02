@@ -41,7 +41,7 @@ const DonarProfile = () => {
 
 
                                             {
-                                                donorData?.organization?.name ? <>  <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5> </> : ''
+                                                donorData?.organization?.name ? <>  <h5>স্থানীয় সংগঠনঃ <Link to={`/org/details/${donorData?.organization?.id}`} className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5> </> : ''
                                             }
 
                                         </div>

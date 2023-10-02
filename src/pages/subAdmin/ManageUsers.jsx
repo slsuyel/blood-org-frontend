@@ -5,7 +5,9 @@ import { callApi } from '../../utilities/functions';
 import Paginate from '../../components/Paginate';
 import Loader from './../../utilities/Loader';
 import { Modal, Button } from 'react-bootstrap';
-import DatePicker from 'react-date-picker';
+import ReactDatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import { toast } from 'react-toastify';
 
 const ManageUsers = () => {
@@ -16,7 +18,7 @@ const ManageUsers = () => {
 
     const [formData, setFormData] = useState({
         user_id: '',
-        date: new Date().toISOString().substr(0, 10),
+        date: new Date().toISOString().substring(0, 10),
         blood_taker_name: '',
         blood_taker_phone: '',
         address: '',
@@ -187,12 +189,13 @@ const ManageUsers = () => {
                             <form className='mx-auto px-2'>
                                 <div className=''>
                                     <label className='w-50' htmlFor='date'>রক্তদানের তারিখঃ</label>
-                                    <DatePicker
-                                        className='border'
-                                        name='date'
-                                        dateFormat='yyyy-MM-dd'
-                                        value={formData.date}
-                                        onChange={(date) => setFormData({ ...formData, date: date.toISOString().substr(0, 10) })}
+                                    <ReactDatePicker
+                                        selected={formData.date ? new Date(formData.date) : null}
+                                        onChange={(date) => {
+                                            const formattedDate = date ? date.toISOString().substring(0, 10) : '';
+                                            setFormData({ ...formData, date: formattedDate });
+                                        }}
+                                        dateFormat="yyyy-MM-dd"
                                     />
                                 </div>
 

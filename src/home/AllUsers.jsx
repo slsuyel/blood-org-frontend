@@ -110,7 +110,7 @@ import useTitle from '../hooks/useTitle';
 
 const AllUsers = () => {
     useTitle('সকল রক্তদাতার তালিকাঃ')
-    
+
     const [pageNo, setPageNo] = useState(1);
     const [totalPages, setTotalPages] = useState();
     const [per_page, setPer_page] = useState();
@@ -160,7 +160,7 @@ const AllUsers = () => {
                                 <div className="group"> {user.blood_group} </div>
                                 <Link to={`/donar/${user.id}`} className=' text-decoration-none '>
                                     <div className="single-content-details">
-                                        <ul className='list-unstyled'>
+                                        <ul className='list-unstyled mb-0'>
                                             <li className='bg-body mb-2'>
                                                 <div className='fs-3 text-decoration-none text-warning-emphasis'><i className="fa-solid fa-user"></i> {user.name}</div>
                                             </li>
@@ -189,6 +189,18 @@ const AllUsers = () => {
                                         </ul>
                                     </div>
                                 </Link>
+
+                                <div>
+                                    {
+                                        user.donation_logs.length > 0 ? <p className='fs-5 my-1'>মোট রক্ত দিয়েছেন
+                                            <span> {user.donation_logs?.length} </span>
+
+
+                                            বার</p> : ''
+                                    }
+                                </div>
+
+
                                 <div className="bg-danger py-1">
                                     <a href={`tel:${user.mobile}`} className='text-decoration-none'>
                                         <i className="fa fa-phone me-2" />
