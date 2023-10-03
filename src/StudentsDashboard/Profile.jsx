@@ -105,7 +105,7 @@ const Profile = () => {
                                         <h5>রক্তের গ্রুপঃ <span className='fw-bold ms-1 text-danger'>{donorData.blood_group}</span> </h5>
 
                                         <div>
-                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>{donorData.last_donate_date.substr(0, 10)}</span></h6>
+                                            <h6 className='fs-5'> সর্বশেষ রক্তদানের তারিখ: <span className='fw-bold ms-1 text-danger'>{donorData?.last_donate_date?.substr(0, 10)}</span></h6>
 
                                             {
                                                 donorData.donation_logs.length > 0 ? <p className='fs-5 my-1'>মোট রক্ত দিয়েছেন
@@ -121,10 +121,6 @@ const Profile = () => {
 
                                             <p className="text-muted font-size-sm mb-0">ঠিকানাঃ {donorData.union}, {donorData.thana}, {donorData.district}</p>
 
-
-                                            {
-                                                console.log(donorData)
-                                            }
                                             {
                                                 donorData?.organization?.name ? <>  <h5>স্থানীয় সংগঠনঃ <Link className='text-decoration-none text-purple'> {donorData?.organization?.name} </Link> </h5> </> : ''
                                             }

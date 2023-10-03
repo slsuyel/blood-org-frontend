@@ -39,8 +39,6 @@ const AddUser = () => {
     };
 
 
-    const resDate = formatDate(date)
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [termsAccepted, setTermsAccepted] = useState(false);
 
@@ -149,8 +147,6 @@ const AddUser = () => {
             blood_group: event.target.group.value,
             email: event.target.donar_email.value,
             gender: donarGender,
-            guardian_phone: event.target.guardian_phone.value,
-            last_donate_date: resDate,
             whatsapp_number: whatsappNumber,
             division: donarDiv,
             district: donarDist,
@@ -245,9 +241,7 @@ const AddUser = () => {
                             <div className='form-group col-md-6'>
                                 <label className='fw-medium' htmlFor='donar_gender'>
                                     জেন্ডার <span className='text-danger'> *</span>{' '}
-                                    <span className='fst-italic text-danger-emphasis text-sm'>
-                                        ~নারী ডোনারদের মোবাইল নাম্বার গোপন রাখা হবে ~
-                                    </span>{' '}
+
                                 </label>
                                 <select
                                     name='donar_gender'
@@ -275,28 +269,10 @@ const AddUser = () => {
                                     onChange={handleWhatsappNumberChange}
                                 />
                             </div>
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='guardian_phone'> গার্ডিয়ান ফোন নাম্বার  <span className='text-danger'> *</span></label>
-                                <input
-                                    type='number'
-                                    className='form-control'
-                                    id='guardian_phone'
-                                    name='guardian_phone'
-                                    placeholder='eg: 017********'
-
-                                />
-                            </div>
 
 
 
-                            <div className='form-group col-md-6'>
-                                <label className='fw-medium' htmlFor='password'>সর্বশেষ রক্তদানের তারিখ<span className='text-danger'> *</span></label>
-                                <div className='bg-white py-1 rounded border'>
-                                    <div className='ms-3 text-blood'>
-                                        <DatePicker onChange={onChange} value={date} />
-                                    </div>
-                                </div>
-                            </div>
+
 
 
                             <div className="form-group col-md-6">
@@ -379,7 +355,7 @@ const AddUser = () => {
                                 onChange={() => setTermsAccepted(!termsAccepted)}
                             />
                             <label className='form-check-label' htmlFor='acceptTerms'>
-                                I accept the terms and conditions <span className='text-danger'> *</span>
+                                Accept the <Link className='text-decoration-none' to={'/terms&condition'}>terms & conditions</Link> <span className='text-danger'> *</span>
                             </label>
                         </div>
                         <p className='text-danger'>{error}</p>

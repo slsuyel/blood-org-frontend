@@ -8,6 +8,7 @@ import Loader from '../utilities/Loader';
 import SearchBlood from '../pages/Bloods/SearchBlood';
 import { toast } from 'react-toastify';
 import useTitle from '../hooks/useTitle';
+import TutorialModal from '../components/TutorialModal';
 
 
 
@@ -355,10 +356,11 @@ const Hero = () => {
 
                             </div>
 
-                            <div >
+                            <div className='align-items-center d-flex gap-1'>
                                 <Link to={'/signup'} className="register-button">
-                                    রেজিস্ট্রেশন করুন
+                                    রেজিস্ট্রেশন
                                 </Link>
+                                <TutorialModal />
                             </div>
                         </div>
                     </form>
