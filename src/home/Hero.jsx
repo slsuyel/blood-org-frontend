@@ -357,7 +357,7 @@ const Hero = () => {
                             </div>
 
                             <div className='align-items-center d-flex gap-1'>
-                                <Link to={'/signup'} className="register-button">
+                                <Link to={'/signup'} className="register-button-main">
                                     রেজিস্ট্রেশন
                                 </Link>
                                 <TutorialModal />

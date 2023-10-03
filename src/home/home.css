@@ -73,6 +73,44 @@
     color: #f00;
 }
 
+.register-button-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+    color: #b90707;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    border: 1px solid #b90707;
+    position: relative;
+    transition: 0.3s;
+    background-color: #ffffff;
+}
+
+.register-button-main::before {
+    content: "নতুন";
+    display: block;
+    font-size: 13px;
+    background-color: #b90707;
+    color: #fff;
+    border-radius: 3px;
+    padding: 3px 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-5px, -30%);
+    transition: .3s;
+}
+
+.register-button-main:hover::before {
+    transform: translate(-5px, -50%);
+}
+
+
+
 
 
 
